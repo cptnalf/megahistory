@@ -70,7 +70,15 @@ public class RBDictTree<K,V> : RBTree<pair<K,V>> where K : System.IComparable<K>
 					}
 			}
 		
-		return new iterator(_tree, stack);
+		iterator it = null;
+		if (!done)
+			{
+				/* never found it, so make an end iterator. */
+				it = end();
+			}
+		else { it = new iterator(_tree, stack); }
+		
+		return it;
 	}
 }
 

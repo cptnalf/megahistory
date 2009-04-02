@@ -3,6 +3,14 @@
  * stephen.alfors@igt.com
  */
 
+/* this generates duplicates
+ * i'm not sure if its because there really are duplicates in the merge history, or if 
+ * the recursive queries are picking them up.
+ * also, the rather innocent query i did turned into a frigg'n diasater.
+ * 40 minutes later i have 720 different changesets (again multiples exist)
+ * graphing the directed changes with dot, i get a png that's 7500x14000.
+ */
+
 using Microsoft.TeamFoundation.VersionControl.Client;
 using System;
 using System.Collections.Generic;
@@ -11,32 +19,214 @@ using System.Collections.Generic;
  */
 abstract class Visitor
 {
-	public Visitor() { }
-	public abstract void visit(int parentID, Changeset cs);
-	public abstract void visit(int parentID, int csID, Exception e);
+	/** private version of a 'Changeset' object */
+	public class PatchInfo
+	{
+		public int parent;
+		public Changeset cs;
+		public List<string> treeBranches;
+		
+		public PatchInfo(int p, Changeset c, List<string> tps)
+		{
+			parent = p;
+			cs = c;
+			treeBranches = tps;
+		}
+		
+		public void print(System.IO.TextWriter writer)
+		{
+			if (parent != 0) { writer.WriteLine("Parent: {0}", parent); }
+			writer.WriteLine("Changeset: {0}", cs.ChangesetId);
+			writer.WriteLine("Author: {0}", cs.Owner);
+			writer.WriteLine("Date: {0}", cs.CreationDate);
+			
+			if (treeBranches != null)
+				{ for(int i=0; i < treeBranches.Count; ++i) { writer.WriteLine(treeBranches[i]); } }
+			
+			/* @TODO pretty print the comment */
+			writer.WriteLine(cs.Comment);
+			writer.WriteLine();
+		}
+	};
+	
+	private RBDictTree<int,PatchInfo> _cache = new RBDictTree<int,PatchInfo>();
+	
+	/** have we already visited this changeset?
+	 */
+	public bool visited(int changesetid)
+	{
+		RBDictTree<int,PatchInfo>.iterator it = _cache.find(changesetid);
+		
+		return it != _cache.end();
+	}
+
+	public virtual void visit(int parentID, Changeset cs, List<string> trees)
+	{
+		RBDictTree<int,PatchInfo>.iterator it = _cache.find(cs.ChangesetId);
+		
+		if (it != _cache.end()) 
+			{
+				_seen(parentID, it.value().second);
+			}
+		else
+			{
+				/* only print stuff we haven't already seen. */
+				PatchInfo p = new PatchInfo(parentID, cs, trees);
+				
+				_cache.insert(p.cs.ChangesetId, p);
+				_visit(p);
+			}
+	}
+	
+	protected abstract void _visit(PatchInfo p);
+	protected abstract void _seen(int parentID, PatchInfo p);
+	
+	/* for errors. */
+	public abstract void visit(int parentID, int changesetID, Exception e);
 }
 
 /** print the changeset when we see it.
  */
 class HistoryViewer : Visitor
 {
-	public override void visit(int parentID, Changeset cs)
-	{
-		if (parentID != 0) { Console.WriteLine("Parent: {0}", parentID); }
-		Console.WriteLine("Changeset: {0}", cs.ChangesetId);
-		Console.WriteLine("Author: {0}", cs.Owner);
-		Console.WriteLine("Date: {0}", cs.CreationDate);
-		
-		/* @TODO pretty print the comment */
-		Console.WriteLine(cs.Comment);
-		Console.WriteLine();
-	}
+	public HistoryViewer() { }
+	
+	protected override void _visit(PatchInfo p) { p.print(Console.Out); }
+	
+	protected override void _seen(int parentID, PatchInfo p)
+	{ Console.WriteLine("again! {0} -> ({1}) {2}", parentID, p.parent, p.cs.ChangesetId); }
 	
 	public override void visit(int parentID, int csID, Exception e)
 	{
 		Console.WriteLine("Changeset: {0}", csID);
 		Console.WriteLine(" --Error retrieving changeset-- ");
 		Console.WriteLine();
+		Console.WriteLine(e);
+	}
+}
+
+class MegaHistory
+{
+	private bool _noRecurse = false;
+	private VersionControlServer _vcs;
+	
+	public MegaHistory(bool noRecurse, VersionControlServer vcs) { _noRecurse = noRecurse; _vcs=vcs; }
+
+	public virtual bool visit(Visitor visitor, int parentID,
+														string targetPath, 
+														VersionSpec targetVer,
+														VersionSpec fromVer,
+														VersionSpec toVer)
+	{ return visit(visitor, parentID, null, null, targetPath, targetVer, fromVer, toVer, RecursionType.Full); }
+	
+	public virtual bool visit(Visitor visitor, 
+														string srcPath, VersionSpec srcVer, 
+														string target, VersionSpec targetVer,
+														VersionSpec fromVer, VersionSpec toVer,
+														RecursionType recursionType)
+	{ return visit(visitor, 0, srcPath, srcVer, target, targetVer, fromVer, toVer, recursionType); }
+	
+	/** visit an explicit list of changesets. 
+	 */
+	public virtual bool visit(Visitor visitor, int parentID,
+														string srcPath, VersionSpec srcVer, 
+														string target, VersionSpec targetVer,
+														VersionSpec fromVer, VersionSpec toVer,
+														RecursionType recursionType)
+	{
+		/* so, here we might have a few top-level merge changesets. 
+		 * the red-black binary tree sorts the changesets in decending order
+		 */
+		RBDictTree<int,List<ChangesetMerge>> merges = 
+			main.query_merges(_vcs, srcPath, srcVer, 
+												target, targetVer, fromVer, toVer, recursionType);
+		
+		RBDictTree<int,List<ChangesetMerge>>.iterator it = merges.begin();
+		
+		/* walk through the merge changesets
+		 * - this should return only one merge changeset for the recursive calls.
+		 */
+		for(; it != merges.end(); ++it)
+			{
+				int csID = it.value().first;
+				try
+					{
+						Changeset cs = _vcs.GetChangeset(csID);
+						
+						/* visit the 'target' merge changeset here. 
+						 * it's parent is the one passed in.
+						 */
+						List<string> pbranches = main._get_EGS_branches(cs);
+						visitor.visit(parentID, cs, pbranches);
+						
+						foreach(ChangesetMerge csm in it.value().second)
+							{
+								/* now visit each of the children.
+								 * we've already expanded cs.ChangesetId (hopefully...)
+								 */
+								try
+									{
+										Changeset child = _vcs.GetChangeset(csm.SourceVersion);
+										List<string> branches = main._get_EGS_branches(child);
+										
+										/* - this is for the recursive query -
+										 * you have to have specific branches here.
+										 * a query of the entire project will probably not return.
+										 *
+										 * eg: 
+										 * query target $/IGT_0803/main/EGS,78029 = 41s
+										 * query target $/IGT_0803,78029 = DNF (waited 6+m)
+										 */
+										
+										if (_noRecurse)
+											{
+												/* they just want the top-level query. */
+												visitor.visit(cs.ChangesetId, child, branches);
+											}
+										else
+											{
+												if (!visitor.visited(child.ChangesetId))
+													{
+														/* we just wanted to see the initial list, not a full tree of changes. */
+														ChangesetVersionSpec tv = new ChangesetVersionSpec(child.ChangesetId);
+														bool results = false;
+														
+														/* this is going to execute a number of queries to get
+														 * all of the source changesets for this merge.
+														 * since using a branch is an(several hundred) order(s) of magnitude faster, 
+														 * we're doing this by branch(path)
+														 */
+														for(int i=0; i < branches.Count; ++i)
+															{
+																/* this recurisve call needs to then 
+																 * handle visiting the results of this query. 
+																 */
+																bool branchResult = visit(visitor, cs.ChangesetId, branches[i], tv, tv, tv);
+																
+																if (branchResult) { results = true; }
+															}
+														
+														if (!results)
+															{
+																/* we got no results from our query, so display the changeset
+																 * (it won't be displayed otherwise)
+																 */
+																visitor.visit(cs.ChangesetId, child, branches);
+															}
+													}
+												else
+													{
+														/* do we want to see it again? */
+													}
+											}
+									}
+								catch(Exception e) { visitor.visit(cs.ChangesetId, csm.SourceVersion, e); }
+							}
+					}
+				catch(Exception e) { visitor.visit(parentID, csID, e); }
+			}
+		
+		return it == merges.end();
 	}
 }
 
@@ -149,74 +339,19 @@ class main
 		values.vcs = _get_tfs_server(values.server);
 		
 		Visitor visitor = new HistoryViewer();
+		MegaHistory megahistory = new MegaHistory(values.noRecurse, values.vcs);
 		
-		try
-			{
-				do_query(visitor, values);
-			}
-		catch(Exception e)
-			{
-				Console.WriteLine(e.ToString());
-			}
+		bool result = megahistory.visit(visitor,
+																		values.srcPath, values.srcVer, 
+																		values.target, values.targetVer, 
+																		values.fromVer, values.toVer, RecursionType.Full);
 		
-		return 0;
-	}
-	
-	static void do_query(Visitor visitor, Values values)
-	{
-		/* i have to do this query here instead of just doing a recursive call
-		 *  because of all of the extra arguments.
-		 */
-		RBDictTree<int,List<ChangesetMerge>> merges = 
-			_query_merges(values.vcs, values.srcPath, values.srcVer, 
-										values.target, values.targetVer, values.fromVer, values.toVer, RecursionType.Full);
-		
-		/* so, here we might have a few top-level merge changesets. 
-		 * this sorts the changesets in decending order
-		 */
-		RBDictTree<int,List<ChangesetMerge>>.iterator it = merges.begin();
-		
-		if (it == merges.end())
+		if (!result)
 			{
 				Console.WriteLine("no changesets found.");
 			}
-		else
-			{
-				for(; it != merges.end(); ++it)
-					{
-						int csID = it.value().first;
-						
-						try
-							{
-								Changeset cs = values.vcs.GetChangeset(it.value().first);
-								
-								visitor.visit(0, cs);
-							}
-						catch(Exception getcsE1) 
-							{
-								visitor.visit(0, csID, getcsE1);
-							}
-						
-						/* now walk through the changes which make up the merge change */
-						foreach(ChangesetMerge csm in it.value().second)
-							{
-								try
-									{
-										Changeset childCS = values.vcs.GetChangeset(csm.SourceVersion);
-										/* if we were asked not to do recursion,
-										 * just display the top-level changes.
-										 */
-										if (values.noRecurse) { visitor.visit(csID, childCS); }
-										else { publish_list(values.vcs, visitor, csID, childCS); }
-									}
-								catch(Exception getcsE)
-									{
-										/* report the problem to the visitor */
-										visitor.visit(csID, csm.SourceVersion, getcsE);
-									}
-							}
-					}
-			}
+
+		return 0;
 	}
 	
 	/** walk the changes in the changeset and find all unique 'EGS' trees.
@@ -230,7 +365,7 @@ class main
 	 *  $/IGT_0803/development/dev_advantage/EGS/
 	 *
 	 */
-	static List<string> _get_EGS_branches(Changeset cs)
+	public static List<string> _get_EGS_branches(Changeset cs)
 	{
 		List<string> itemBranches = new List<string>();
 		for(int i=0; i < cs.Changes.Length; ++i)
@@ -239,99 +374,57 @@ class main
 				bool found = false;
 				int idx = 0;
 				
-				for(int j=0; j < itemBranches.Count; ++j)
+				/* skip all non-merge changesets. */
+				if ((cs.Changes[i].ChangeType & ChangeType.Merge) == ChangeType.Merge)
 					{
-						idx = itemPath.IndexOf(itemBranches[j]);
-						if (idx == 0) { found = true; break; }
-					}
-				
-				if (!found)
-					{
-						/* yeah steve, '/EGS8.2' sucks now doesn't it... */
-						string str = "/EGS/";
-						idx = itemPath.IndexOf(str);
-						itemPath = itemPath.Substring(0,idx+str.Length);
-						itemBranches.Add(itemPath);
+						for(int j=0; j < itemBranches.Count; ++j)
+							{
+								/* the stupid branches are not case sensitive. */
+								idx = itemPath.IndexOf(itemBranches[j], StringComparison.InvariantCultureIgnoreCase);
+								if (idx == 0) { found = true; break; }
+							}
+						
+						if (!found)
+							{
+								/* yeah steve, '/EGS8.2' sucks now doesn't it... */
+								string str = "/EGS/";
+								
+								/* the stupid branches are not case sensitive. */
+								idx = itemPath.IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+								
+								if (idx > 0)
+									{
+										itemPath = itemPath.Substring(0,idx+str.Length);
+#if DEBUG
+						if (itemPath.IndexOf("$/IGT_0803/") == 0)
+							{
+#endif
+								itemBranches.Add(itemPath);
+#if DEBUG
+							}
+						else
+							{
+								Console.Error.WriteLine("'{0}' turned into '{1}'!", 
+																				cs.Changes[i].Item.ServerItem,
+																				itemPath);
+							}
+#endif
+									}
+							}
 					}
 			}
 		
 		return itemBranches;
 	}
 	
-	/** recursively look for merges
-	 * 
-	 *  @param parentID  the changeset id of the top-level merge
-	 *  @param cs        the changeset which the merge included,
-	 *                   and to determine whether or not this changeset is a merge.
-	 */
-	static void publish_list(VersionControlServer vcs, Visitor visitor, int parentID, Changeset cs)
-	{
-		ChangesetVersionSpec tv = new ChangesetVersionSpec(cs.ChangesetId);
-		RBDictTree<int,List<ChangesetMerge>> merges = null;
-		
-		visitor.visit(parentID, cs);
-		
-		/* do a full check of the changeset and get all of the source EGS paths. */
-		List<string> itemBranches = _get_EGS_branches(cs);
-		
-		/* this is going to execute a number of queries to get
-		 * all of the source changesets for this merge.
-		 * since using a branch is an(several hundred) order(s) of magnitude faster, 
-		 * we're doing this by branch(path)
-		 */
-		for(int i=0; i < itemBranches.Count; ++i)
-			{
-				/* you have to have specific branches here.
-				 * a query of the entire project will probably not return.
-				 *
-				 * eg: 
-				 * query target $/IGT_0803/main/EGS,78029 = 41s
-				 * query target $/IGT_0803,78029 = DNF (waited 6+m)
-				 */
-				merges = _query_merges(vcs, itemBranches[i], tv, tv, tv);
-				
-				/* walk through the merge changesets
-				 * - this should return only one merge changeset.
-				 */
-				RBDictTree<int,List<ChangesetMerge>>.iterator it = merges.begin();
-				for(; it != merges.end(); ++it)
-					{
-						foreach(ChangesetMerge csm in it.value().second)
-							{
-								int id = csm.SourceVersion;
-								try
-									{
-										Changeset csChild = vcs.GetChangeset(csm.SourceVersion);
-										
-										/* publish the list. */
-										publish_list(vcs, visitor, cs.ChangesetId, csChild);
-									}
-								catch(Exception e)
-									{
-										/* catch potential changeset snar-foo */
-										visitor.visit(cs.ChangesetId, id, e);
-									}
-							}
-					}
-			}
-	}
-	
-	static RBDictTree<int,List<ChangesetMerge>> _query_merges(VersionControlServer vcs,
-																														string targetPath, 
-																														VersionSpec targetVer,
-																														VersionSpec fromVer,
-																														VersionSpec toVer
-																														)
-	{ return _query_merges(vcs, null, null, targetPath, targetVer, fromVer, toVer, RecursionType.Full); }
-	
-	static RBDictTree<int,List<ChangesetMerge>> _query_merges(VersionControlServer vcs,
-																														string srcPath,
-																														VersionSpec srcVer,
-																														string targetPath,
-																														VersionSpec targetVer,
-																														VersionSpec fromVer,
-																														VersionSpec toVer,
-																														RecursionType recurType)
+	public static RBDictTree<int,List<ChangesetMerge>> query_merges(VersionControlServer vcs,
+																																	string srcPath,
+																																	VersionSpec srcVer,
+																																	string targetPath,
+																																	VersionSpec targetVer,
+																																	VersionSpec fromVer,
+																																	VersionSpec toVer,
+																																	RecursionType recurType)
 	{
 		RBDictTree<int,List<ChangesetMerge>> merges = new RBDictTree<int,List<ChangesetMerge>>();
 		
