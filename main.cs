@@ -9,6 +9,8 @@
  * also, the rather innocent query i did turned into a frigg'n diasater.
  * 40 minutes later i have 720 different changesets (again multiples exist)
  * graphing the directed changes with dot, i get a png that's 7500x14000.
+ *
+ * reduced the call time to 8 minutes.
  */
 
 using Microsoft.TeamFoundation.VersionControl.Client;
@@ -89,9 +91,46 @@ abstract class Visitor
  */
 class HistoryViewer : Visitor
 {
-	public HistoryViewer() { }
+	public enum Printwhat : short
+	{
+		None,
+		NameOnly,
+		NameStatus
+	}
 	
-	protected override void _visit(PatchInfo p) { p.print(Console.Out); }
+	private Printwhat _printWhat = Printwhat.None;
+	
+	public HistoryViewer(Printwhat printWhat) { _printWhat = printWhat; }
+	
+	protected override void _visit(PatchInfo p) 
+	{
+		p.print(Console.Out);
+		
+		/* only print the list if it wasn't a merge changeset. 
+		 * merge changesets have tree-branches
+		 */
+		if (p.treeBranches == null || p.treeBranches.Count == 0)
+			{
+				if (_printWhat != Printwhat.None)
+					{
+						for(int i=0; i < p.cs.Changes.Length; ++i)
+							{
+								switch(_printWhat)
+									{
+										case(Printwhat.NameOnly): 
+											{ Console.WriteLine("{0}", p.cs.Changes[i].Item.ServerItem); break; }
+									case(Printwhat.NameStatus):
+										{
+											Console.WriteLine("{0:20}{1}", 
+																				p.cs.Changes[i].ChangeType, p.cs.Changes[i].Item.ServerItem);
+											break;
+										}
+									}
+							}
+						Console.WriteLine();
+					}
+			}
+	}
 	
 	protected override void _seen(int parentID, PatchInfo p)
 	{ Console.WriteLine("again! {0} -> ({1}) {2}", parentID, p.parent, p.cs.ChangesetId); }
@@ -248,6 +287,8 @@ class main
 		Console.WriteLine("--from version[,version]\tthe changeset range to look in.");
 		Console.WriteLine("--no-recurse            \tdo not recursively query merge history");
 		Console.WriteLine("                        \t this will execute only one QueryMerges");
+		Console.WriteLine("--name-only             \tadd the path of the files to the changeset info");
+		Console.WriteLine("--name-status           \tprint the path and the change type in the changeset info");
 		Console.WriteLine("target,version\tthe required path we're looking at");
 	}
 
@@ -282,6 +323,7 @@ class main
 		internal VersionSpec fromVer;
 		internal VersionSpec toVer;
 		internal VersionControlServer vcs;
+		internal HistoryViewer.Printwhat printWhat;
 		
 		internal Values(byte b)
 		{
@@ -294,6 +336,7 @@ class main
 			fromVer = null;
 			toVer = null;
 			vcs = null;
+			printWhat = HistoryViewer.Printwhat.None;
 		}
 	}
 	
@@ -326,6 +369,8 @@ class main
 						values.fromVer = new ChangesetVersionSpec(globs[0]);
 					}
 				else if (args[i] == "--no-recurse") { values.noRecurse = true; }
+				else if (args[i] == "--name-only") { values.printWhat = HistoryViewer.Printwhat.NameOnly; }
+				else if (args[i] == "--name-status") { values.printWhat = HistoryViewer.Printwhat.NameStatus; }
 				else
 					{
 						/* anything not caught by the above items is considered a target path and changeset. */
@@ -338,7 +383,7 @@ class main
 		
 		values.vcs = _get_tfs_server(values.server);
 		
-		Visitor visitor = new HistoryViewer();
+		Visitor visitor = new HistoryViewer(values.printWhat);
 		MegaHistory megahistory = new MegaHistory(values.noRecurse, values.vcs);
 		
 		bool result = megahistory.visit(visitor,
