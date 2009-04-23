@@ -208,8 +208,17 @@ public class RBTree<T> where T : System.IComparable<T>
 			 * d     - print c
 			 * e     - print d
 			 */
+			/* we've gone left, so go right one, then as far left as possible. */
+			
 			RBNode<T> node = it._nodes.Pop();
-			if (node != null && node.link[1] != null) { it._nodes.Push(node.link[1]); }
+			
+			if (node != null && node.link[1] != null)
+				{
+					node = node.link[1];
+					
+					while (node.link[0] != null) { it._nodes.Push(node); node = node.link[0]; }
+					it._nodes.Push(node);
+				}
 			
 			return it;
 		}
@@ -720,7 +729,31 @@ public class RBTree<T> where T : System.IComparable<T>
 					}
 			}
 		
-		return new iterator(_tree, stack);
+		iterator it = null;
+		if (done)
+			{
+				it = new iterator(_tree, stack);
+			}
+		else { it = end();}
+		
+		return it;
+	}
+	public void print()
+	{
+		_r_print(_tree);
+	}
+	
+	private void _r_print(RBNode<T> node)
+	{
+		if (node != null)
+			{
+				_r_print(node.link[0]);
+				System.Console.WriteLine("{0}<-{1}->{2}", 
+																 (node.link[0] != null ? node.link[0].value.ToString() : "(null)"),
+																 node.value,
+																 (node.link[1] != null ? node.link[1].value.ToString() : "(null)"));
+				_r_print(node.link[1]);
+			}
 	}
 }
 
