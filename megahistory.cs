@@ -9,7 +9,7 @@ using System.Collections.Generic;
 
 /** pulls a chain of changesets out of merges
  */
-class MegaHistory
+public class MegaHistory
 {
 	private bool _noRecurse = false;
 	private VersionControlServer _vcs;

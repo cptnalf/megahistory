@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 /** what happens when we see a changeset?
  */
-abstract class Visitor
+public abstract class Visitor
 {
 	/** private version of a 'Changeset' object */
 	public class PatchInfo
@@ -44,7 +44,17 @@ abstract class Visitor
 		}
 	};
 	
-	private RBDictTree<int,PatchInfo> _cache = new RBDictTree<int,PatchInfo>();
+	protected RBDictTree<int,PatchInfo> _cache = new RBDictTree<int,PatchInfo>();
+	
+	protected PatchInfo this[int changesetid]
+	{
+		get
+			{
+				RBDictTree<int,PatchInfo>.iterator it = _cache.find(changesetid);
+				if (it != _cache.end()) { return it.value().second; }
+				return null;
+			}
+	}
 	
 	/** have we already visited this changeset?
 	 */
