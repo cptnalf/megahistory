@@ -60,7 +60,10 @@ public class MegaHistory
 						 * it's parent is the one passed in.
 						 */
 						List<string> pbranches = _get_EGS_branches(cs);
-						visitor.visit(parentID, cs, pbranches);
+						string path_part = _get_path_part(target);
+						bool stop = visitor.visit(parentID, cs, pbranches);
+						
+						if (stop) { return; }
 						
 						foreach(ChangesetMerge csm in it.value().second)
 							{
@@ -104,7 +107,7 @@ public class MegaHistory
 																/* this recurisve call needs to then 
 																 * handle visiting the results of this query. 
 																 */
-																bool branchResult = visit(visitor, cs.ChangesetId, branches[i], tv, tv, tv);
+																bool branchResult = visit(visitor, cs.ChangesetId, branches[i]+path_part, tv, tv, tv);
 																
 																if (branchResult) { results = true; }
 															}
@@ -235,5 +238,18 @@ public class MegaHistory
 			}
 		
 		return merges;
+	}
+	
+	private static string _get_path_part(string path)
+	{
+		string path_part = string.Empty;
+		int idx = path.IndexOf("/EGS/", StringComparison.InvariantCultureIgnoreCase);
+		
+		if (idx >=0)
+			{
+				path_part = path.Substring(idx+5);
+			}
+		
+		return path_part;
 	}
 }
