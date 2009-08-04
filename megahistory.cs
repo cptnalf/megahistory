@@ -11,8 +11,10 @@ using System.Collections.Generic;
  */
 public class MegaHistory
 {
-	static internal readonly log4net.ILog logger = log4net.LogManager.GetLogger("megahistory_logger");
+	public static readonly string version = "af188ff3b2b9aff2e165e295b07ed9133358882c";
 
+	static internal readonly log4net.ILog logger = log4net.LogManager.GetLogger("megahistory_logger");
+	
 	private bool _noRecurse = false;
 	private VersionControlServer _vcs;
 	
@@ -44,7 +46,7 @@ public class MegaHistory
 		 * the red-black binary tree sorts the changesets in decending order
 		 */
 		RBDictTree<int,List<ChangesetMerge>> merges = query_merges(_vcs, srcPath, srcVer, 
-																															 target, targetVer, fromVer, toVer, recursionType);
+																						 target, targetVer, fromVer, toVer, recursionType);
 		
 		RBDictTree<int,List<ChangesetMerge>>.iterator it = merges.begin();
 		
@@ -149,56 +151,192 @@ public class MegaHistory
 	 */
 	private static List<string> _get_EGS_branches(Changeset cs)
 	{
+		Timer timer = new Timer();
 		List<string> itemBranches = new List<string>();
-		for(int i=0; i < cs.Changes.Length; ++i)
+		
+		timer.start();
+		if (cs.Changes.Length > 1000)
 			{
-				string itemPath = cs.Changes[i].Item.ServerItem;
-				bool found = false;
-				int idx = 0;
-				
-				/* skip all non-merge changesets. */
-				if ((cs.Changes[i].ChangeType & ChangeType.Merge) == ChangeType.Merge)
+				itemBranches = _get_egs_branches_threaded(cs);
+			}
+		else
+			{
+				int changesLen = cs.Changes.Length;
+				for(int i=0; i < changesLen; ++i)
 					{
-						for(int j=0; j < itemBranches.Count; ++j)
-							{
-								/* the stupid branches are not case sensitive. */
-								idx = itemPath.IndexOf(itemBranches[j], StringComparison.InvariantCultureIgnoreCase);
-								if (idx == 0) { found = true; break; }
-							}
+						string itemPath = cs.Changes[i].Item.ServerItem;
+						bool found = false;
+						int idx = 0;
 						
-						if (!found)
+						/* skip all non-merge changesets. */
+						if ((cs.Changes[i].ChangeType & ChangeType.Merge) == ChangeType.Merge)
 							{
-								/* yeah steve, '/EGS8.2' sucks now doesn't it... */
-								string str = "/EGS/";
-								
-								/* the stupid branches are not case sensitive. */
-								idx = itemPath.IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
-								
-								if (idx > 0)
+								for(int j=0; j < itemBranches.Count; ++j)
 									{
-										itemPath = itemPath.Substring(0,idx+str.Length);
+										/* the stupid branches are not case sensitive. */
+										idx = itemPath.IndexOf(itemBranches[j], StringComparison.InvariantCultureIgnoreCase);
+										if (idx == 0) { found = true; break; }
+									}
+								
+								if (!found)
+									{
+										/* yeah steve, '/EGS8.2' sucks now doesn't it... */
+										string str = "/EGS/";
+										
+										/* the stupid branches are not case sensitive. */
+										idx = itemPath.IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+										
+										if (idx > 0)
+											{
+												itemPath = itemPath.Substring(0,idx+str.Length);
 #if DEBUG
-						if (itemPath.IndexOf("$/IGT_0803/") == 0)
-							{
+												if (itemPath.IndexOf("$/IGT_0803/") == 0)
+													{
 #endif
-								itemBranches.Add(itemPath);
+														itemBranches.Add(itemPath);
 #if DEBUG
-							}
-						else
-							{
-								Console.Error.WriteLine("'{0}' turned into '{1}'!", 
-																				cs.Changes[i].Item.ServerItem,
-																				itemPath);
-							}
+													}
+												else
+													{
+														Console.Error.WriteLine("'{0}' turned into '{1}'!", 
+																										cs.Changes[i].Item.ServerItem,
+																										itemPath);
+													}
 #endif
+											}
 									}
 							}
 					}
 			}
+		timer.stop();
+		logger.DebugFormat("getting branches took: {0}", timer.Delta);
 		
 		return itemBranches;
 	}
 	
+	class _args
+	{
+		internal int changesLen;
+		internal Change[] changes;
+		internal int ptr;
+		internal System.Threading.ReaderWriterLock rwlock;
+		internal List<string> itemBranches;
+	}
+	
+	private static List<string> _get_egs_branches_threaded(Changeset cs)
+	{
+		System.Threading.Thread[] threads = new System.Threading.Thread[8];
+		_args args = new _args();
+		
+		args.itemBranches = new List<string>();
+		args.rwlock = new System.Threading.ReaderWriterLock();
+		args.changesLen = cs.Changes.Length;
+		args.changes = cs.Changes;
+		
+		for(int i=0; i < threads.Length; ++i)
+			{
+				threads[i] = new System.Threading.Thread(new System.Threading.ParameterizedThreadStart(_egsbranches_worker));
+				threads[i].Priority = System.Threading.ThreadPriority.Lowest;
+				threads[i].Start(args);
+			}
+		
+		for(int i=0; i < threads.Length; ++i) { threads[i].Join(); }
+		
+		return args.itemBranches;
+	}
+	
+	private static void _egsbranches_worker(object o)
+	{
+		_args args = o as _args;
+		bool done = false;
+
+		int res = System.Threading.Interlocked.Increment(ref args.ptr);
+		
+		done = res >= args.changesLen;
+		
+		while(!done)
+			{
+				string itemPath = args.changes[res].Item.ServerItem;
+				bool found = false;
+				int idx = 0;
+				int itemCount = 0;
+				
+				/* skip all non-merge changesets. */
+				if ((args.changes[res].ChangeType & ChangeType.Merge) == ChangeType.Merge)
+					{
+						try {
+							try {
+								args.rwlock.AcquireReaderLock(10 * 1000); /* 10 second timeout. */
+								itemCount = args.itemBranches.Count;
+								for(int j=0; j < args.itemBranches.Count; ++j)
+									{
+										/* the stupid branches are not case sensitive. */
+										idx = itemPath.IndexOf(args.itemBranches[j], 
+																					 StringComparison.InvariantCultureIgnoreCase);
+										if (idx == 0) { found = true; break; }
+									}
+							}
+							finally
+								{
+									args.rwlock.ReleaseReaderLock();
+								}
+						} catch(ApplicationException) { /* we lost the lock. */ }
+					}
+				
+				if (!found)
+					{
+						/* yeah steve, '/EGS8.2' sucks now doesn't it... */
+						string str = "/EGS/";
+						
+						/* the stupid branches are not case sensitive. */
+						idx = itemPath.IndexOf(str, StringComparison.InvariantCultureIgnoreCase);
+						
+						if (idx > 0)
+							{
+								itemPath = itemPath.Substring(0,idx+str.Length);
+#if DEBUG
+								if (itemPath.IndexOf("$/IGT_0803/") == 0)
+									{
+#endif
+										try {
+											try {
+												bool reallyFound = false;
+												args.rwlock.AcquireWriterLock(60 * 1000); /* 1 minute timeout. */
+												
+												if (itemCount != args.itemBranches.Count)
+													{
+														/* look again. */
+														for(int j=0; j < args.itemBranches.Count; ++j)
+															{
+																idx = itemPath.IndexOf(args.itemBranches[j], 
+																											 StringComparison.InvariantCultureIgnoreCase);
+																if (idx == 0) { reallyFound = true; break; }
+															}
+													}
+												
+												if (! reallyFound) { args.itemBranches.Add(itemPath); }
+											}
+											finally { args.rwlock.ReleaseWriterLock(); }
+										} catch(ApplicationException) { /* we lost the lock. */ }
+#if DEBUG
+									}
+								else
+									{
+										Console.Error.WriteLine("'{0}' turned into '{1}'!", 
+																						args.changes[res].Item.ServerItem,
+																						itemPath);
+									}
+#endif
+							}
+					}
+				
+				/* setup for the next loop. */
+				res = System.Threading.Interlocked.Increment(ref args.ptr);
+				done = res >= args.changesLen;
+			}
+	}
+	
+
 	private static RBDictTree<int,List<ChangesetMerge>> query_merges(VersionControlServer vcs,
 																																	string srcPath,
 																																	VersionSpec srcVer,
@@ -211,7 +349,11 @@ public class MegaHistory
 		RBDictTree<int,List<ChangesetMerge>> merges = new RBDictTree<int,List<ChangesetMerge>>();
 
 		logger.DebugFormat("query_merges {0}, {1}, {2}, {3}, {4}, {5}",
-											 srcPath, srcVer, targetPath, targetVer, fromVer, toVer);
+											 ( srcPath == null ? "(null)": srcPath), 
+											 (srcVer == null ? "(null)" : srcVer.DisplayString),
+											 targetPath, targetVer.DisplayString, 
+											 (fromVer == null ? "(null)" : fromVer.DisplayString),
+											 (toVer == null ? "(null)" : toVer.DisplayString));
 		try
 			{
 				ChangesetMerge[] mergesrc = vcs.QueryMerges(srcPath, srcVer, targetPath, targetVer,

@@ -17,6 +17,9 @@ using Microsoft.TeamFoundation.VersionControl.Client;
 using System;
 using System.Collections.Generic;
 
+/* for log4net. */
+[assembly: log4net.Config.XmlConfigurator(Watch = true)]
+
 class main
 {
 	/* ChangesetMerge.TargetVersion - the changeset which the merge took place
@@ -26,6 +29,7 @@ class main
 	static void print_help()
 	{
 		Console.WriteLine("megahistory <options>");
+		Console.WriteLine("lib version {0}", MegaHistory.version);
 		Console.WriteLine("queries tfs for the list of changesets which make up a merge");
 		Console.WriteLine();
 		Console.WriteLine("eg: megahistory -s foo --src $/foo,45 --from 10,45 $/bar,43");

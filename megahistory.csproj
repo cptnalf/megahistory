@@ -53,6 +53,7 @@
     <Compile Include="main.cs" />
     <Compile Include="rb_tree.cs" />
     <Compile Include="visitor.cs" />
+		<Compile Include="utils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
