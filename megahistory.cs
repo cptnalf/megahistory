@@ -11,6 +11,8 @@ using System.Collections.Generic;
  */
 class MegaHistory
 {
+	static internal readonly log4net.ILog logger = log4net.LogManager.GetLogger("megahistory_logger");
+
 	private bool _noRecurse = false;
 	private VersionControlServer _vcs;
 	
@@ -206,7 +208,9 @@ class MegaHistory
 																																	RecursionType recurType)
 	{
 		RBDictTree<int,List<ChangesetMerge>> merges = new RBDictTree<int,List<ChangesetMerge>>();
-		
+
+		logger.DebugFormat("query_merges {0}, {1}, {2}, {3}, {4}, {5}",
+											 srcPath, srcVer, targetPath, targetVer, fromVer, toVer);
 		try
 			{
 				ChangesetMerge[] mergesrc = vcs.QueryMerges(srcPath, srcVer, targetPath, targetVer,
@@ -234,6 +238,7 @@ class MegaHistory
 				Console.Error.WriteLine(e.ToString());
 			}
 		
+		logger.Debug("done querying.");
 		return merges;
 	}
 }
