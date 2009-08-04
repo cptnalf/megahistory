@@ -1,0 +1,14 @@
+This is a list of test cases to walk through. They flex tfs/megahistory.
+
+full history of a file:
+so, pass in a file 
+(eg: $/IGT_0803/development/dev_advantage/EGS/advantage/Source/PM/Client/Patron Client/MainFrm.cpp)
+and get back a complete history of the file.
+This includes decoding merges to a finality.
+so right now, the example would list :
+81967
+75441
+- 75200
+ - 74955
+
+
