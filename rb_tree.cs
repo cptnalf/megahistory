@@ -308,6 +308,7 @@ public class RBTree<T> where T : System.IComparable<T>
 	
 	public iterator begin() { iterator it=new iterator(_tree); it.init(); return it; }
 	public iterator end() { return new iterator(); }
+	public bool empty() { return _tree == null; }
 	
 	public bool is_red(RBNode<T> root)
 	{

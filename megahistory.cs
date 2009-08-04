@@ -11,6 +11,8 @@ using System.Collections.Generic;
  */
 public class MegaHistory
 {
+	static internal readonly log4net.ILog logger = log4net.LogManager.GetLogger("megahistory_logger");
+
 	private bool _noRecurse = false;
 	private VersionControlServer _vcs;
 	
@@ -133,7 +135,7 @@ public class MegaHistory
 				catch(Exception e) { visitor.visit(parentID, csID, e); }
 			}
 		
-		return it == merges.end();
+		return false == merges.empty();
 	}
 	
 	/** walk the changes in the changeset and find all unique 'EGS' trees.
@@ -209,7 +211,9 @@ public class MegaHistory
 																																	RecursionType recurType)
 	{
 		RBDictTree<int,List<ChangesetMerge>> merges = new RBDictTree<int,List<ChangesetMerge>>();
-		
+
+		logger.DebugFormat("query_merges {0}, {1}, {2}, {3}, {4}, {5}",
+											 srcPath, srcVer, targetPath, targetVer, fromVer, toVer);
 		try
 			{
 				ChangesetMerge[] mergesrc = vcs.QueryMerges(srcPath, srcVer, targetPath, targetVer,
@@ -237,6 +241,7 @@ public class MegaHistory
 				Console.Error.WriteLine(e.ToString());
 			}
 		
+		logger.Debug("done querying.");
 		return merges;
 	}
 	
