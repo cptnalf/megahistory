@@ -63,9 +63,7 @@ public class MegaHistory
 						 */
 						List<string> pbranches = _get_EGS_branches(cs);
 						string path_part = _get_path_part(target);
-						bool stop = visitor.visit(parentID, cs, pbranches);
-						
-						if (stop) { return; }
+						visitor.visit(parentID, cs, pbranches);
 						
 						foreach(ChangesetMerge csm in it.value().second)
 							{
