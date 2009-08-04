@@ -130,7 +130,7 @@ class MegaHistory
 				catch(Exception e) { visitor.visit(parentID, csID, e); }
 			}
 		
-		return it == merges.end();
+		return false == merges.empty();
 	}
 	
 	/** walk the changes in the changeset and find all unique 'EGS' trees.
