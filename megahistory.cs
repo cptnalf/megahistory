@@ -11,42 +11,48 @@ using System.Collections.Generic;
  */
 public class MegaHistory
 {
-	public static readonly string version = "af188ff3b2b9aff2e165e295b07ed9133358882c";
+	public static readonly string version = "f998a4d529c1cb415b0efaeb072dd3cda173d3e1";
 
 	static internal readonly log4net.ILog logger = log4net.LogManager.GetLogger("megahistory_logger");
 	
 	private bool _noRecurse = false;
 	private VersionControlServer _vcs;
+	private Visitor _visitor;
 	
-	public MegaHistory(bool noRecurse, VersionControlServer vcs) { _noRecurse = noRecurse; _vcs=vcs; }
-
-	public virtual bool visit(Visitor visitor, int parentID,
+	public MegaHistory(bool noRecurse, VersionControlServer vcs, Visitor visitor)
+	{ 
+		_noRecurse = noRecurse; 
+		_vcs=vcs;
+		_visitor = visitor;
+	}
+	
+	public virtual bool visit(int parentID,
 														string targetPath, 
 														VersionSpec targetVer,
 														VersionSpec fromVer,
 														VersionSpec toVer)
-	{ return visit(visitor, parentID, null, null, targetPath, targetVer, fromVer, toVer, RecursionType.Full); }
+	{ return _visit(parentID, null, null, null, targetPath, targetVer, fromVer, toVer, RecursionType.Full); }
 	
-	public virtual bool visit(Visitor visitor, 
-														string srcPath, VersionSpec srcVer, 
+	public virtual bool visit(string srcPath, VersionSpec srcVer, 
 														string target, VersionSpec targetVer,
 														VersionSpec fromVer, VersionSpec toVer,
 														RecursionType recursionType)
-	{ return visit(visitor, 0, srcPath, srcVer, target, targetVer, fromVer, toVer, recursionType); }
+	{ return _visit(0, null, srcPath, srcVer, target, targetVer, fromVer, toVer, recursionType); }
 	
 	/** visit an explicit list of changesets. 
 	 */
-	public virtual bool visit(Visitor visitor, int parentID,
-														string srcPath, VersionSpec srcVer, 
-														string target, VersionSpec targetVer,
-														VersionSpec fromVer, VersionSpec toVer,
-														RecursionType recursionType)
+	private bool _visit(int parentID,
+											List<string> targetBranches,
+											string srcPath, VersionSpec srcVer, 
+											string target, VersionSpec targetVer,
+											VersionSpec fromVer, VersionSpec toVer,
+											RecursionType recursionType)
 	{
 		/* so, here we might have a few top-level merge changesets. 
 		 * the red-black binary tree sorts the changesets in decending order
 		 */
-		RBDictTree<int,List<ChangesetMerge>> merges = query_merges(_vcs, srcPath, srcVer, 
-																						 target, targetVer, fromVer, toVer, recursionType);
+		RBDictTree<int,List<ChangesetMerge>> merges = 
+			query_merges(_vcs, srcPath, srcVer, target, targetVer, fromVer, toVer, recursionType);
 		
 		RBDictTree<int,List<ChangesetMerge>>.iterator it = merges.begin();
 		
@@ -58,14 +64,16 @@ public class MegaHistory
 				int csID = it.value().first;
 				try
 					{
-						Changeset cs = _vcs.GetChangeset(csID);
-						
 						/* visit the 'target' merge changeset here. 
 						 * it's parent is the one passed in.
 						 */
-						List<string> pbranches = _get_EGS_branches(cs);
+						Changeset cs = _vcs.GetChangeset(csID);
 						string path_part = _get_path_part(target);
-						visitor.visit(parentID, cs, pbranches);
+						ChangesetVersionSpec cstargetVer = targetVer as ChangesetVersionSpec;
+						
+						/* pass in the known set of branches in this changeset, or let it figure that out. */
+						if (cstargetVer.ChangesetId == csID) { _visitor.visit(parentID, cs, targetBranches); }
+						else { _visitor.visit(parentID, cs); }
 						
 						foreach(ChangesetMerge csm in it.value().second)
 							{
@@ -75,7 +83,16 @@ public class MegaHistory
 								try
 									{
 										Changeset child = _vcs.GetChangeset(csm.SourceVersion);
-										List<string> branches = _get_EGS_branches(child);
+										List<string> branches = null;
+										
+										{
+											/* speed-up. if we already have the branches, don't do it again. 
+											 * looking through 40K+ records takes some time...
+											 */
+											Visitor.PatchInfo p = _visitor[child.ChangesetId];
+											if (p != null) { branches = p.treeBranches; }
+											else { branches = FindChangesetBranches(child); }
+										}
 										
 										/* - this is for the recursive query -
 										 * you have to have specific branches here.
@@ -89,11 +106,11 @@ public class MegaHistory
 										if (_noRecurse)
 											{
 												/* they just want the top-level query. */
-												visitor.visit(cs.ChangesetId, child, branches);
+												_visitor.visit(cs.ChangesetId, child, branches);
 											}
 										else
 											{
-												if (!visitor.visited(child.ChangesetId))
+												if (!_visitor.visited(child.ChangesetId))
 													{
 														/* we just wanted to see the initial list, not a full tree of changes. */
 														ChangesetVersionSpec tv = new ChangesetVersionSpec(child.ChangesetId);
@@ -109,7 +126,10 @@ public class MegaHistory
 																/* this recurisve call needs to then 
 																 * handle visiting the results of this query. 
 																 */
-																bool branchResult = visit(visitor, cs.ChangesetId, branches[i]+path_part, tv, tv, tv);
+																bool branchResult = _visit(cs.ChangesetId, branches, 
+																													 null, null,
+																													 branches[i]+path_part, tv, 
+																													 tv, tv, RecursionType.Full);
 																
 																if (branchResult) { results = true; }
 															}
@@ -119,20 +139,20 @@ public class MegaHistory
 																/* we got no results from our query, so display the changeset
 																 * (it won't be displayed otherwise)
 																 */
-																visitor.visit(cs.ChangesetId, child, branches);
+																_visitor.visit(cs.ChangesetId, child); //, branches);
 															}
 													}
 												else
 													{
 														/* do we want to see it again? */
-														visitor.visit(cs.ChangesetId, child, branches);
+														_visitor.visit(cs.ChangesetId, child);//, branches);
 													}
 											}
 									}
-								catch(Exception e) { visitor.visit(cs.ChangesetId, csm.SourceVersion, e); }
+								catch(Exception e) { _visitor.visit(cs.ChangesetId, csm.SourceVersion, e); }
 							}
 					}
-				catch(Exception e) { visitor.visit(parentID, csID, e); }
+				catch(Exception e) { _visitor.visit(parentID, csID, e); }
 			}
 		
 		return false == merges.empty();
@@ -149,7 +169,7 @@ public class MegaHistory
 	 *  $/IGT_0803/development/dev_advantage/EGS/
 	 *
 	 */
-	private static List<string> _get_EGS_branches(Changeset cs)
+	public static List<string> FindChangesetBranches(Changeset cs)
 	{
 		Timer timer = new Timer();
 		List<string> itemBranches = new List<string>();
@@ -338,13 +358,13 @@ public class MegaHistory
 	
 
 	private static RBDictTree<int,List<ChangesetMerge>> query_merges(VersionControlServer vcs,
-																																	string srcPath,
-																																	VersionSpec srcVer,
-																																	string targetPath,
-																																	VersionSpec targetVer,
-																																	VersionSpec fromVer,
-																																	VersionSpec toVer,
-																																	RecursionType recurType)
+																																									 string srcPath,
+																																									 VersionSpec srcVer,
+																																									 string targetPath,
+																																									 VersionSpec targetVer,
+																																									 VersionSpec fromVer,
+																																									 VersionSpec toVer,
+																																									 RecursionType recurType)
 	{
 		RBDictTree<int,List<ChangesetMerge>> merges = new RBDictTree<int,List<ChangesetMerge>>();
 
@@ -373,8 +393,8 @@ public class MegaHistory
 							}
 						else
 							{ it.value().second.Add(mergesrc[i]); }
+							}
 					}
-			}
 		catch(Exception e)
 			{
 				Console.Error.WriteLine("Error querying: {0},{1}", targetPath, targetVer);

@@ -22,31 +22,39 @@ class HistoryViewer : Visitor
 	
 	private void _print(int parentID, PatchInfo p)
 	{
-		p.print(parentID, Console.Out);
-		
-		/* only print the list if it wasn't a merge changeset. 
-		 * merge changesets have tree-branches
-		 */
-		if (p.treeBranches == null || p.treeBranches.Count == 0)
+		if (parentID == 0)
 			{
-				if (_printWhat != Printwhat.None)
+				p.print(Console.Out);
+				
+				/* only print the list if it wasn't a merge changeset. 
+				 * merge changesets have tree-branches
+				 */
+				if (p.treeBranches == null || p.treeBranches.Count == 0)
 					{
-						for(int i=0; i < p.cs.Changes.Length; ++i)
+						if (_printWhat != Printwhat.None)
 							{
-								switch(_printWhat)
+								for(int i=0; i < p.cs.Changes.Length; ++i)
 									{
-										case(Printwhat.NameOnly): 
-											{ Console.WriteLine("{0}", p.cs.Changes[i].Item.ServerItem); break; }
-									case(Printwhat.NameStatus):
-										{
-											Console.WriteLine("{0:20}{1}", 
-																				p.cs.Changes[i].ChangeType, p.cs.Changes[i].Item.ServerItem);
-											break;
-										}
+										switch(_printWhat)
+											{
+											case(Printwhat.NameOnly): 
+												{ Console.WriteLine("{0}", p.cs.Changes[i].Item.ServerItem); break; }
+											case(Printwhat.NameStatus):
+												{
+													Console.WriteLine("{0:20}{1}", 
+																						p.cs.Changes[i].ChangeType, p.cs.Changes[i].Item.ServerItem);
+													break;
+												}
+											}
 									}
+								Console.WriteLine();
 							}
-						Console.WriteLine();
 					}
+			}
+		else
+			{
+				Console.WriteLine("Changeset: {0}", p.cs.ChangesetId);
+				Console.WriteLine();
 			}
 	}
 	
@@ -63,4 +71,5 @@ class HistoryViewer : Visitor
 		Console.WriteLine();
 		Console.WriteLine(e);
 	}
+
 }

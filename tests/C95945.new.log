@@ -1,0 +1,272 @@
+Changeset: 95945
+Author: IGTMASTER\MuelleMa
+Date: 08/03/2009 10:40:42
+$/IGT_0803/main/EGS/
+MA merge from dev_sp to main
+
+Parent: 95945
+Changeset: 95937
+Author: IGTMASTER\MuelleMa
+Date: 08/03/2009 09:46:34
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+merges from rel_devC to dev_sp for 8.2 MA and ABS
+
+Parent: 95937
+Changeset: 95660
+Author: IGTMASTER\rinka
+Date: 07/31/2009 09:02:51
+Adding new install file
+
+Parent: 95937
+Changeset: 95062
+Author: IGTMASTER\rinka
+Date: 07/28/2009 11:01:03
+Adding the procs to the database to move from direct inline sql
+
+Parent: 95937
+Changeset: 95321
+Author: IGTMASTER\rinka
+Date: 07/29/2009 15:09:08
+Adding the partition swap to delete the inbound and outbound complete tables
+
+Parent: 95937
+Changeset: 95497
+Author: IGTMASTER\rinka
+Date: 07/30/2009 12:31:13
+Changing schedules depending on version
+
+Parent: 95937
+Changeset: 95709
+Author: IGTMASTER\rinka
+Date: 07/31/2009 11:20:37
+Fixing job to run on database without a S2STransport db
+
+Parent: 95937
+Changeset: 95683
+Author: IGTMASTER\rinka
+Date: 07/31/2009 10:23:51
+Have to use dynamic sql to get around the installer's parser
+
+Parent: 95937
+Changeset: 95548
+Author: IGTMASTER\provanj
+Date: 07/30/2009 15:22:30
+Added tooltip to voucher settings so that it tells the user why the particular setting is disabled
+
+Parent: 95937
+Changeset: 95659
+Author: IGTMASTER\rinka
+Date: 07/31/2009 09:02:25
+Fixing missing END issue
+
+Parent: 95937
+Changeset: 95105
+Author: IGTMASTER\rinka
+Date: 07/28/2009 14:09:56
+Renaming to be consistent 
+
+Parent: 95937
+Changeset: 95697
+Author: IGTMASTER\rinka
+Date: 07/31/2009 10:58:19
+Fixing so table isn't put on a partition.
+
+Parent: 95937
+Changeset: 95692
+Author: IGTMASTER\rinka
+Date: 07/31/2009 10:48:42
+Fixing missing END issue
+
+Parent: 95937
+Changeset: 94920
+Author: IGTMASTER\rinka
+Date: 07/27/2009 15:34:21
+Adding some indexes and cleaning up some code based on the GTIC labs findings.  Attached the findings.
+
+Parent: 95937
+Changeset: 95223
+Author: IGTMASTER\rinka
+Date: 07/29/2009 08:54:51
+
+
+Parent: 95937
+Changeset: 95598
+Author: IGTMASTER\provanj
+Date: 07/30/2009 16:58:17
+Report Ctrl now refreshed after paytable sync
+
+Parent: 95937
+Changeset: 95666
+Author: IGTMASTER\provanj
+Date: 07/31/2009 09:38:24
+changed behavior to resize the report control whenever the splitter bar is moved
+
+Parent: 95937
+Changeset: 95092
+Author: IGTMASTER\PryorB
+Date: 07/28/2009 13:28:27
+Proc_ActualDropDelete takes a userID for logging. Adding user ID to proc call.
+
+Parent: 95937
+Changeset: 95704
+Author: IGTMASTER\provanj
+Date: 07/31/2009 11:16:06
+Removed dynamic SQL
+
+Parent: 95937
+Changeset: 95346
+Author: IGTMASTER\rinka
+Date: 07/29/2009 16:43:43
+Fixed some issues with duplicating rows that were saw in unit test.  
+
+Parent: 95937
+Changeset: 95078
+Author: IGTMASTER\c-KURAPAS
+Date: 07/28/2009 11:56:01
+Made change for WI58973
+
+Parent: 95937
+Changeset: 95733
+Author: IGTMASTER\c-KopparK
+Date: 07/31/2009 13:20:12
+Made chnages for WI-59331
+
+Parent: 95937
+Changeset: 95056
+Author: IGTMASTER\c-KURAPAS
+Date: 07/28/2009 10:18:40
+WI58864-Changed the PaytableID length.
+
+Parent: 95937
+Changeset: 95164
+Author: IGTMASTER\PryorB
+Date: 07/28/2009 17:14:53
+Adding cleanup of MGAPaytableS2SProcessing and SBGAuthorization tables to a job that runs once per day.
+
+Parent: 95937
+Changeset: 95705
+Author: IGTMASTER\provanj
+Date: 07/31/2009 11:17:52
+Updated proc and code to only show active groups
+
+Parent: 95937
+Changeset: 95036
+Author: IGTMASTER\rinka
+Date: 07/28/2009 09:02:17
+Converting to XQuery to provide better performance
+
+Parent: 95937
+Changeset: 95066
+Author: IGTMASTER\c-KURAPAS
+Date: 07/28/2009 11:18:46
+Made change for WI58973.
+
+Parent: 95937
+Changeset: 94844
+Author: IGTMASTER\rinka
+Date: 07/27/2009 11:49:39
+Adding logging to the delete proc
+
+Parent: 95937
+Changeset: 95079
+Author: IGTMASTER\c-KopparK
+Date: 07/28/2009 11:56:21
+Made changes for WI-58674
+
+Parent: 95937
+Changeset: 95117
+Author: IGTMASTER\c-KopparK
+Date: 07/28/2009 15:01:33
+Made changes for WI-57909
+
+Parent: 95937
+Changeset: 95491
+Author: IGTMASTER\rinka
+Date: 07/30/2009 11:43:58
+Code review, cleaning up code to meet spec
+
+Parent: 95945
+Changeset: 95934
+Author: IGTMASTER\MuelleMa
+Date: 08/03/2009 09:41:00
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+merges from rel_devB to dev_sp for 8.2 MA and ABS
+
+Parent: 95934
+Changeset: 95623
+Author: IGTMASTER\oarej
+Date: 07/30/2009 19:51:57
+Fixing various problems with the Tran including harness swapping, and resetting uniqueIds
+
+Parent: 95934
+Changeset: 95595
+Author: IGTMASTER\harrisc
+Date: 07/30/2009 16:56:39
+Fix for TFS 59162 / QC 10428  and TFS 59164 / QC 10430. Now shows the vfd time for lc and the allow all casinos correctly
+
+Parent: 95934
+Changeset: 95182
+Author: IGTMASTER\harrisc
+Date: 07/28/2009 19:19:48
+Fix TFS 59161 / QC 10427. Fixed memory leak where if the egm was not registered the Cabinet meter txn would not be cleaned up. Also refactored the method to work like all of the other transactions.
+
+Parent: 95934
+Changeset: 95848
+Author: IGTMASTER\oarej
+Date: 07/31/2009 20:23:23
+Added fix for the uncardedsessiontimer
+
+Parent: 95934
+Changeset: 95843
+Author: IGTMASTER\harrisc
+Date: 07/31/2009 19:13:37
+Fixes for tran crash when s2snode is accessed by two threads incorrectly
+
+Parent: 95934
+Changeset: 95188
+Author: IGTMASTER\harrisc
+Date: 07/28/2009 20:24:12
+Fix for TFS 59167 / QC 10431. Removed transport layer retry from two calls in AgamS2SHost.
+
+Parent: 95934
+Changeset: 95178
+Author: IGTMASTER\harrisc
+Date: 07/28/2009 18:31:42
+Fix for TFS 59142 / QC 10424. Memory leak was occuring when unregistered S2S games reported meters.
+
+Parent: 95934
+Changeset: 95177
+Author: IGTMASTER\harrisc
+Date: 07/28/2009 18:12:43
+Fix for TFS 59160 / QC 10426. Memory leak on Player Card in when the send of PlayerInfo failed
+
+Parent: 95934
+Changeset: 95065
+Author: IGTMASTER\c-KURAPAS
+Date: 07/28/2009 11:16:50
+Made change for WI58973.
+
+Parent: 95934
+Changeset: 95592
+Author: IGTMASTER\c-KopparK
+Date: 07/30/2009 16:46:45
+Made chnages ofr WI-59219
+
+Parent: 95934
+Changeset: 95590
+Author: IGTMASTER\c-KopparK
+Date: 07/30/2009 16:43:47
+Made changes for WI-59219
+
+Parent: 95934
+Changeset: 95753
+Author: IGTMASTER\weldonb
+Date: 07/31/2009 14:24:05
+Add EVT_XC_USE_UNKNOWN to Machine Accounting EventCode table
+
+Parent: 95934
+Changeset: 95299
+Author: IGTMASTER\harrisc
+Date: 07/29/2009 14:17:21
+Added try/catch to GSAMessageFactory which outputs the xmlString if any exception is thrown.
+

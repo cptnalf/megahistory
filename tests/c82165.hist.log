@@ -1,0 +1,3681 @@
+Changeset: 82165
+Author: IGTMASTER\FordB
+Date: 03/31/2009 08:59:51
+$/IGT_0803/development/dev_advantage/EGS/
+FI main to dev_advantage
+
+Parent: 82165
+Changeset: 77938
+Author: IGTMASTER\MuelleMa
+Date: 02/26/2009 09:00:21
+$/IGT_0803/main/EGS/
+Scheduled integration from dev_sp - MA & ABS - rel_dev_8.2.251.0200-20090225-1800
+
+Parent: 77938
+Changeset: 77677
+Author: IGTMASTER\PhilipN
+Date: 02/24/2009 22:16:08
+WI44717 - Added function to check mask limits.  Added new config items to designate what type of mask limit checking to do.  Added code to floorstaffget to spit back those config items when user information is checked.  Added code to menueventinsert to check the mask limit according to the config items to indicate if a witness is required.
+
+Parent: 77938
+Changeset: 77680
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/25/2009 00:46:53
+Automatic build Bonus Controllers version update
+
+Parent: 77938
+Changeset: 77737
+Author: IGTMASTER\c-NapoleN
+Date: 02/25/2009 09:30:56
+Modified Functionality to Pass the Whole S2S Command object to the command Sequence logic function instead of the command no, So that we can identify the Comms online Message at the command ID Validation functionality.
+
+Parent: 77938
+Changeset: 77739
+Author: IGTMASTER\c-NapoleN
+Date: 02/25/2009 09:35:57
+Added logic to reset the command No received with the S2S Comms Online message and disabled the command ID Validation logic for the S2S Comms Online Message. (Fix for QC-8167 & TFS-44585)
+
+Parent: 77938
+Changeset: 77742
+Author: IGTMASTER\rinka
+Date: 02/25/2009 09:42:40
+QC8047 - updating performance
+
+Parent: 77938
+Changeset: 77771
+Author: IGTMASTER\c-NapoleN
+Date: 02/25/2009 10:54:31
+Added Functionality to reset the Retry count value to initial value to start the retry process for next set of failed messages (if any).(Fix for QC-8183 & TFS-44679)
+
+Parent: 77938
+Changeset: 77780
+Author: IGTMASTER\rinka
+Date: 02/25/2009 11:19:36
+Fixing issue with different read types causing a unique constraint error for the MGAMeterLoad Process.
+
+Parent: 77938
+Changeset: 77792
+Author: IGTMASTER\oarej
+Date: 02/25/2009 11:43:39
+Fixing issues with some of the bonus and how they send bonus hit events.
+
+Parent: 77938
+Changeset: 77832
+Author: IGTMASTER\c-NapoleN
+Date: 02/25/2009 14:15:50
+Added Functionality to log all kinds of response message received by the S2S Transport (Outbound Service).(Fix for TFS-44843 QC-8212)
+
+Parent: 77938
+Changeset: 77847
+Author: IGTMASTER\pitmanl
+Date: 02/25/2009 15:14:35
+Found that the sound config mesages were being sent to bank controller ZERO, now sent to correct bank controller
+
+Parent: 77938
+Changeset: 77869
+Author: IGTMASTER\rinka
+Date: 02/25/2009 16:23:09
+SystemTicketsIn now work Drop to Drop
+
+Parent: 77938
+Changeset: 77877
+Author: IGTMASTER\PryorB
+Date: 02/25/2009 16:57:22
+Merging changes from changeset 73001, QC7702, TFS41596 into Dev_SP branch.
+
+Parent: 77938
+Changeset: 77881
+Author: IGTMASTER\rinka
+Date: 02/25/2009 17:06:26
+Removing the check for handpays at the end of close period, recalc should make this check obsolete.
+
+Parent: 77938
+Changeset: 77882
+Author: IGTMASTER\PryorB
+Date: 02/25/2009 17:08:58
+Merging changes from Changeset 73300 in dev_advantage, QC7762, TFS41812. Fixing detail insert to also join on MeterNamesID.
+
+Parent: 77938
+Changeset: 77891
+Author: IGTMASTER\PhilipN
+Date: 02/25/2009 17:32:17
+WI44296 - Modified proc to ignore a NULL for gross win, so that gross win values wouldn't get overwritten when a null is passed in.  Also modified the transaction logging, as it was missing some values that had changed.
+
+Parent: 82165
+Changeset: 78134
+Author: IGTMASTER\MuelleMa
+Date: 02/27/2009 10:39:36
+$/IGT_0803/main/EGS/
+Scheduled integration - MA & ABS - dev_sp to main
+
+Parent: 78134
+Changeset: 77955
+Author: IGTMASTER\MuelleMa
+Date: 02/26/2009 10:08:07
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Scheduled integration ABS & MA - SP1 HF -> dev_SP
+
+Parent: 77955
+Changeset: 77953
+Author: IGTMASTER\MuelleMa
+Date: 02/26/2009 10:05:11
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Scheduled integration ABS & MA - SP1 RTM -> SP1 HF
+
+Parent: 77953
+Changeset: 77843
+Author: IGTMASTER\c-KopparK
+Date: 02/25/2009 14:59:14
+Made changes for WI-42524
+
+Parent: 77953
+Changeset: 77846
+Author: IGTMASTER\c-KURAPAS
+Date: 02/25/2009 15:06:29
+Made change for WI42537
+
+Parent: 77953
+Changeset: 77855
+Author: IGTMASTER\oarej
+Date: 02/25/2009 15:44:45
+Merging bonus controllers from dev_sp to sp1 because of the branching
+
+Parent: 77953
+Changeset: 77894
+Author: IGTMASTER\oarej
+Date: 02/25/2009 17:46:51
+Fixing a re-occuring config change message from the CLC Slave.
+
+Parent: 78134
+Changeset: 77981
+Author: IGTMASTER\rinka
+Date: 02/26/2009 11:48:30
+Logging error instead of all records.  
+
+Parent: 78134
+Changeset: 78071
+Author: IGTMASTER\rinka
+Date: 02/26/2009 18:28:17
+Fixing duplicate code issue with the User Management Job Update and Insert.
+
+Parent: 78134
+Changeset: 78074
+Author: IGTMASTER\PryorB
+Date: 02/26/2009 18:34:57
+Removing request for translator to send paytable information since that job is covered by Proc_TranslatorMGAInfoS2S
+
+Parent: 82165
+Changeset: 78479
+Author: IGTMASTER\MuelleMa
+Date: 03/02/2009 10:44:35
+$/IGT_0803/main/EGS/
+Scheduled integration from dev_sp - rel_dev_8.2.251.0200-20090301-1800 - ABS & MA
+
+Parent: 78479
+Changeset: 78082
+Author: IGTMASTER\rinka
+Date: 02/26/2009 19:41:13
+Renaming sql file to prc
+
+Parent: 78479
+Changeset: 78084
+Author: IGTMASTER\weldonb
+Date: 02/26/2009 19:52:50
+delete old file
+
+Parent: 78479
+Changeset: 78131
+Author: IGTMASTER\MuelleMa
+Date: 02/27/2009 10:32:52
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Scheduled integration - MA & ABS - SP1 HF to dev_sp
+
+Parent: 78131
+Changeset: 77956
+Author: IGTMASTER\MuelleMa
+Date: 02/26/2009 10:18:38
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+merging SP1 changes from dev_sp to SP1 - ABS
+
+Parent: 78131
+Changeset: 78128
+Author: IGTMASTER\MuelleMa
+Date: 02/27/2009 10:31:20
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Scheduled integration - MA & ABS - SP1 RTM to SP1 HF
+
+Parent: 78128
+Changeset: 77906
+Author: IGTMASTER\MuelleMa
+Date: 02/25/2009 19:02:33
+adding document output
+
+Parent: 78128
+Changeset: 77926
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/25/2009 23:04:37
+Automatic build Bonus Controllers version update
+
+Parent: 78128
+Changeset: 77980
+Author: IGTMASTER\OwenG
+Date: 02/26/2009 11:47:00
+Always recalculate total bills using function
+
+Parent: 78128
+Changeset: 77989
+Author: IGTMASTER\mannr
+Date: 02/26/2009 12:42:17
+Added time stamp to the hot player event.
+
+Parent: 78128
+Changeset: 78043
+Author: IGTMASTER\MuelleMa
+Date: 02/26/2009 16:28:01
+updating versioning of MMaint DLL
+
+Parent: 78128
+Changeset: 78050
+Author: IGTMASTER\provanj
+Date: 02/26/2009 16:54:44
+Updated case statement to check to see if the game was an S2S game
+
+Parent: 78128
+Changeset: 78064
+Author: IGTMASTER\kapustj
+Date: 02/26/2009 17:29:09
+Removed 'G2S_BNE104' and 'G2S_BNE105' from the list of supported S2S events, which removes them from the subscription and prevents them from being handled if they are received. Also disabled handling of the corresponding ABS events in eventById transaction.
+
+Parent: 78128
+Changeset: 78087
+Author: IGTMASTER\weldonb
+Date: 02/26/2009 20:03:39
+$/IGT_0803/release/EGS8.2/SP1/RTM/EGS/
+Merge MA 8.2 SP1 HF -> RTM
+
+Parent: 78087
+Changeset: 78083
+Author: IGTMASTER\weldonb
+Date: 02/26/2009 19:48:09
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Merge MA 8.2 SP1 
+
+Parent: 78128
+Changeset: 78097
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/27/2009 03:06:43
+Automatic build Bonus Controllers version update
+
+Parent: 78479
+Changeset: 78135
+Author: IGTMASTER\c-KURAPAS
+Date: 02/27/2009 10:46:08
+WI40941-Updated the report to equal spec .
+
+Parent: 78479
+Changeset: 78139
+Author: IGTMASTER\c-KURAPAS
+Date: 02/27/2009 10:50:59
+WI40941- Added MtrAttendantBonusWin and pulled the SoftDescs from dbo.Func_SoftDescs()
+
+Parent: 78479
+Changeset: 78143
+Author: IGTMASTER\c-KURAPAS
+Date: 02/27/2009 10:58:18
+WI40941-Updated the report to equal spec .
+
+Parent: 78479
+Changeset: 78164
+Author: IGTMASTER\OwenG
+Date: 02/27/2009 11:38:55
+adding pre script so Govt Stamp length can be reduced.
+
+Parent: 78479
+Changeset: 78165
+Author: IGTMASTER\rinka
+Date: 02/27/2009 11:39:07
+Added VoucherDropVar and CouponDropVar configuration options for variances
+
+Parent: 78479
+Changeset: 78179
+Author: IGTMASTER\PryorB
+Date: 02/27/2009 13:08:41
+I am changing Proc_TranslatorSBGChangeBegin to never ask for Final meters. Also, I added integration test logging, for when logging is enabled.
+
+Parent: 78479
+Changeset: 78184
+Author: IGTMASTER\c-KURAPAS
+Date: 02/27/2009 13:47:43
+WI40941-Added Location and machine type.
+
+Parent: 78479
+Changeset: 78220
+Author: IGTMASTER\provanj
+Date: 02/27/2009 15:31:42
+Added property grid for new configuration values
+
+Parent: 78479
+Changeset: 78233
+Author: IGTMASTER\hannign:20
+Date: 02/27/2009 15:57:47
+Fixed a problem with how the BSTR bstrContent object was allocated and deallocated in CIEControl::SetDocumentContent() that caused MA to crash.
+
+Parent: 78479
+Changeset: 78315
+Author: IGTMASTER\PhilipN
+Date: 02/27/2009 19:56:25
+WI45015 - Added a new configuration to allow fjp to force different mask limit checking.  Broke out the validation pieces from Proc_MenuEventInsert into Proc_MenuEventInsertS2SValidation.  Added some additional information into Proc_FloorStaffGet to enable checking of mask limits.  Added additional comments to Config to make it clearer what the settings are for the mask limit config.
+
+Parent: 78479
+Changeset: 78411
+Author: IGTMASTER\rinka
+Date: 03/01/2009 15:00:51
+Adding foreign keys to actual tables so that they ensure a period record is present.
+
+Parent: 82165
+Changeset: 79429
+Author: IGTMASTER\MuelleMa
+Date: 03/09/2009 11:17:23
+$/IGT_0803/main/EGS/
+Scheduled integration dev_sp to main - ABS & MA - rel_dev_8.2.251.0200-20090308-1800
+
+Parent: 79429
+Changeset: 78474
+Author: IGTMASTER\MuelleMa
+Date: 03/02/2009 10:33:13
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Scheduled integration from SP1 RTM - rel_rtm_8.2.258.0100-20090301-2000 - ABS & MA
+
+Parent: 78474
+Changeset: 78473
+Author: IGTMASTER\MuelleMa
+Date: 03/02/2009 10:30:46
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Scheduled integration from SP1 RTM - rel_rtm_8.2.258.0100-20090301-2000 - ABS & MA
+
+Parent: 78473
+Changeset: 78132
+Author: IGTMASTER\oarej
+Date: 02/27/2009 10:36:14
+Fixing a race condition in the Sender.cpp of the Bonus Common
+
+Parent: 78473
+Changeset: 78141
+Author: IGTMASTER\MillerA
+Date: 02/27/2009 10:53:55
+New Folder - Database work
+
+Parent: 78473
+Changeset: 78181
+Author: IGTMASTER\zizzas
+Date: 02/27/2009 13:21:01
+
+
+Parent: 78473
+Changeset: 78182
+Author: IGTMASTER\mannr
+Date: 02/27/2009 13:26:09
+The configuration id saved in the registry is used as the initial value.
+
+Parent: 78473
+Changeset: 78192
+Author: IGTMASTER\oarej
+Date: 02/27/2009 14:23:59
+Fixing a low priority bug in the bonus controllers
+
+Parent: 78473
+Changeset: 78223
+Author: IGTMASTER\OwenG
+Date: 02/27/2009 15:39:10
+speed up the upgrade from 8.0.
+
+Parent: 78473
+Changeset: 78268
+Author: IGTMASTER\c-KURAPAS
+Date: 02/27/2009 17:11:21
+WI45099 Added MFR 
+
+Parent: 78473
+Changeset: 78271
+Author: IGTMASTER\c-KopparK
+Date: 02/27/2009 17:17:48
+Made changes for WI-45102
+
+Parent: 78473
+Changeset: 78272
+Author: IGTMASTER\c-KopparK
+Date: 02/27/2009 17:18:52
+Made chAnges for WI-45102
+
+Parent: 78473
+Changeset: 78276
+Author: IGTMASTER\turnerb
+Date: 02/27/2009 17:22:55
+Added support for hybrid floor with bonusing.
+
+Parent: 78473
+Changeset: 78306
+Author: IGTMASTER\kapustj
+Date: 02/27/2009 18:37:16
+Changed timeToLive for getMeters requests to 60sec, and made sure to send getMeters with retry.
+
+Parent: 78473
+Changeset: 78307
+Author: IGTMASTER\kapustj
+Date: 02/27/2009 18:38:58
+Changed logic to send 'null' subgame info only if we know for sure that there aren't any combos (minCombos=0 and maxCombos=0)
+
+Parent: 78473
+Changeset: 78314
+Author: IGTMASTER\zizzas
+Date: 02/27/2009 19:55:47
+
+
+Parent: 78473
+Changeset: 78320
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/28/2009 02:07:21
+Automatic build Bonus Controllers version update
+
+Parent: 78473
+Changeset: 78331
+Author: IGTMASTER\provanj
+Date: 02/28/2009 11:03:38
+Fixed error logging so that it wouldn't error when attempting to log an error
+
+Parent: 78473
+Changeset: 78377
+Author: IGTMASTER\weldonb
+Date: 02/28/2009 17:06:54
+Setting ANSI_WARNINGS ON to fix install issue
+
+Parent: 78473
+Changeset: 78391
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/01/2009 00:37:38
+Automatic build Bonus Controllers version update
+
+Parent: 78473
+Changeset: 78403
+Author: IGTMASTER\rinka
+Date: 03/01/2009 12:51:46
+Fixing join issue for S2S games and game numbers.
+
+Parent: 78473
+Changeset: 78405
+Author: IGTMASTER\rinka
+Date: 03/01/2009 13:22:10
+Renaming open closed period to view closed period
+
+Parent: 78473
+Changeset: 78407
+Author: IGTMASTER\rinka
+Date: 03/01/2009 13:51:18
+Adding where clause so not all the machines are updated.
+
+Parent: 78473
+Changeset: 78414
+Author: IGTMASTER\kapustj
+Date: 03/01/2009 16:56:47
+Added error responses to the sender when authorization command messages cannot be processed.
+
+Parent: 78473
+Changeset: 78415
+Author: IGTMASTER\kapustj
+Date: 03/01/2009 17:01:23
+Changed error code string to an existing string constant
+
+Parent: 78473
+Changeset: 78416
+Author: IGTMASTER\kapustj
+Date: 03/01/2009 17:03:49
+Changed getClientRegistration request logic to be less agressive if the EGM is disconnected.
+
+Parent: 78473
+Changeset: 78417
+Author: IGTMASTER\kapustj
+Date: 03/01/2009 17:14:12
+Added code to handle class/command level S2S messages with errors (was just class level errors).
+Added logic to handle handle unknown/disabled clientId errors by taking the node offline and marking it as disconnected.
+Added tracking of disconnected state.
+Removed more obsolete (pre-split) code from S2SNode.
+Made clientRegistrationInfo handling force the EGM to Not Registered when the S2S offLine value becomes false.
+Made clientRegistrationInfo send a setClientRegistration whenever the registration state changes.
+
+Parent: 79429
+Changeset: 78526
+Author: IGTMASTER\rinka
+Date: 03/02/2009 14:56:54
+Moving the legacy checks to another proc
+
+Parent: 79429
+Changeset: 78782
+Author: IGTMASTER\PhilipN
+Date: 03/03/2009 16:52:01
+WI45304 - Reducing the net paid amount written into TaxInfo by the tax liability for each handpay.  This is because the Amount field in Handpay is no longer reduced by the tax liability at the time the handpay is entered.  This change occurred some months back but we didn't catch it here.
+
+
+Parent: 79429
+Changeset: 78842
+Author: IGTMASTER\provanj
+Date: 03/04/2009 10:00:26
+Modified main window text to display "No Period Selected" instead of invalid datetime.  
+
+Parent: 79429
+Changeset: 78850
+Author: IGTMASTER\provanj
+Date: 03/04/2009 10:35:31
+Added VoucherDropVar and CouponDropVar entry fields in configuration page
+
+Parent: 79429
+Changeset: 78906
+Author: IGTMASTER\WilliaL
+Date: 03/04/2009 14:17:52
+Changed MachineWizard to make reset of unique id operation not available to manual meter machines.  This will prevent mtrmoney and mtrincrement from being inadvertently NULL'd.
+
+Parent: 79429
+Changeset: 78913
+Author: IGTMASTER\MuelleMa
+Date: 03/04/2009 14:32:07
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+merge from dev_advantage MA to 8.2 dev_sp MA - TFS43887 Cleaning up install C76450 & TFS43887 Updating tables and indexes C75504
+
+Parent: 78913
+Changeset: 78910
+Author: IGTMASTER\MuelleMa
+Date: 03/04/2009 14:26:13
+$/IGT_0803/main/EGS/
+merge from dev_advantage MA to 8.2 dev_sp MA - TFS 43887 Updating tables and indexes C75504
+
+Parent: 78910
+Changeset: 72433
+Author: IGTMASTER\rinka
+Date: 01/21/2009 16:51:52
+Saving branch as development, some error log files getting checked in.
+
+Parent: 78910
+Changeset: 75504
+Author: IGTMASTER\rinka
+Date: 02/18/2009 13:27:44
+Updating tables and indexes
+
+Parent: 78913
+Changeset: 78912
+Author: IGTMASTER\MuelleMa
+Date: 03/04/2009 14:27:27
+$/IGT_0803/main/EGS/
+merge from dev_advantage MA to 8.2 dev_sp MA - TFS43887 Cleaning up install C76450
+
+Parent: 78912
+Changeset: 76450
+Author: IGTMASTER\rinka
+Date: 02/20/2009 16:43:43
+Cleaning up install
+
+Parent: 79429
+Changeset: 78949
+Author: IGTMASTER\hannign:20
+Date: 03/04/2009 15:55:20
+Fixed the Dolphin download on the Audit Meter page and Manual Meters page. This required adding WATInCount, WATOutCount, CouponInCount, CouponOutCount, CEPromoPlayed, and LegacyPointPlay to the Audit table and associated stored procedures.
+
+
+Parent: 79429
+Changeset: 79115
+Author: IGTMASTER\WilliaL
+Date: 03/05/2009 10:57:36
+The root cause of this defect was that ADO was returning a decimal type for bigint columns.  CDatasource was edited to cast the variant type to  VT_I8 based on column type.  This allows removal of the special case overridden FillFromDb method in the drop error dialog.
+
+Parent: 79429
+Changeset: 79259
+Author: IGTMASTER\MuelleMa
+Date: 03/06/2009 11:32:58
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Scheduled integration from SP1 - ABS & MA - rel_rtm_8.2.261.0100-20090305-2107
+
+Parent: 79259
+Changeset: 79013
+Author: IGTMASTER\MuelleMa
+Date: 03/04/2009 18:02:41
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+merging changes from dev_sp for SP1 - WI45015 - Added a new configuration to allow fjp to force different mask limit checking.  Broke out the validation pieces from Proc_MenuEventInsert into Proc_MenuEventInsertS2SValidation.  Added some additional information into Proc_FloorStaffGet to enable checking of mask limits.  Added additional comments to Config to make it clearer what the settings are for the mask limit config.
+
+Parent: 79259
+Changeset: 79258
+Author: IGTMASTER\MuelleMa
+Date: 03/06/2009 11:28:38
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Scheduled integration from SP1 - MA & ABS - rel_rtm_8.2.261.0100-20090305-2107
+
+Parent: 79258
+Changeset: 78439
+Author: IGTMASTER\turnerb
+Date: 03/01/2009 21:39:43
+Created standalone ATFTP installation package to support sb Bonus Manager
+
+Parent: 79258
+Changeset: 78440
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/02/2009 00:09:46
+Automatic build Bonus Controllers version update
+
+Parent: 79258
+Changeset: 78463
+Author: IGTMASTER\rinka
+Date: 03/02/2009 09:59:03
+Converting UniqueID to an integer.
+
+Parent: 79258
+Changeset: 78468
+Author: IGTMASTER\c-KURAPAS
+Date: 03/02/2009 10:15:52
+WI45176-Corrected Rounding issues.
+
+Parent: 79258
+Changeset: 78469
+Author: IGTMASTER\MuelleMa
+Date: 03/02/2009 10:20:57
+updating log output file to be product specific to prevent overwriting log files
+
+Parent: 79258
+Changeset: 78492
+Author: IGTMASTER\MuelleMa
+Date: 03/02/2009 11:25:17
+adding ATFTP project standalone packaging project
+
+Parent: 79258
+Changeset: 78531
+Author: IGTMASTER\hannign:20
+Date: 03/02/2009 15:07:46
+Increased the width of the IDC_VERSION text box so that it is wide enough to display the version string.
+
+Parent: 79258
+Changeset: 78533
+Author: IGTMASTER\c-KopparK
+Date: 03/02/2009 15:09:37
+Made changes to Include the fix for QC7748
+
+Parent: 79258
+Changeset: 78553
+Author: IGTMASTER\WilliaL
+Date: 03/02/2009 16:14:56
+
+
+Parent: 79258
+Changeset: 78555
+Author: IGTMASTER\rinka
+Date: 03/02/2009 16:23:24
+Logging S2S paytable inserts.  Also, fixed a join statement.
+
+Parent: 79258
+Changeset: 78561
+Author: IGTMASTER\provanj
+Date: 03/02/2009 16:51:26
+Removed un-needed settings
+
+Parent: 79258
+Changeset: 78571
+Author: IGTMASTER\c-KURAPAS
+Date: 03/02/2009 17:10:25
+WI45288-Updated the par calculation as per requirement.
+
+Parent: 79258
+Changeset: 78575
+Author: IGTMASTER\MillerA
+Date: 03/02/2009 17:16:11
+Adding database files for s2sTransport database - they are not part of any build
+
+Parent: 79258
+Changeset: 78578
+Author: IGTMASTER\WilliaL
+Date: 03/02/2009 17:36:51
+Changed so that permission is only checked when user is trying to view a day that is closed and renamed permission to make sense.
+
+Parent: 79258
+Changeset: 78583
+Author: IGTMASTER\kapustj
+Date: 03/02/2009 17:49:20
+Added logic to treat the egmId like the uniqueId with regard to DB mismatches.
+
+Parent: 79258
+Changeset: 78586
+Author: IGTMASTER\kapustj
+Date: 03/02/2009 17:55:46
+Fixed cleanup logic to queue the transaction for deletion when the ack is received, instead of calling the function (finishMessage) that removes the message from the inbound queue.
+
+Parent: 79258
+Changeset: 78588
+Author: IGTMASTER\PryorB
+Date: 03/02/2009 17:59:13
+Adding check to run Proc_MGAMeterLoad if Z meters are found in MGAMeterTransaction when new client registration meters come in.
+
+
+
+Parent: 79258
+Changeset: 78589
+Author: IGTMASTER\kapustj
+Date: 03/02/2009 17:59:27
+Fixed cleanup logic to queue the transaction for deletion when the ack is received, instead of calling the function (finishMessage) that removes the message from the inbound queue.
+Moved processing for subgame meters to before the meter message is sent, so the ack won't be returned while we're still processing the meterInfo data.
+
+Parent: 79258
+Changeset: 78591
+Author: IGTMASTER\WilliaL
+Date: 03/02/2009 18:03:23
+Changed password complexity enforcement to complexity count of 1-4.
+
+Parent: 79258
+Changeset: 78608
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/03/2009 01:50:42
+Automatic build Bonus Controllers version update
+
+Parent: 79258
+Changeset: 78625
+Author: IGTMASTER\mannr
+Date: 03/03/2009 08:47:06
+Fixed compilation error
+
+Parent: 79258
+Changeset: 78643
+Author: IGTMASTER\c-NapoleN
+Date: 03/03/2009 09:56:48
+Added functionality to log the service start time for both S2S Transport and S2S Webservice in the log file. Added code logic to report the s2s webservice status in the logfile and now the S2S Webservice application creates the log file at the startup process, instead of logging after receiving any messages from other systems.
+
+Parent: 79258
+Changeset: 78646
+Author: IGTMASTER\rinka
+Date: 03/03/2009 10:14:44
+
+
+Parent: 79258
+Changeset: 78661
+Author: IGTMASTER\rinka
+Date: 03/03/2009 11:00:47
+Adding schemas and descriptions.
+
+Parent: 79258
+Changeset: 78691
+Author: IGTMASTER\rinka
+Date: 03/03/2009 11:59:25
+Fixing issue where we didn't filter out the status of N
+
+Parent: 79258
+Changeset: 78692
+Author: IGTMASTER\MuelleMa
+Date: 03/03/2009 12:09:00
+adding ATFTPD to PAPush output
+
+Parent: 79258
+Changeset: 78749
+Author: IGTMASTER\c-KURAPAS
+Date: 03/03/2009 14:58:21
+Made change for WI45176
+
+Parent: 79258
+Changeset: 78751
+Author: IGTMASTER\rinka
+Date: 03/03/2009 15:00:42
+
+
+Parent: 79258
+Changeset: 78752
+Author: IGTMASTER\c-KURAPAS
+Date: 03/03/2009 15:01:51
+Made change for WI45176
+
+Parent: 79258
+Changeset: 78755
+Author: IGTMASTER\rinka
+Date: 03/03/2009 15:08:38
+fixing issue with duplicate rows because of unaccepted.
+
+Parent: 79258
+Changeset: 78783
+Author: IGTMASTER\oarej
+Date: 03/03/2009 16:52:51
+Fixing extra Bonus Hit Paid/Failed messages showing up in event monitor
+
+Parent: 79258
+Changeset: 78804
+Author: IGTMASTER\turnerb
+Date: 03/03/2009 18:42:24
+Added update of ptDisplayLimit parameter from Patron, and sending to sb.
+
+Parent: 79258
+Changeset: 78806
+Author: IGTMASTER\kapustj
+Date: 03/03/2009 19:10:38
+Changed bill inserted event handling to treat the amount as cents (denomId) rather than dollars.
+
+Parent: 79258
+Changeset: 78808
+Author: IGTMASTER\c-NapoleN
+Date: 03/03/2009 19:19:11
+Added Receive timeout logic in the S2S outbound Service Client proxy and made the receive timeout as a configurable parameter in the Registry. Now the Outbound service timeouts while sending a message, instead of waiting for the TCP/IP Stack to report the Host Not Reachable Exception (As it takes min 20 Secs to report the status in the case of the Non-Existent System)
+
+Parent: 79258
+Changeset: 78811
+Author: IGTMASTER\kapustj
+Date: 03/03/2009 19:28:17
+Added logic to track the PlayerDevice state and only send a setPlayerDevice command if the state changes.
+
+Parent: 79258
+Changeset: 78824
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/04/2009 01:42:22
+Automatic build Bonus Controllers version update
+
+Parent: 79258
+Changeset: 78829
+Author: IGTMASTER\mannr
+Date: 03/04/2009 08:22:40
+Fixed birthday and anniversary so that the numValue is set to 1 only if today is the special day. The attributes will not be added if they are null in the database.
+
+Parent: 79258
+Changeset: 78887
+Author: IGTMASTER\OwenG
+Date: 03/04/2009 13:16:16
+adding new procs and tables to store pointcount changes.
+
+Parent: 79258
+Changeset: 78889
+Author: IGTMASTER\OwenG
+Date: 03/04/2009 13:28:22
+correcting auto-generated xml script issues.
+
+Parent: 79258
+Changeset: 78897
+Author: IGTMASTER\OwenG
+Date: 03/04/2009 14:07:10
+syntax error
+
+Parent: 79258
+Changeset: 78902
+Author: IGTMASTER\c-KopparK
+Date: 03/04/2009 14:10:46
+Made changes for WI-41639
+
+Parent: 79258
+Changeset: 78931
+Author: IGTMASTER\kapustj
+Date: 03/04/2009 15:18:14
+Changed EVT_S2S_VOUCHER_ISSUED handling to use the amount from the event instead of clearing it.
+
+
+Parent: 79258
+Changeset: 78952
+Author: IGTMASTER\oarej
+Date: 03/04/2009 16:00:46
+
+
+Parent: 79258
+Changeset: 78974
+Author: IGTMASTER\OwenG
+Date: 03/04/2009 16:47:24
+taking care of the NULL condition.
+
+Parent: 79258
+Changeset: 78977
+Author: IGTMASTER\OwenG
+Date: 03/04/2009 16:51:30
+NULL values default to 1, so I need to start the counting at 2 on the first change.
+
+Parent: 79258
+Changeset: 79009
+Author: IGTMASTER\kapustj
+Date: 03/04/2009 17:44:43
+Added logic to retrieve a countdownId value from MA in a MachineLookup, to store that value in the DCN Node, and to send that value to S2S EGMs as the player countdownId for the game.
+
+Parent: 79258
+Changeset: 79048
+Author: IGTMASTER\turnerb
+Date: 03/04/2009 19:49:54
+Corrected message flow for Host-Triggered card out
+
+Parent: 79258
+Changeset: 79072
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/05/2009 02:14:50
+Automatic build Bonus Controllers version update
+
+Parent: 79258
+Changeset: 79101
+Author: IGTMASTER\oarej
+Date: 03/05/2009 09:37:07
+Fixing a minor problem with WLT not paying a game if the card was abandoned (it shouldn't mater because its WLT)
+
+Parent: 79258
+Changeset: 79113
+Author: IGTMASTER\OwenG
+Date: 03/05/2009 10:50:13
+Adding same change to insert proc that I added to update.
+
+Parent: 79258
+Changeset: 79123
+Author: IGTMASTER\OwenG
+Date: 03/05/2009 11:26:53
+fixing default value in case of null
+
+Parent: 79258
+Changeset: 79170
+Author: IGTMASTER\provanj
+Date: 03/05/2009 15:14:55
+added Proc_TranslatorMGAMeterInsertS2SComplete to handle semi-bulk meter inserts via s2s
+
+Parent: 79258
+Changeset: 79172
+Author: IGTMASTER\provanj
+Date: 03/05/2009 15:20:31
+Added call to accounting to notify when all s2s meters were processed for an egm
+
+Parent: 79258
+Changeset: 79191
+Author: IGTMASTER\PhilipN
+Date: 03/05/2009 16:28:44
+WI45820 - Added AlwaysRequirePIN as a true.  It should have been false.
+
+Parent: 79258
+Changeset: 79201
+Author: IGTMASTER\rinka
+Date: 03/05/2009 17:20:32
+Adam Rink 3/5/2009
+
+Added the missing fields which was only WATINCount and WATOUTCount.  I did not add MtrHopperLevel because this is a calculated field of the last mtrHopperLevel plus fills and jackpots.  Therefore, not sure we want to try to calculate that for there are no meters
+
+
+Parent: 79258
+Changeset: 79216
+Author: IGTMASTER\provanj
+Date: 03/05/2009 19:50:29
+Updated to deny enrollment and session creation for banned players even though the FJPAccrual flag is set to 'Y'
+
+Parent: 79429
+Changeset: 79306
+Author: IGTMASTER\PryorB
+Date: 03/06/2009 16:28:09
+Preventing duplicate insertions to MGAMeterDay when two MGAMeter entries have same everything but ReadType
+
+Parent: 79429
+Changeset: 79323
+Author: IGTMASTER\PryorB
+Date: 03/06/2009 16:56:43
+New process for collecting Final meters on authorization that insures the meters are in MA before authorization is granted.
+
+
+Parent: 79429
+Changeset: 79337
+Author: IGTMASTER\c-KURAPAS
+Date: 03/06/2009 17:38:25
+ WI38957 Added Coupon Promo - MtrCouponIn,AccumulatedCoupon,ActCouponIn,VarCoupon and VarCouponPct columns 	
+
+Parent: 79429
+Changeset: 79338
+Author: IGTMASTER\c-KURAPAS
+Date: 03/06/2009 17:40:51
+W38957-Added Coupon Promo - MtrCouponIn,AccumulatedCoupon,ActCouponIn,VarCoupon and VarCouponPct columns
+
+Parent: 79429
+Changeset: 79356
+Author: IGTMASTER\hannign:20
+Date: 03/07/2009 15:09:18
+Changed Advantage Scan so that Audit Meters and Manual Meters will handle LegacyPointPlay, WATInCount, WATOutCount, CouponInCount, CouponOutCount, and CEPromoPlayed. Note: Support for Legacy Point Play was added to the MA Audit Meters page in Work Item 42972.
+
+Fixed an Advantage Scan Audit Meters problem that caused Restricted Promotion Out, WAT In,  WAT Out, Hopper Level, Machine Paid Progressive Payout, Carded Wager, Restricted Promotion In, EFT In, Cashable Electronic Promotion In, Non-Cashable Electronic Promotion Out, Coupon Promo In Count, Coupon Promo Out Count, Cashable Electronic Promo Played, and Legacy Point Play to be inserted in the wrong meter columns.
+
+Fixed an Advantage Scan Manual Meters problem that caused Coupon Promo In Count, Coupon Promo Out Count, Cashable Electronic Promo Played, and Legacy Point Play to be inserted in the wrong meter columns.
+
+
+Parent: 82165
+Changeset: 80091
+Author: IGTMASTER\MuelleMa
+Date: 03/12/2009 15:16:17
+$/IGT_0803/main/EGS/
+Scheduled integration from dev_sp to main - ABS & MA - rel_dev_8.2.251.0200-20090311-2044
+
+Parent: 80091
+Changeset: 79428
+Author: IGTMASTER\MuelleMa
+Date: 03/09/2009 11:14:31
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Scheduled integration SP1 RTM to dev_sp - ABS & MA - rel_rtm_8.2.264.0100-20090308-2018
+
+Parent: 79428
+Changeset: 79330
+Author: IGTMASTER\MuelleMa
+Date: 03/06/2009 17:08:56
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Merging SP1 changes - TFS45839 / QC8388 New process for collecting Final meters on authorization that insures the meters are in MA before authorization is granted.
+
+
+Parent: 79428
+Changeset: 79352
+Author: IGTMASTER\weldonb
+Date: 03/07/2009 12:54:35
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Merge dev_sp -> HF
+
+Parent: 79428
+Changeset: 79425
+Author: IGTMASTER\MuelleMa
+Date: 03/09/2009 11:10:24
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Scheduled integration from SP1 RTM to dev_sp - ABS & MA - rel_rtm_8.2.264.0100-20090308-2018
+
+Parent: 79425
+Changeset: 79220
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/06/2009 02:40:14
+Automatic build Bonus Controllers version update
+
+Parent: 79425
+Changeset: 79275
+Author: IGTMASTER\PhilipN
+Date: 03/06/2009 14:15:42
+WI45820 - Adding ISNULL to some return values to ensure no nulls are sent to trans.
+
+Parent: 79425
+Changeset: 79290
+Author: IGTMASTER\zizzas
+Date: 03/06/2009 15:08:59
+Fixed logic to check for supervisor or witness jobcode when a witness is needed. Also put back code that was removed to check for certain null fields (pindigest) in proc_floorstaffget
+
+Parent: 79425
+Changeset: 79302
+Author: IGTMASTER\oarej
+Date: 03/06/2009 16:17:35
+Fixing a critical bug that involved Pay Celebration first not having the correct inforamtion in the bonus history
+
+Parent: 79425
+Changeset: 79348
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/07/2009 01:52:26
+Automatic build Bonus Controllers version update
+
+Parent: 79425
+Changeset: 79354
+Author: IGTMASTER\PhilipN
+Date: 03/07/2009 13:25:49
+WI41596 - Error in last UPDATE statement.  The JOIN on MeterCurrent was using the Period date instead of the MeterCurrent date.  Also corrected formatting on that UPDATE.
+
+
+Parent: 79425
+Changeset: 79358
+Author: IGTMASTER\kapustj
+Date: 03/07/2009 17:32:26
+Changed backslash to frontslash in a logging statement.
+
+Parent: 79425
+Changeset: 79360
+Author: IGTMASTER\kapustj
+Date: 03/07/2009 18:51:28
+Added code to always remove any corresponding retries when processing the authorizeVoucher response.
+
+Parent: 79425
+Changeset: 79361
+Author: IGTMASTER\turnerb
+Date: 03/07/2009 18:53:51
+Updated installer to add configuration for hybrid floor options; move S2S Transport applications to a separate directory
+
+Parent: 79425
+Changeset: 79362
+Author: IGTMASTER\kapustj
+Date: 03/07/2009 18:56:54
+Added logic to change connection state when we receive an S2S commsOnline or commsOffline.
+
+Parent: 79425
+Changeset: 79363
+Author: IGTMASTER\kapustj
+Date: 03/07/2009 18:57:24
+Fixed case in 'S2S'.
+
+Parent: 79425
+Changeset: 79364
+Author: IGTMASTER\kapustj
+Date: 03/07/2009 18:58:53
+Changed logic to always remove the request from the retry table when we process the meterInfo data.
+
+Parent: 79425
+Changeset: 79365
+Author: IGTMASTER\kapustj
+Date: 03/07/2009 19:00:21
+Added logic to check the S2S reportDenomId against the MA "denom", which is the categorical/report denom.
+
+Parent: 79425
+Changeset: 79366
+Author: IGTMASTER\kapustj
+Date: 03/07/2009 19:06:32
+Fixed cut-and-paste error found in code review.
+
+Parent: 79425
+Changeset: 79369
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/08/2009 01:54:02
+Automatic build Bonus Controllers version update
+
+Parent: 79425
+Changeset: 79371
+Author: IGTMASTER\PryorB
+Date: 03/08/2009 11:22:23
+QC 8431 Switching XtraCredit column to be ActualCEPromoIn, to be consisten with Deductible Detail and Bonus Activity Detail reports. 
+
+Parent: 79425
+Changeset: 79372
+Author: IGTMASTER\c-KopparK
+Date: 03/08/2009 13:16:00
+Made chnages for WI-45927
+
+Parent: 79425
+Changeset: 79376
+Author: IGTMASTER\PryorB
+Date: 03/08/2009 14:52:26
+QC 8267 Removing equipment type filter in SQL for Soft Drop Card, Hard Drop Card, Combination Drop Card. 
+
+Parent: 79425
+Changeset: 79380
+Author: IGTMASTER\turnerb
+Date: 03/08/2009 17:38:33
+Modified code to allow "pseudo-retry" message, put into the retry queue for future processing but not sent as a retry.
+
+Parent: 79425
+Changeset: 79381
+Author: IGTMASTER\turnerb
+Date: 03/08/2009 17:40:00
+Corrected scaling of wmDisplayLimit value sent from Patron - Patron sends dollars-and-cents, sb gets cents.
+
+Parent: 80091
+Changeset: 79441
+Author: IGTMASTER\c-KURAPAS
+Date: 03/09/2009 11:53:11
+WI38957- Added Coupon Promo.
+
+Parent: 80091
+Changeset: 79442
+Author: IGTMASTER\c-KURAPAS
+Date: 03/09/2009 11:53:51
+WI38957- Added Coupon Promo. 
+
+Parent: 80091
+Changeset: 79489
+Author: IGTMASTER\OwenG
+Date: 03/09/2009 15:26:52
+added "VoucherDataExists" column to allow control to be disabled in app.
+
+Parent: 80091
+Changeset: 79501
+Author: IGTMASTER\hannign:20
+Date: 03/09/2009 16:12:22
+Changed Proc_GetManualMeters so that it will not return Soft meters that don't have denoms configured. This prevents the Additional Meter Adjustments dialog from displaying Soft 8 through 10. This is consistent with how the Manual Meters page displays the soft meters. When the Save button is pressed on the Additional Meter Adjustments dialog a default value of 0 will be passed into Proc_ManualMeterInsert for meters that are not displayed.
+
+Parent: 80091
+Changeset: 79525
+Author: IGTMASTER\OwenG
+Date: 03/09/2009 17:17:13
+limit purge--leave at least 5 days of meters for any active machine.
+
+Parent: 80091
+Changeset: 79574
+Author: IGTMASTER\provanj
+Date: 03/10/2009 09:17:10
+Adding logic to disable voucher settings it ticket data exists for a machine.
+
+Parent: 80091
+Changeset: 79596
+Author: IGTMASTER\hannign:20
+Date: 03/10/2009 10:38:16
+Changed the behavior of the Hard Drop Selection dialog box by checking off the Actual Hard Drop task when the user selects Enter Drop Manually and clicks the OK button.
+
+Changed the behavior of the Soft Drop Selection dialog box by checking off the Actual Soft Drop task when the user selects Enter Drop Manually and clicks the OK button.
+
+Parent: 80091
+Changeset: 79603
+Author: IGTMASTER\rinka
+Date: 03/10/2009 10:59:00
+Checking in files for improving the correct meter variances.
+
+Parent: 80091
+Changeset: 79612
+Author: IGTMASTER\OwenG
+Date: 03/10/2009 11:17:41
+removing point play
+
+Parent: 80091
+Changeset: 79639
+Author: IGTMASTER\WilliaL
+Date: 03/10/2009 13:32:15
+replaced fmod with mod and casts to fix floating point errors on drop amount.
+
+Parent: 80091
+Changeset: 79673
+Author: IGTMASTER\rinka
+Date: 03/10/2009 14:58:36
+Fixing Event codes for Ram Clears
+
+Parent: 80091
+Changeset: 79674
+Author: IGTMASTER\PhilipN
+Date: 03/10/2009 15:00:13
+WI32149 - Revised Cashless Actual Slot Win to match revised spec.  Bumped the version number.  Added vouchers to the proc.  Moved the report from Cashless to Audit, per spec.  Fixed formatting in stored proc.  Removed some unneeded complexity from the proc.
+
+Parent: 80091
+Changeset: 79679
+Author: IGTMASTER\PryorB
+Date: 03/10/2009 15:12:22
+Adding AbsUserMask to TableAffected list, so that User group changes show up.
+
+Parent: 80091
+Changeset: 79749
+Author: IGTMASTER\PryorB
+Date: 03/10/2009 18:13:07
+Made coupon import also use MachinesPerImportSet configuable value, and made all EZPay import procs consistent in its use.
+
+Parent: 80091
+Changeset: 79777
+Author: IGTMASTER\WilliaL
+Date: 03/11/2009 09:11:52
+Now shows IVS Ticket task based on whether or not a ticketing system is selected in the options.
+
+Parent: 80091
+Changeset: 79800
+Author: IGTMASTER\PhilipN
+Date: 03/11/2009 11:08:19
+WI32150 - Excluding Z machines from the report.  Bumped report version number up one to match spec.  Reformatted report to TSQL spec.
+
+Parent: 80091
+Changeset: 79812
+Author: IGTMASTER\OwenG
+Date: 03/11/2009 11:30:33
+Do not automatically accept meters that have been adjusted to negative.  Do not allow manual accept of negative values.
+
+Parent: 80091
+Changeset: 79818
+Author: IGTMASTER\OwenG
+Date: 03/11/2009 11:54:51
+
+
+Parent: 80091
+Changeset: 79829
+Author: IGTMASTER\rinka
+Date: 03/11/2009 12:54:18
+Renaming functions
+
+Parent: 80091
+Changeset: 79832
+Author: IGTMASTER\OwenG
+Date: 03/11/2009 13:12:10
+function name was changed
+
+Parent: 80091
+Changeset: 79850
+Author: IGTMASTER\WilliaL
+Date: 03/11/2009 14:07:03
+DropErrorDlg now handles OnUpdate and is refreshed after drop import.
+
+Parent: 80091
+Changeset: 79853
+Author: IGTMASTER\provanj
+Date: 03/11/2009 14:16:03
+Added new paytable control
+
+Parent: 80091
+Changeset: 79869
+Author: IGTMASTER\provanj
+Date: 03/11/2009 14:51:57
+Added new Paytable, commented out until tested
+
+Parent: 80091
+Changeset: 79908
+Author: IGTMASTER\PryorB
+Date: 03/11/2009 16:36:50
+QC 8501 Cleaning up Current Meters and Coin Test column order.
+
+Parent: 80091
+Changeset: 79911
+Author: IGTMASTER\rinka
+Date: 03/11/2009 16:38:06
+Code review updates. Added indexes, minor issues adjustments.
+
+Parent: 80091
+Changeset: 79913
+Author: IGTMASTER\rinka
+Date: 03/11/2009 16:47:39
+Sorting the session dates.
+
+
+Parent: 80091
+Changeset: 79917
+Author: IGTMASTER\provanj
+Date: 03/11/2009 16:52:26
+Add new proc for paytable changes
+
+Parent: 80091
+Changeset: 79918
+Author: IGTMASTER\provanj
+Date: 03/11/2009 16:53:19
+
+
+Parent: 80091
+Changeset: 79923
+Author: IGTMASTER\WilliaL
+Date: 03/11/2009 17:04:14
+Prevents blanking machine type info when user moves back through the wizard.  Also adds MMaint project to the MA solution.
+
+Parent: 80091
+Changeset: 79935
+Author: IGTMASTER\MuelleMa
+Date: 03/11/2009 17:39:09
+undoing checkout to avoid conflicting work in dev_sp and SP1 RTM
+
+Parent: 82165
+Changeset: 80228
+Author: IGTMASTER\MuelleMa
+Date: 03/13/2009 10:47:18
+$/IGT_0803/main/EGS/
+Scheduled integration from dev_sp to main - ABS & MA - rel_dev_8.2.251.0200-20090312-1800
+
+Parent: 80228
+Changeset: 80009
+Author: IGTMASTER\rinka
+Date: 03/12/2009 10:29:26
+WI46417 - fixing issue with join on period to detect if no drop was found. 
+
+Parent: 80228
+Changeset: 80010
+Author: IGTMASTER\rinka
+Date: 03/12/2009 10:30:41
+WI46417 - fixing issue with join on period to detect if no drop was found. 
+
+Parent: 80228
+Changeset: 80038
+Author: IGTMASTER\mannr
+Date: 03/12/2009 12:26:06
+Fixed this one again
+
+Parent: 80228
+Changeset: 80065
+Author: IGTMASTER\c-KURAPAS
+Date: 03/12/2009 13:59:35
+WI46089-Corrected the report ver# numbers.
+
+Parent: 80228
+Changeset: 80084
+Author: IGTMASTER\PryorB
+Date: 03/12/2009 15:01:57
+This proc will be called by the app when a drop needs to be deleted.
+
+Parent: 80228
+Changeset: 80086
+Author: IGTMASTER\OwenG
+Date: 03/12/2009 15:06:00
+putting uniqueid in correct field instead of mnum (unless unavailable.)
+
+Parent: 80228
+Changeset: 80087
+Author: IGTMASTER\MuelleMa
+Date: 03/12/2009 15:11:40
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Scheduled integration from SP1 RTM to dev_sp - ABS & MA - rel_rtm_8.2.268.0100-20090312-1040
+
+Parent: 80087
+Changeset: 80085
+Author: IGTMASTER\MuelleMa
+Date: 03/12/2009 15:02:56
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Scheduled integration from SP1 RTM to dev_sp - ABS & MA - rel_rtm_8.2.268.0100-20090312-1040
+
+Parent: 80085
+Changeset: 79401
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/09/2009 00:52:41
+Automatic build Bonus Controllers version update
+
+Parent: 80085
+Changeset: 79468
+Author: IGTMASTER\mannr
+Date: 03/09/2009 14:25:26
+Updated S2S Host Status window and Diagnostics/Details window.
+
+Parent: 80085
+Changeset: 79507
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 16:35:39
+QC 8096 - Point Accum Meter Fixes
+
+Parent: 80085
+Changeset: 79508
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 16:36:35
+QC 7527, 7528 Menu Problems
+
+Parent: 80085
+Changeset: 79511
+Author: IGTMASTER\pitmanl
+Date: 03/09/2009 16:38:23
+Startup pool and delayed pool were being calculated using mixed money value and 64 bit values, this caused the values to be extreamy large if there was something in the delayed pool when the bonus was hit.
+
+Parent: 80085
+Changeset: 79513
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 16:39:02
+QC 7783 Theo Hold Meter
+
+Parent: 80085
+Changeset: 79515
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 16:39:57
+QC 8406 - Logic Door Input
+
+Parent: 80085
+Changeset: 79532
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:09:59
+Automated Build
+
+Parent: 80085
+Changeset: 79533
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:11:06
+Automated Build
+
+Parent: 80085
+Changeset: 79534
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:12:01
+Automated Build
+
+Parent: 80085
+Changeset: 79535
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:12:56
+Automated Build
+
+Parent: 80085
+Changeset: 79536
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:13:49
+Automated Build
+
+Parent: 80085
+Changeset: 79537
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:14:42
+Automated Build
+
+Parent: 80085
+Changeset: 79538
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:15:31
+Automated Build
+
+Parent: 80085
+Changeset: 79539
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:16:29
+Automated Build
+
+Parent: 80085
+Changeset: 79540
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:17:25
+Automated Build
+
+Parent: 80085
+Changeset: 79541
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:18:20
+Automated Build
+
+Parent: 80085
+Changeset: 79542
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:19:16
+Automated Build
+
+Parent: 80085
+Changeset: 79543
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:20:07
+Automated Build
+
+Parent: 80085
+Changeset: 79544
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:20:59
+Automated Build
+
+Parent: 80085
+Changeset: 79545
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:21:50
+Automated Build
+
+Parent: 80085
+Changeset: 79546
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:21:54
+Automated Build
+
+Parent: 80085
+Changeset: 79547
+Author: IGTMASTER\nelsonk
+Date: 03/09/2009 18:22:10
+Automated Build
+
+Parent: 80085
+Changeset: 79561
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/10/2009 02:29:51
+Automatic build Bonus Controllers version update
+
+Parent: 80085
+Changeset: 79726
+Author: IGTMASTER\PryorB
+Date: 03/10/2009 17:12:30
+I modified Proc_MGAMeterLoad to check for NULL values for MtrCoinIn near the beginning, and log them in MGAMeterMoveErrorLog before deleting them out of MGAMeterTransaction.
+
+
+Parent: 80085
+Changeset: 79735
+Author: IGTMASTER\kapustj
+Date: 03/10/2009 17:31:46
+Changed handling to commsOnline to reset the connection state to Not_Connected, which forces a resend of the connection restored commands.
+
+Parent: 80085
+Changeset: 79737
+Author: IGTMASTER\mannr
+Date: 03/10/2009 17:33:39
+Attach meters to the events in the eventById message
+
+Parent: 80085
+Changeset: 79742
+Author: IGTMASTER\kapustj
+Date: 03/10/2009 17:59:42
+Changed handling of offline and link-down events to reset the registrationSentToHost state, so that re-registering sends a new clientRegistrationInfo.
+
+Parent: 80085
+Changeset: 79743
+Author: IGTMASTER\kapustj
+Date: 03/10/2009 18:00:40
+Added check to send an S2S error if the egm is not registered.
+
+Parent: 80085
+Changeset: 79758
+Author: IGTMASTER\kapustj
+Date: 03/10/2009 20:15:46
+Fixed non-conc handling so that the tran will always generate a ping, because the ping is used to update CAgamTime with daylight savings time information.
+If the conc and sb bonus connections are disabled, the ping won't be sent, but it will still be generated.
+
+Parent: 80085
+Changeset: 79769
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/11/2009 03:28:50
+Automatic build Bonus Controllers version update
+
+Parent: 80085
+Changeset: 79796
+Author: IGTMASTER\oarej
+Date: 03/11/2009 10:36:17
+Fixing an issue with the bonus controller database files.
+
+Parent: 80085
+Changeset: 79801
+Author: IGTMASTER\PryorB
+Date: 03/11/2009 11:10:48
+QC# 8481 I modifed the output of Proc_MGAMachineInfo to show machines that are MDMG or SBG, not just MDMG.
+
+Parent: 80085
+Changeset: 79834
+Author: IGTMASTER\c-NapoleN
+Date: 03/11/2009 13:19:44
+Added functionality in the S2S Transport service to provide certificate to the Host Server to complete the SSL handshake process (SBI needs Outbound Service to provide Certificate for the Client verification).Added Registry params 'TranCertificatePath' and 'ClientCertificateValidation' for the Certificate default path. Modified S2S Webservice config file to support Ceritifacete client side validation.
+
+Parent: 80085
+Changeset: 79861
+Author: IGTMASTER\PhilipN
+Date: 03/11/2009 14:32:23
+WI46202 - Removed joins to ABSUser, Machine, and MachineType that were unnecessary.
+
+Parent: 80085
+Changeset: 79863
+Author: IGTMASTER\oarej
+Date: 03/11/2009 14:35:29
+Added the ability to set the Multisite NIC to an IP that is unique so it can find it in registry to get the GUID that is associated with it.  This is due to the fact that the GUID is not constant and needed to be accessed to set the properties of the network card.
+
+Parent: 80085
+Changeset: 79867
+Author: IGTMASTER\mannr
+Date: 03/11/2009 14:39:05
+Fixed the length of the card out message so all of the data was included, especially the ranked multiplier. Modified the multiplier and ranked multiplier to always be part of the message so that sb doesn't interpret the lack of a value to be 0.
+
+Parent: 80085
+Changeset: 79893
+Author: IGTMASTER\provanj
+Date: 03/11/2009 15:55:47
+Fixed MtrTotalDrop calculation
+
+Parent: 80085
+Changeset: 79910
+Author: IGTMASTER\c-KopparK
+Date: 03/11/2009 16:37:46
+changed the formatt for statistical win to display only two decimals
+
+Parent: 80085
+Changeset: 79920
+Author: IGTMASTER\MuelleMa
+Date: 03/11/2009 16:54:29
+updating location of MDA and VSP versioninfo SQL files for updating version dynamically with each build
+
+Parent: 80085
+Changeset: 79929
+Author: IGTMASTER\rinka
+Date: 03/11/2009 17:23:40
+Fixing issue where MOD meters are all updated instead the pending one
+
+Parent: 80085
+Changeset: 79937
+Author: IGTMASTER\pitmanl
+Date: 03/11/2009 17:41:03
+During the transfer from CLASIC to WBC the special case handling a paymethod of pay_multiple_of_last_bet and pay_fixed_credits should have updated the hit amount from what the BEII told us because the Bonus cannot know what the actual pay was from the data we have.  Now handle the condition correctly
+
+Previously in CLASIC Bonusing we were comparing paytype, the WBC compares paymethod which are different values.  e.g. Paytype^2 == paymethod.
+
+Now correctly handle these two special pay success conditions.
+
+
+Parent: 80085
+Changeset: 79939
+Author: IGTMASTER\mannr
+Date: 03/11/2009 17:46:00
+Fixed the calculation of the total drop meter
+
+Parent: 80085
+Changeset: 79967
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/12/2009 02:04:00
+Automatic build Bonus Controllers version update
+
+Parent: 80085
+Changeset: 79971
+Author: IGTMASTER\PhilipN
+Date: 03/12/2009 08:11:40
+WI46386 - Added ISNULL to the KeyToCrdit in the where clauses.  Formatted to TSQL spec
+
+Parent: 80085
+Changeset: 79973
+Author: IGTMASTER\PhilipN
+Date: 03/12/2009 08:24:35
+WI45666 - Added ORDER BY to detail query
+
+Parent: 80085
+Changeset: 79995
+Author: IGTMASTER\turnerb
+Date: 03/12/2009 09:42:45
+Added subscription and processing of uncarded hot player events.
+
+Parent: 80085
+Changeset: 80003
+Author: IGTMASTER\c-KopparK
+Date: 03/12/2009 10:19:32
+Made Cahnges for WI-46387
+
+Parent: 80085
+Changeset: 80027
+Author: IGTMASTER\PhilipN
+Date: 03/12/2009 11:43:25
+WI46421 - Change from Func_MeterToLocalMoney to Func_MeterToMachineMoney for MtrLegacyPointPlay meter conversion to money for Period insert
+
+
+Parent: 80085
+Changeset: 80029
+Author: IGTMASTER\c-KURAPAS
+Date: 03/12/2009 11:44:02
+WI46399-Corrected the Var % calculation.
+
+Parent: 80085
+Changeset: 80031
+Author: IGTMASTER\rinka
+Date: 03/12/2009 11:52:16
+WI46417 - fixing issue with join on period to detect if no drop was found. 
+
+Parent: 80085
+Changeset: 80075
+Author: IGTMASTER\rinka
+Date: 03/12/2009 14:37:42
+Updating some minor code review things
+
+Parent: 80228
+Changeset: 80101
+Author: IGTMASTER\c-KURAPAS
+Date: 03/12/2009 15:45:43
+WI46089-Redesigned and modified Machine report and Report_MachineDetails procedure as per the spec document.
+
+Parent: 80228
+Changeset: 80102
+Author: IGTMASTER\c-KURAPAS
+Date: 03/12/2009 15:46:38
+WI46089-Redesigned and modified Machine report and Report_MachineDetails procedure as per the spec document.
+
+Parent: 80228
+Changeset: 80158
+Author: IGTMASTER\PryorB
+Date: 03/12/2009 17:44:49
+Just adding a comment. No code changes.
+
+Parent: 82165
+Changeset: 80485
+Author: IGTMASTER\MuelleMa
+Date: 03/16/2009 14:28:12
+$/IGT_0803/main/EGS/
+Scheduled integration from dev_sp to main - ABS & MA - rel_dev_8.2.251.0200-20090315-1800
+
+Parent: 80485
+Changeset: 80226
+Author: IGTMASTER\MuelleMa
+Date: 03/13/2009 10:45:38
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Scheduled integration from SP1 RTM to dev_sp - ABS & MA - rel_rtm_8.2.269.0100-20090312-2000
+
+Parent: 80226
+Changeset: 80224
+Author: IGTMASTER\MuelleMa
+Date: 03/13/2009 10:43:22
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Scheduled integration from SP1 RTM to dev_sp - ABS & MA - rel_rtm_8.2.269.0100-20090312-2000
+
+Parent: 80224
+Changeset: 80100
+Author: IGTMASTER\mannr
+Date: 03/12/2009 15:42:21
+Changed all calls to SendEvent to use the commandId. Some were using the sessionId
+
+Parent: 80224
+Changeset: 80153
+Author: IGTMASTER\PryorB
+Date: 03/12/2009 17:35:49
+Moving logic for handling possible conflicts for the MGMG/SBG settings to the application.
+
+Parent: 80224
+Changeset: 80156
+Author: IGTMASTER\PryorB
+Date: 03/12/2009 17:39:18
+Moving logic for handling possible conflicts for the MGMG/SBG settings to the application.
+
+Parent: 80485
+Changeset: 80276
+Author: IGTMASTER\provanj
+Date: 03/13/2009 13:59:01
+Update app to pass 'N' instead of NULL
+
+Parent: 80485
+Changeset: 80304
+Author: IGTMASTER\OwenG
+Date: 03/13/2009 15:34:56
+don't allow duplicate log entries
+
+Parent: 80485
+Changeset: 80330
+Author: IGTMASTER\WilliaL
+Date: 03/13/2009 17:50:51
+Pulls totals from actuals table as well.
+
+Parent: 80485
+Changeset: 80368
+Author: IGTMASTER\rinka
+Date: 03/14/2009 14:10:43
+Fixing join issue where previous tickets might not display.
+
+Parent: 80485
+Changeset: 80388
+Author: IGTMASTER\rinka
+Date: 03/15/2009 16:30:26
+Adding scripts to installer based on field service findings
+
+Parent: 80485
+Changeset: 80417
+Author: IGTMASTER\hannign
+Date: 03/16/2009 10:24:11
+When an invalid Section name is entered the section edit control will be cleared after the error message is displayed. This forces the user to enter a valid Section name before printing the Bar Code label.
+
+Parent: 80485
+Changeset: 80424
+Author: IGTMASTER\provanj
+Date: 03/16/2009 10:43:25
+Added check for single quote and replaced with double quote
+
+Parent: 80485
+Changeset: 80484
+Author: IGTMASTER\MuelleMa
+Date: 03/16/2009 14:25:08
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Scheduled integration from SP1 RTM to dev_sp
+
+Parent: 80484
+Changeset: 80350
+Author: IGTMASTER\weldonb
+Date: 03/14/2009 09:52:37
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Merge dev_sp -> HF
+
+Parent: 80484
+Changeset: 80361
+Author: IGTMASTER\weldonb
+Date: 03/14/2009 13:07:11
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Merge dev_sp -> HF
+
+Parent: 80484
+Changeset: 80481
+Author: IGTMASTER\MuelleMa
+Date: 03/16/2009 14:15:27
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Scheduled integration from SP1 RTM to dev_sp - ABS & MA - rel_rtm_8.2.272.0100-20090315-2000
+
+Parent: 80481
+Changeset: 80192
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/13/2009 01:19:28
+Automatic build Bonus Controllers version update
+
+Parent: 80481
+Changeset: 80230
+Author: IGTMASTER\rinka
+Date: 03/13/2009 10:56:54
+Cleaning up proc, updating transaction codes to audit coupon meters
+
+Parent: 80481
+Changeset: 80232
+Author: IGTMASTER\PryorB
+Date: 03/13/2009 11:09:52
+QC8504  Removing audit sub-tasks for Correct Drop Errors on Coupon, Voucher and WAT.
+
+Parent: 80481
+Changeset: 80290
+Author: IGTMASTER\mannr
+Date: 03/13/2009 14:49:02
+Fixed problems associated with changes due to QC 8433.
+
+Parent: 80481
+Changeset: 80292
+Author: IGTMASTER\rinka
+Date: 03/13/2009 15:03:12
+
+
+Parent: 80481
+Changeset: 80294
+Author: IGTMASTER\rinka
+Date: 03/13/2009 15:08:52
+WI46630-Fixed the issue with the join and the calculation of the Variances.
+
+
+Parent: 80481
+Changeset: 80303
+Author: IGTMASTER\OwenG
+Date: 03/13/2009 15:34:06
+checking for duplicate log entries by not allowing before and after values to be the same.
+
+Parent: 80481
+Changeset: 80305
+Author: IGTMASTER\provanj
+Date: 03/13/2009 15:39:29
+Updated to send 'N' status instead of NULL
+
+Parent: 80481
+Changeset: 80313
+Author: IGTMASTER\rinka
+Date: 03/13/2009 15:57:03
+Fails because of upgrade script post_acctfloorstaffconversion.sql, new user insert calls a user action log proc that logs a table worth of values.  Install needs to put this proc in during an upgrade to run this script.  On affects, 8.2.
+
+
+Parent: 80481
+Changeset: 80315
+Author: IGTMASTER\rinka
+Date: 03/13/2009 16:10:37
+Changed the upgrade script for the PlayerTypeID table to insert values during the <= 2.50 upgrade process.  This way when it assigns the primary key, these values are already there.
+
+
+Parent: 80481
+Changeset: 80317
+Author: IGTMASTER\turnerb
+Date: 03/13/2009 16:24:43
+Corrections for sb-only configuration - allow OHD message edits, disallow Fixed Credits and Multiple of Last Bet for award types.
+
+Parent: 80481
+Changeset: 80318
+Author: IGTMASTER\hannign
+Date: 03/13/2009 16:28:24
+Fixed bug that prevented multiple work orders from being printed.
+
+Parent: 80481
+Changeset: 80338
+Author: IGTMASTER\kapustj
+Date: 03/13/2009 19:25:01
+Changed default (hard coded) value for configuration abandCardOut from false to true, to conform to Nevada requirements.
+
+Parent: 80481
+Changeset: 80343
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/14/2009 01:46:42
+Automatic build Bonus Controllers version update
+
+Parent: 80481
+Changeset: 80346
+Author: IGTMASTER\PhilipN
+Date: 03/14/2009 08:54:16
+WI46665 - If machine isn't in an accrual zone, disallow accrual
+
+Parent: 80481
+Changeset: 80347
+Author: IGTMASTER\PhilipN
+Date: 03/14/2009 08:56:59
+WI46665 - If machine isn't in an accrual zone, disallow accrual.  (Forgot to set one of the flags on the first check-in).
+
+Parent: 80481
+Changeset: 80348
+Author: IGTMASTER\PhilipN
+Date: 03/14/2009 09:00:09
+WI46665 - If machine isn't in an accrual zone, disallow accrual.  (Forgot to set one of the flags on the first check-in).  (Forgot to adjust how mandatory taxes is checked on the first two check-ins)
+
+Parent: 80481
+Changeset: 80349
+Author: IGTMASTER\PhilipN
+Date: 03/14/2009 09:02:40
+WI46665 - If machine isn't in an accrual zone, disallow accrual.  (Forgot to set one of the flags on the first check-in).  (Forgot to adjust how mandatory taxes is checked on the first two check-ins.)  (Forgot to update the comments banner with what I changed on the first three check-ins.)
+
+Parent: 80481
+Changeset: 80352
+Author: IGTMASTER\PhilipN
+Date: 03/14/2009 10:58:33
+WI46665 - If machine isn't in an accrual zone, disallow accrual.  (Forgot to set one of the flags on the first check-in).  (Forgot to adjust how mandatory taxes is checked on the first two check-ins.)  (Forgot to update the comments banner with what I changed on the first three check-ins.)  (Got my logic turned around on check of machine eligibility, so after testing, making yet another change.)
+
+Parent: 80481
+Changeset: 80355
+Author: IGTMASTER\rinka
+Date: 03/14/2009 11:44:11
+Fixing again, think this will work.  Delete the playertype table if it exists first, then do the upgrade to the table, then add the primary key, then add the data back.
+
+Parent: 80481
+Changeset: 80358
+Author: IGTMASTER\rinka
+Date: 03/14/2009 12:36:32
+Fixing the out of order columns in the CTE for the Hard Drop and Soft Drop part of the drop detail report.
+
+Parent: 80481
+Changeset: 80363
+Author: IGTMASTER\turnerb
+Date: 03/14/2009 13:20:29
+Changes to fix WmEarnPoints bug (46663)
+
+Parent: 80481
+Changeset: 80367
+Author: IGTMASTER\rinka
+Date: 03/14/2009 14:04:05
+Fixing issue with foreign key constraint of missing departments
+
+Parent: 80481
+Changeset: 80369
+Author: IGTMASTER\turnerb
+Date: 03/14/2009 14:25:28
+Corrections to the previou wmEarnPoints fix, don't take the uninitialized default values from AgamPT as a change to the settings.
+
+Parent: 80481
+Changeset: 80370
+Author: IGTMASTER\turnerb
+Date: 03/14/2009 15:09:17
+Corrections to the previou wmEarnPoints fix, don't take the uninitialized default values from AgamWizard as a change to the settings.
+
+Parent: 80481
+Changeset: 80379
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/15/2009 01:56:18
+Automatic build Bonus Controllers version update
+
+Parent: 80481
+Changeset: 80382
+Author: IGTMASTER\rinka
+Date: 03/15/2009 09:11:12
+Wrong alias in where clause
+
+Parent: 80481
+Changeset: 80392
+Author: IGTMASTER\rinka
+Date: 03/15/2009 16:54:18
+Reactivating the theme if uninstall fails
+
+Parent: 80481
+Changeset: 80393
+Author: IGTMASTER\rinka
+Date: 03/15/2009 16:55:04
+Reactivating the theme if uninstall fails
+
+Parent: 80481
+Changeset: 80394
+Author: IGTMASTER\kapustj
+Date: 03/15/2009 18:44:59
+Changed ProcessAg3() functions to just delete the transaction instead of callng Finish a second time.
+
+Parent: 80481
+Changeset: 80395
+Author: IGTMASTER\kapustj
+Date: 03/15/2009 19:23:52
+Changes to improve handling of meterInfo commands that aren't quite ready to be processed.
+
+Parent: 80481
+Changeset: 80401
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/16/2009 00:24:44
+Automatic build Bonus Controllers version update
+
+Parent: 80481
+Changeset: 80440
+Author: IGTMASTER\OwenG
+Date: 03/16/2009 11:43:10
+Fixing null value insert and duplicate entry issue.
+
+Parent: 82165
+Changeset: 81036
+Author: IGTMASTER\MuelleMa
+Date: 03/20/2009 09:28:39
+$/IGT_0803/main/EGS/
+Scheduled integration from dev_sp to main - ABS & MA - rel_dev_8.2.251.0100-20090319-1500
+
+Parent: 81036
+Changeset: 80495
+Author: IGTMASTER\PryorB
+Date: 03/16/2009 15:04:01
+QC8614 Adding proc for synchronizing Machine_MGAPaytables list of active paytables to the machine.
+
+Parent: 81036
+Changeset: 80513
+Author: IGTMASTER\PryorB
+Date: 03/16/2009 15:52:28
+QC8582 All the meter values are now converted to money by multiplying them by denom.
+
+
+Parent: 81036
+Changeset: 80549
+Author: IGTMASTER\PhilipN
+Date: 03/16/2009 17:08:23
+WI42426 - Adding "Duration" for queries to UserActionLog to capture every login to the application.
+
+Parent: 81036
+Changeset: 80555
+Author: IGTMASTER\PhilipN
+Date: 03/16/2009 17:31:23
+WI46832 - Removed overwrite of meter data when this is an S2S initiated proc call.
+
+Parent: 81036
+Changeset: 80608
+Author: IGTMASTER\c-KURAPAS
+Date: 03/17/2009 10:05:43
+Made change for WI46474
+
+Parent: 81036
+Changeset: 80641
+Author: IGTMASTER\riegelb
+Date: 03/17/2009 11:36:19
+Scxp Launcher inital checkin
+
+Parent: 81036
+Changeset: 80644
+Author: IGTMASTER\pitmanl
+Date: 03/17/2009 11:43:48
+
+
+Parent: 81036
+Changeset: 80648
+Author: IGTMASTER\riegelb
+Date: 03/17/2009 11:51:14
+SCXP Installer initial checkin
+
+Parent: 81036
+Changeset: 80652
+Author: IGTMASTER\riegelb
+Date: 03/17/2009 12:14:40
+create_cert inital checkin
+
+Parent: 81036
+Changeset: 80666
+Author: IGTMASTER\riegelb
+Date: 03/17/2009 13:55:55
+Secure Conc XP shell initial checkin
+
+Parent: 81036
+Changeset: 80674
+Author: IGTMASTER\riegelb
+Date: 03/17/2009 14:28:56
+
+
+Parent: 81036
+Changeset: 80684
+Author: IGTMASTER\oarej
+Date: 03/17/2009 14:58:13
+Adding changes that I made in SP1 but did not get into the source code before it was locked down
+
+Parent: 81036
+Changeset: 80685
+Author: IGTMASTER\hannign
+Date: 03/17/2009 14:58:26
+Added a Delete button to the Audit Coupon Meters page that allows the user to select one or more machines from the Coupon In machine list and delete the drop associated with each selected machine. The same functionality was added to the Audit Voucher Meters page.
+
+Parent: 81036
+Changeset: 80687
+Author: IGTMASTER\riegelb
+Date: 03/17/2009 14:59:12
+fvt_tool for secure conc XP checkin
+
+Parent: 81036
+Changeset: 80715
+Author: IGTMASTER\riegelb
+Date: 03/17/2009 16:06:13
+MS Platform SDK needed for Secure Conc XP - Version 2003r2
+
+Parent: 81036
+Changeset: 80727
+Author: IGTMASTER\MuelleMa
+Date: 03/17/2009 16:42:50
+updating for autobuild of App_CD for SecureConc
+
+Parent: 81036
+Changeset: 80751
+Author: IGTMASTER\rinka
+Date: 03/17/2009 18:18:14
+Checking in new logging proc
+
+Parent: 81036
+Changeset: 80752
+Author: IGTMASTER\hannign
+Date: 03/17/2009 19:09:09
+Proc_EGMGroupEnableDisable will be executed rather than Proc_EGMEnableDisable when a Machine List node is selected and the user clicks the Enable or Disable button. The UI passes the group ID into Proc_EGMGroupEnableDisable which allows the name of the group to be logged in the Period Log.
+
+Parent: 81036
+Changeset: 80753
+Author: IGTMASTER\kapustj
+Date: 03/17/2009 19:42:34
+Added typedef for AgiMultiPartBigEventMsg, used by ReadPackets
+
+Parent: 81036
+Changeset: 80755
+Author: IGTMASTER\kapustj
+Date: 03/17/2009 19:43:14
+Removed #include of AbsUtils.h, because that's not in a common directory.
+
+Parent: 81036
+Changeset: 80771
+Author: IGTMASTER\rinka
+Date: 03/18/2009 09:31:13
+Fixing error with event code that I created
+
+Parent: 81036
+Changeset: 80776
+Author: IGTMASTER\hannign
+Date: 03/18/2009 10:08:28
+Fixed missing drop procedure statement from last checkin.
+
+Parent: 81036
+Changeset: 80778
+Author: IGTMASTER\rinka
+Date: 03/18/2009 10:29:11
+Undoing a check in
+
+Parent: 81036
+Changeset: 80784
+Author: IGTMASTER\hannign
+Date: 03/18/2009 10:51:10
+Fixed drop procedure statement from last checkin.
+
+Parent: 81036
+Changeset: 80786
+Author: IGTMASTER\MuelleMa
+Date: 03/18/2009 11:01:27
+OS_CD msbuild, and cleaning up SecureConc checkin mess
+
+Parent: 81036
+Changeset: 80788
+Author: IGTMASTER\MuelleMa
+Date: 03/18/2009 11:16:08
+updating copyout of OS_CD and adding Build_App_CD and Build_OS_CD projects to ABS.sln
+
+Parent: 81036
+Changeset: 80790
+Author: IGTMASTER\rinka
+Date: 03/18/2009 11:18:45
+Fixing Trim Tables
+
+Parent: 81036
+Changeset: 80815
+Author: IGTMASTER\rinka
+Date: 03/18/2009 12:59:46
+Installing func_StripTime first during install. 
+
+Parent: 81036
+Changeset: 80831
+Author: IGTMASTER\rinka
+Date: 03/18/2009 13:59:47
+aliasing columns
+
+Parent: 81036
+Changeset: 80832
+Author: IGTMASTER\MuelleMa
+Date: 03/18/2009 14:10:27
+updating path to msdev for CLEAN 
+
+Parent: 81036
+Changeset: 80834
+Author: IGTMASTER\rinka
+Date: 03/18/2009 14:19:00
+more fixes
+
+Parent: 81036
+Changeset: 80863
+Author: IGTMASTER\PryorB
+Date: 03/18/2009 15:54:25
+Deleting 'Z' meters because they are reduant to 'F' meters from Authorization.
+
+Parent: 81036
+Changeset: 80933
+Author: IGTMASTER\MuelleMa
+Date: 03/19/2009 11:43:44
+fixing merge mistake in Range.tab
+
+Parent: 81036
+Changeset: 80935
+Author: IGTMASTER\PhilipN
+Date: 03/19/2009 11:59:24
+WI47121 - Add correct dollar value to check for duplicates.  For a long time, this has been a comparison of a null to a dollar value.
+
+Parent: 82165
+Changeset: 81186
+Author: IGTMASTER\MuelleMa
+Date: 03/20/2009 16:25:46
+$/IGT_0803/main/EGS/
+merging 8.2 SP2 changes from dev_advantage to 8.2 dev_sp
+
+Parent: 81186
+Changeset: 72526
+Author: IGTMASTER\c-KURAPAS
+Date: 01/22/2009 11:11:24
+WI41229 -Corrected the WAT In Count and WAT Out Count format 
+
+Parent: 81186
+Changeset: 72581
+Author: IGTMASTER\c-KURAPAS
+Date: 01/22/2009 16:19:30
+ WI41255/QC7596 - Added Wat In Count and Wat Out Count in report
+
+Parent: 81186
+Changeset: 72582
+Author: IGTMASTER\c-KURAPAS
+Date: 01/22/2009 16:20:46
+WI41255/QC7596 - Added Wat In Count and Wat Out Count 
+
+Parent: 81186
+Changeset: 72728
+Author: IGTMASTER\c-KURAPAS
+Date: 01/24/2009 13:17:46
+WI41428 Removed the inactivated groups from filter selection.
+
+Parent: 81186
+Changeset: 73151
+Author: IGTMASTER\hannign:20
+Date: 01/28/2009 17:54:40
+Changed proc so that it won't allow duplicate group names to be added even if the pre-existing group is inactive. Changed proc so that it doesn't check for duplicate group names when a group is reactivated.
+
+Parent: 81186
+Changeset: 73290
+Author: IGTMASTER\c-KURAPAS
+Date: 01/29/2009 15:47:46
+Made change for WI41884
+
+Parent: 81186
+Changeset: 73368
+Author: IGTMASTER\c-KURAPAS
+Date: 01/30/2009 10:35:07
+Made change for WI- 41899
+
+Parent: 81186
+Changeset: 73370
+Author: IGTMASTER\c-KURAPAS
+Date: 01/30/2009 10:45:27
+WI41948-Applied the round function to var%
+
+Parent: 81186
+Changeset: 73394
+Author: IGTMASTER\c-KURAPAS
+Date: 01/30/2009 14:06:10
+made change for WI41968
+
+Parent: 81186
+Changeset: 73608
+Author: IGTMASTER\c-KURAPAS
+Date: 02/02/2009 16:10:09
+Made change for WI42131
+
+Parent: 81186
+Changeset: 73699
+Author: IGTMASTER\hannign:20
+Date: 02/03/2009 15:22:16
+The columns were swapped in the query used by Proc_GetPeriodManualMeters.
+
+Parent: 81186
+Changeset: 73720
+Author: IGTMASTER\c-KURAPAS
+Date: 02/03/2009 16:46:22
+Made change for WI42242
+
+Parent: 81186
+Changeset: 73848
+Author: IGTMASTER\c-KURAPAS
+Date: 02/04/2009 14:35:37
+Made change for WI42317
+
+Parent: 81186
+Changeset: 74033
+Author: IGTMASTER\hannign:20
+Date: 02/05/2009 19:40:09
+Changed GenericReportControlEx so that existing combo boxes are destroyed before the control is repainted. This prevents report rows that have been scrolled of the screen from leaving their combo boxes on the screen.
+
+Parent: 81186
+Changeset: 74275
+Author: IGTMASTER\c-KURAPAS
+Date: 02/09/2009 13:37:45
+WI42541-Added the  Receipt Amount column as per spec.
+
+Parent: 81186
+Changeset: 74566
+Author: IGTMASTER\c-KURAPAS
+Date: 02/11/2009 13:05:32
+Made change for WI41741
+
+Parent: 81186
+Changeset: 75501
+Author: IGTMASTER\c-KURAPAS
+Date: 02/18/2009 13:21:01
+WI39982-Corrected the W/U/D calculation for subtotals and grand totals
+
+Parent: 81186
+Changeset: 75502
+Author: IGTMASTER\hannign:20
+Date: 02/18/2009 13:25:34
+Added an UpdateAllViews method to CAGAWApp that calls the OnUpdate method for each displayed page. CAGAWApp::UpdateAllViews is called by the ClosePeriod method with a hint argument that notifies all displayed pages that the period has been closed. The Manual Meters page handles the close period hint and disables the buttons on the page so that the user can't modify data.
+
+Parent: 81186
+Changeset: 75722
+Author: IGTMASTER\c-KURAPAS
+Date: 02/19/2009 09:16:20
+WI39995 - Added the CEPromoPlayed.
+
+Parent: 82165
+Changeset: 81239
+Author: IGTMASTER\FordB
+Date: 03/23/2009 09:07:23
+$/IGT_0803/main/EGS/
+Merge 8.2 changes to main
+
+Parent: 81239
+Changeset: 79089
+Author: IGTMASTER\lambd
+Date: 03/05/2009 08:48:29
+
+
+Parent: 81239
+Changeset: 79090
+Author: IGTMASTER\lambd
+Date: 03/05/2009 08:49:28
+ADD order by
+
+Parent: 81239
+Changeset: 79125
+Author: IGTMASTER\c-GeorgeJ
+Date: 03/05/2009 11:32:03
+Report Title is changed according to new title suggested by Product management team
+
+Parent: 81239
+Changeset: 79184
+Author: IGTMASTER\c-GeorgeJ
+Date: 03/05/2009 16:18:26
+changed to print users who issued the comp in ISSUED BY column instead of authorizer
+
+Parent: 81239
+Changeset: 79223
+Author: IGTMASTER\lambd
+Date: 03/06/2009 08:02:44
+fix runtime
+
+Parent: 81239
+Changeset: 79224
+Author: IGTMASTER\lambd
+Date: 03/06/2009 08:03:26
+fix runtime
+
+Parent: 81239
+Changeset: 79227
+Author: IGTMASTER\lambd
+Date: 03/06/2009 08:23:38
+
+
+Parent: 81239
+Changeset: 79265
+Author: IGTMASTER\lambd
+Date: 03/06/2009 13:14:16
+performance issue fix
+
+Parent: 81239
+Changeset: 79266
+Author: IGTMASTER\lambd
+Date: 03/06/2009 13:14:46
+performance issue fix
+
+Parent: 81239
+Changeset: 80563
+Author: IGTMASTER\c-GeorgeJ
+Date: 03/16/2009 18:04:32
+Changed to append the Log entries to the file instead of overwriting
+
+Parent: 81239
+Changeset: 80673
+Author: IGTMASTER\MillerA
+Date: 03/17/2009 14:25:51
+Adjusting the type to VARCHAR(15)  from CHAR(15)
+
+Parent: 81239
+Changeset: 80964
+Author: IGTMASTER\custerc
+Date: 03/19/2009 15:44:16
+Added check to not put in duplicate entries into ADI_Connections for Playermanagement and Commnon.  
+
+Parent: 81239
+Changeset: 80972
+Author: IGTMASTER\rinka
+Date: 03/19/2009 16:08:02
+
+
+Parent: 81239
+Changeset: 80981
+Author: IGTMASTER\c-GeorgeJ
+Date: 03/19/2009 16:29:36
+Prompt is chneged from User to RedeemedBy as in crystal report
+
+Parent: 81239
+Changeset: 80992
+Author: IGTMASTER\rinka
+Date: 03/19/2009 16:58:38
+Making it so that no matter what the setting for vouchers, coupon, or wat, if the meter is over tolerance, it displays.
+
+Parent: 81239
+Changeset: 80996
+Author: IGTMASTER\c-KURAPAS
+Date: 03/19/2009 17:02:56
+WI47145- Added BonusJackpots column.
+
+Parent: 81239
+Changeset: 80999
+Author: IGTMASTER\c-KURAPAS
+Date: 03/19/2009 17:05:35
+WI47145- Added BonusJackpots column
+
+Parent: 81239
+Changeset: 81034
+Author: IGTMASTER\MuelleMa
+Date: 03/20/2009 09:17:36
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Scheduled integration from SP1 RTM to dev_sp - ABS & MA - rel_rtm_8.2.275.0100-20090319-1856
+
+Parent: 81034
+Changeset: 81033
+Author: IGTMASTER\MuelleMa
+Date: 03/20/2009 09:11:29
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Scheduled integration from SP1 RTM to dev_sp - ABS & MA - rel_rtm_8.2.275.0100-20090319-1856
+
+Parent: 81033
+Changeset: 80534
+Author: IGTMASTER\turnerb
+Date: 03/16/2009 16:45:34
+Corrected typo in config parameter for sb Bonusing Only configuration
+
+Parent: 81033
+Changeset: 80567
+Author: IGTMASTER\kapustj
+Date: 03/16/2009 19:09:35
+Added noteMeter request for denomId=-1 and currencyId=all
+
+Parent: 81033
+Changeset: 80568
+Author: IGTMASTER\kapustj
+Date: 03/16/2009 19:11:08
+Added noteMeter request for denomId=-1 and currencyId=all
+Added mapping of wagered promo amount
+
+Parent: 81033
+Changeset: 80569
+Author: IGTMASTER\kapustj
+Date: 03/16/2009 19:11:58
+Fixed transactions that weren't setting the state to OK after processing messages.
+
+Parent: 81033
+Changeset: 80570
+Author: IGTMASTER\kapustj
+Date: 03/16/2009 19:12:36
+Added new constants for G2S meters and generic denoms
+
+Parent: 81033
+Changeset: 80580
+Author: IGTMASTER\kapustj
+Date: 03/16/2009 21:41:55
+Fixed names for new G2S meters
+
+Parent: 81033
+Changeset: 80586
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/17/2009 01:44:39
+Automatic build Bonus Controllers version update
+
+Parent: 81033
+Changeset: 80640
+Author: IGTMASTER\pitmanl
+Date: 03/17/2009 11:34:59
+If a floor location is changed on a game, the Bonus Controller does not zero the UID for the old Floor location, This game could win a celebration.
+Now the UID is checked ans set to zero if it now belongs to another Floor location
+
+Parent: 81033
+Changeset: 80691
+Author: IGTMASTER\rinka
+Date: 03/17/2009 15:17:46
+Adding Mnum as part of the transactionlog look up
+
+Parent: 81033
+Changeset: 80696
+Author: IGTMASTER\PryorB
+Date: 03/17/2009 15:23:34
+QC8414 Adding a DISTINCT clause to handle the possibility of duplicate MGAMeter entries.
+
+Parent: 81033
+Changeset: 80747
+Author: IGTMASTER\turnerb
+Date: 03/17/2009 17:53:11
+Added locks around access and destruction of transactions, to prevent deletion of a transaction while it is still being accessed.
+
+Parent: 81033
+Changeset: 80750
+Author: IGTMASTER\kapustj
+Date: 03/17/2009 18:04:16
+Added support for the CardedWager meter in the big meter map, and added logic process that value in the S2S host.
+
+Parent: 81033
+Changeset: 80759
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/18/2009 01:37:41
+Automatic build Bonus Controllers version update
+
+Parent: 81033
+Changeset: 80796
+Author: IGTMASTER\PhilipN
+Date: 03/18/2009 11:30:09
+WI46984 - Added code to roll FloorUpdateSequence back to 128 when it exceeds 255.
+
+Parent: 81033
+Changeset: 80833
+Author: IGTMASTER\mannr
+Date: 03/18/2009 14:18:56
+Added AreaId attribute which is required in clientRegistration messages by the S2S protocol. Also fixed some logging code that was causing a logger exception.
+
+Parent: 81033
+Changeset: 80866
+Author: IGTMASTER\kapustj
+Date: 03/18/2009 16:45:29
+
+
+Parent: 81033
+Changeset: 80888
+Author: IGTMASTER\mannr
+Date: 03/18/2009 19:42:59
+Added code to generate EVT_XC_USED_DURING_SESSION at card out.
+
+Parent: 81033
+Changeset: 80889
+Author: IGTMASTER\mannr
+Date: 03/18/2009 19:56:51
+
+
+Parent: 81033
+Changeset: 80893
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/19/2009 01:45:11
+Automatic build Bonus Controllers version update
+
+Parent: 81033
+Changeset: 81014
+Author: IGTMASTER\kapustj
+Date: 03/19/2009 18:39:24
+Reverted previous "% 10000L" changes because they caused incorrect behavior.
+
+Parent: 81033
+Changeset: 81018
+Author: IGTMASTER\rinka
+Date: 03/19/2009 19:02:09
+Fixing the start date. 
+
+Parent: 81033
+Changeset: 81024
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/19/2009 22:46:56
+Automatic build Bonus Controllers version update
+
+Parent: 81239
+Changeset: 81051
+Author: IGTMASTER\PryorB
+Date: 03/20/2009 10:36:03
+Improving how this proc gets config string for CashlessEnabled.
+
+Parent: 81239
+Changeset: 81065
+Author: IGTMASTER\c-KopparK
+Date: 03/20/2009 10:53:02
+Moved changes for MA8.1 SP2 HF1 To MA8.2 SP2
+
+Parent: 81239
+Changeset: 81070
+Author: IGTMASTER\c-KopparK
+Date: 03/20/2009 11:01:31
+Made chnages to Report ID
+
+Parent: 81239
+Changeset: 81128
+Author: IGTMASTER\c-KopparK
+Date: 03/20/2009 13:56:50
+Made changes for WI-41582
+
+Parent: 81239
+Changeset: 81146
+Author: IGTMASTER\hannign
+Date: 03/20/2009 14:30:45
+Prevented the leased machine edit controls from being disabled after the Finish button is clicked so that focus can be set to the edit control that contains bad user input.
+
+Parent: 81239
+Changeset: 81209
+Author: IGTMASTER\c-KURAPAS
+Date: 03/21/2009 12:46:14
+WI47269-Created Slot Revenue with WAT Report for 8.2 SP2
+
+Parent: 81239
+Changeset: 81210
+Author: IGTMASTER\c-KURAPAS
+Date: 03/21/2009 12:50:49
+WI47269-Created Slot Revenue with WAT Procedure for 8.2 SP2
+
+Parent: 81239
+Changeset: 81225
+Author: IGTMASTER\rinka
+Date: 03/22/2009 12:46:55
+Fixing the MtrCoinDrop Issue
+
+Parent: 81239
+Changeset: 81230
+Author: IGTMASTER\c-KopparK
+Date: 03/22/2009 17:30:13
+Made changes for WI-47283
+
+Parent: 82165
+Changeset: 81611
+Author: IGTMASTER\robertty
+Date: 03/25/2009 09:47:34
+$/IGT_0803/main/EGS/
+RI dev_build to main/egs/
+
+Parent: 81611
+Changeset: 67582
+Author: IGTMASTER\robertty
+Date: 12/12/2008 09:53:12
+delete to let maiposa'a 70 collitions come down
+
+Parent: 81611
+Changeset: 70317
+Author: IGTMASTER\robertty
+Date: 01/07/2009 10:41:50
+changed the braanch parce
+
+Parent: 81611
+Changeset: 79254
+Author: IGTMASTER\BlumS
+Date: 03/06/2009 11:15:09
+create primary folders for the support tools
+
+Parent: 81611
+Changeset: 79281
+Author: IGTMASTER\c-ViswanS
+Date: 03/06/2009 14:38:26
+Added a new project for IGT Health Check Utility
+
+Parent: 81611
+Changeset: 79438
+Author: IGTMASTER\c-ViswanS
+Date: 03/09/2009 11:38:38
+Changes done after moving physical location of the icon
+
+Parent: 81611
+Changeset: 79763
+Author: IGTMASTER\robertty
+Date: 03/10/2009 21:36:49
+Check in to add date and toime to version.inv the gets pushed to PA
+
+Parent: 81611
+Changeset: 79828
+Author: IGTMASTER\robertty
+Date: 03/11/2009 12:45:12
+
+
+Parent: 81611
+Changeset: 79962
+Author: IGTMASTER\robertty
+Date: 03/11/2009 21:30:40
+Add date ansd time to version.inc file for the PaPush
+
+Parent: 81611
+Changeset: 80383
+Author: IGTMASTER\c-ViswanS
+Date: 03/15/2009 12:39:46
+Removed unused references
+
+Parent: 81611
+Changeset: 80718
+Author: IGTMASTER\SawyerT
+Date: 03/17/2009 16:16:57
+fix cancel button hidden value
+
+Parent: 81611
+Changeset: 80735
+Author: IGTMASTER\SawyerT
+Date: 03/17/2009 17:12:07
+Add transaction timeout
+
+Parent: 81611
+Changeset: 80910
+Author: IGTMASTER\LewisL
+Date: 03/19/2009 10:01:05
+Added new Official Build and PA Push build fields.
+
+Parent: 81611
+Changeset: 80923
+Author: IGTMASTER\c-ViswanS
+Date: 03/19/2009 10:48:43
+Project Enhancements
+
+Parent: 81611
+Changeset: 81119
+Author: IGTMASTER\LewisL
+Date: 03/20/2009 13:43:41
+Added three new ItemStatus items - Code Review in Progress, Code Review Rejected & Code Review Released.
+
+Parent: 81611
+Changeset: 81177
+Author: IGTMASTER\SawyerT
+Date: 03/20/2009 15:41:16
+save manifest before creating csv
+
+Parent: 81611
+Changeset: 81489
+Author: IGTMASTER\SawyerT
+Date: 03/24/2009 13:40:43
+update copyright
+
+Parent: 81611
+Changeset: 81490
+Author: IGTMASTER\LewisL
+Date: 03/24/2009 13:42:32
+Add FCIV to shared/tools folder. To be used to generate a hash of source zip files. Also changes SourceZip to run fciv right after the src has been zipped.
+
+Parent: 81611
+Changeset: 81541
+Author: IGTMASTER\robertty
+Date: 03/24/2009 16:27:04
+Add which version of SQL to install
+
+Parent: 81611
+Changeset: 81559
+Author: IGTMASTER\BlumS
+Date: 03/24/2009 17:18:32
+Add Support Project to build
+
+Parent: 81611
+Changeset: 81562
+Author: IGTMASTER\BlumS
+Date: 03/24/2009 17:22:34
+Update solution to build wrapper project
+
+Parent: 81611
+Changeset: 81563
+Author: IGTMASTER\BlumS
+Date: 03/24/2009 17:24:39
+Add missing inc file
+
+Parent: 81611
+Changeset: 81566
+Author: IGTMASTER\BlumS
+Date: 03/24/2009 17:35:04
+Remove ref to one self...
+
+Parent: 81611
+Changeset: 81568
+Author: IGTMASTER\BlumS
+Date: 03/24/2009 17:42:23
+Modify Ref from file reference to project ref
+
+Parent: 82165
+Changeset: 81728
+Author: IGTMASTER\MuelleMa
+Date: 03/25/2009 18:10:14
+$/IGT_0803/main/EGS/
+Scheduled integration from dev_sp to main - ABS & MA
+
+Parent: 81728
+Changeset: 80993
+Author: IGTMASTER\PhilipN
+Date: 03/19/2009 16:59:30
+WI47121 - Add correct dollar value to check for duplicates.  Also added date/time check.  Now returning all of the items required for accrual and S2S.
+
+Parent: 81728
+Changeset: 81010
+Author: IGTMASTER\kapustj
+Date: 03/19/2009 18:00:05
+ReadPackets utility
+
+Parent: 81728
+Changeset: 81252
+Author: IGTMASTER\MuelleMa
+Date: 03/23/2009 09:31:05
+adding appload3 to binaries.zip and bank controller to versionsheet
+
+Parent: 81728
+Changeset: 81268
+Author: IGTMASTER\c-KURAPAS
+Date: 03/23/2009 10:11:55
+WI47321-Added "Metered Win vs Actual Drop Win" and "Slot Revenue With WAT" reports
+
+Parent: 81728
+Changeset: 81271
+Author: IGTMASTER\c-KURAPAS
+Date: 03/23/2009 10:15:49
+WI47321-Added the "Report_MeteredWinVsActualDropWin" procedure for Metered Win Vs Actua lDrop Win report
+
+Parent: 81728
+Changeset: 81272
+Author: IGTMASTER\c-KURAPAS
+Date: 03/23/2009 10:17:11
+WI47321 Added the "Metered Win Vs Actual Drop Win" report
+
+Parent: 81728
+Changeset: 81280
+Author: IGTMASTER\rinka
+Date: 03/23/2009 11:04:24
+
+
+Parent: 81728
+Changeset: 81361
+Author: IGTMASTER\PryorB
+Date: 03/23/2009 17:02:07
+Removed dynamic sql and added condition to not include manual meter machines.
+
+Parent: 81728
+Changeset: 81362
+Author: IGTMASTER\provanj
+Date: 03/23/2009 17:06:31
+Updated to pass in NULL for the voided slip number so that the FJP_Post does not think this is a valid voided event
+
+Parent: 81728
+Changeset: 81376
+Author: IGTMASTER\c-KopparK
+Date: 03/23/2009 17:58:24
+Made changes for WI-47283
+
+Parent: 81728
+Changeset: 81390
+Author: IGTMASTER\zizzas
+Date: 03/23/2009 22:59:28
+Added code to deal with unregistered egm's where by we will now send an MS13 error code to the client system. One symptom that was manifested by this issue is multiple items showing up at the fjp station from the same event. This was caused by the event being retried internally until it expired.
+
+Parent: 81728
+Changeset: 81411
+Author: IGTMASTER\OwenG
+Date: 03/24/2009 09:40:00
+merge dev advantage to 8.2 sp2
+
+Parent: 81728
+Changeset: 81417
+Author: IGTMASTER\zizzas
+Date: 03/24/2009 10:08:06
+Made changes to reflect Bill Turner's code review comments.
+
+Parent: 81728
+Changeset: 81451
+Author: IGTMASTER\c-KURAPAS
+Date: 03/24/2009 11:57:54
+Made change for WI32152
+
+Parent: 81728
+Changeset: 81496
+Author: IGTMASTER\c-KopparK
+Date: 03/24/2009 13:56:53
+Moved the chnages form DEV_Advantage to DEV_SP For WI-44193
+
+Parent: 81728
+Changeset: 81512
+Author: IGTMASTER\WilliaL
+Date: 03/24/2009 15:08:26
+Fixed null reference causing crash when no child windows are present.
+
+Parent: 81728
+Changeset: 81522
+Author: IGTMASTER\mannr
+Date: 03/24/2009 15:34:08
+Always remove the retry, even if the game is not registered.
+
+Parent: 81728
+Changeset: 81531
+Author: IGTMASTER\PhilipN
+Date: 03/24/2009 15:57:47
+WI47155 - Set Asset Number field to only accept 15 characters, to match max field size in the database.
+
+Parent: 81728
+Changeset: 81577
+Author: IGTMASTER\hannign
+Date: 03/24/2009 19:05:46
+The Machine Wizard and Machine Events will now print to the printer specified in the File -> Print Setup... dialog box. W2G will print to the printer specified by the Config table AccountingW2GPrinter field.
+
+Parent: 81728
+Changeset: 81595
+Author: IGTMASTER\hannign
+Date: 03/25/2009 08:34:16
+Checking in the .DEF files because they didn't get in the last change set.
+
+Parent: 81728
+Changeset: 81609
+Author: IGTMASTER\PryorB
+Date: 03/25/2009 09:42:48
+I have modified the application interface for machine type setup. Now, any time a user sets sb EGM and No Hopper, the Token Denom goes to $0.01.
+
+
+Parent: 81728
+Changeset: 81610
+Author: IGTMASTER\PryorB
+Date: 03/25/2009 09:43:23
+I have modified the application interface for machine type setup. Now, any time a user sets sb EGM and No Hopper, the Token Denom goes to $0.01.
+
+
+Parent: 81728
+Changeset: 81625
+Author: IGTMASTER\OwenG
+Date: 03/25/2009 10:46:03
+Merging from WI 41146
+
+Parent: 81728
+Changeset: 81633
+Author: IGTMASTER\OwenG
+Date: 03/25/2009 11:02:52
+FordB's merge killed Satya's change, so I'm putting it back.
+
+Parent: 81728
+Changeset: 81638
+Author: IGTMASTER\c-KURAPAS
+Date: 03/25/2009 11:19:07
+Made change for WI41884
+
+Parent: 81728
+Changeset: 81655
+Author: IGTMASTER\c-KURAPAS
+Date: 03/25/2009 13:12:33
+Made change for WI40969
+
+Parent: 81728
+Changeset: 81662
+Author: IGTMASTER\OwenG
+Date: 03/25/2009 13:40:23
+FordB's merge killed Satya's fix, so I'm putting it back.
+
+Parent: 81728
+Changeset: 81668
+Author: IGTMASTER\provanj
+Date: 03/25/2009 14:10:36
+Fixed VS2005 upgrade issue.
+
+Parent: 81728
+Changeset: 81672
+Author: IGTMASTER\c-KURAPAS
+Date: 03/25/2009 14:26:21
+Made change for WI47321 
+
+Parent: 81728
+Changeset: 81674
+Author: IGTMASTER\OwenG
+Date: 03/25/2009 14:31:50
+Manually merged dev and sp2
+
+Parent: 81728
+Changeset: 81675
+Author: IGTMASTER\c-KURAPAS
+Date: 03/25/2009 14:34:10
+Made change for WI47269
+
+Parent: 81728
+Changeset: 81681
+Author: IGTMASTER\hannign
+Date: 03/25/2009 15:07:14
+Fixed the crash.
+
+Parent: 81728
+Changeset: 81694
+Author: IGTMASTER\WilliaL
+Date: 03/25/2009 15:52:28
+Adding permission based PAR view in MA client for 8.2
+
+Parent: 81728
+Changeset: 81706
+Author: IGTMASTER\rinka
+Date: 03/25/2009 16:34:04
+Updating to only grab one I meter per machine
+
+Parent: 81728
+Changeset: 81724
+Author: IGTMASTER\MuelleMa
+Date: 03/25/2009 18:05:04
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Scheduled integration from SP1 RTM to dev_sp - ABS & MA
+
+Parent: 81724
+Changeset: 81723
+Author: IGTMASTER\MuelleMa
+Date: 03/25/2009 18:03:10
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Scheduled integration from SP1 RTM to dev_sp - ABS & MA
+
+Parent: 81723
+Changeset: 81207
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/21/2009 01:12:37
+Automatic build Bonus Controllers version update
+
+Parent: 81723
+Changeset: 81578
+Author: IGTMASTER\weldonb
+Date: 03/24/2009 19:36:22
+Fixed null reference causing crash when no child windows are present.
+
+Parent: 81723
+Changeset: 81581
+Author: IGTMASTER\turnerb
+Date: 03/24/2009 21:16:53
+Send EGM pass-through event acknowledgements to Bonus Manager - was preventing ack of bonus payment events
+
+Parent: 81723
+Changeset: 81582
+Author: IGTMASTER\kapustj
+Date: 03/24/2009 21:46:53
+Changed Retry table to not put m_body in format.
+Changed request subgame count from 3 to 18
+Changed request to use session number of 0 and clear the MA request after sending to S2S host.
+Made the getMeter message an object instead of a pointer, so it always gets deallocated.
+
+Parent: 81723
+Changeset: 81589
+Author: IGTMASTER\zizzas
+Date: 03/24/2009 23:22:13
+sb wasn't ready for the ms13 messsage so I added\removed code as a comprimise. We will remove the event from the queue but no longer send the error until they are ready.
+
+Parent: 81723
+Changeset: 81592
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/25/2009 04:18:28
+Automatic build Bonus Controllers version update
+
+Parent: 81723
+Changeset: 81722
+Author: IGTMASTER\MuelleMa
+Date: 03/25/2009 17:46:34
+updating pull location for VFD mot files
+
+Parent: 82165
+Changeset: 81860
+Author: IGTMASTER\robertty
+Date: 03/26/2009 17:00:26
+$/IGT_0803/main/EGS/
+fix TY bug
+
+Parent: 81860
+Changeset: 81859
+Author: IGTMASTER\robertty
+Date: 03/26/2009 16:59:06
+fix bug
+
+Parent: 82165
+Changeset: 81900
+Author: IGTMASTER\FordB
+Date: 03/27/2009 09:24:59
+$/IGT_0803/main/EGS/
+Merge SP2 changes to Main.
+
+Parent: 81900
+Changeset: 81233
+Author: IGTMASTER\FordB
+Date: 03/23/2009 08:38:12
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Merge SP1 to dev_sp
+
+Parent: 81233
+Changeset: 81232
+Author: IGTMASTER\FordB
+Date: 03/23/2009 08:31:33
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Merge SP1 to dev_sp
+
+Parent: 81232
+Changeset: 79197
+Author: IGTMASTER\SayasiP
+Date: 03/05/2009 17:00:08
+The application will not sign out a user, if the he/she is login to a cage (ie. Marker bank, Main Bank..) and closes the application.
+
+Parent: 81232
+Changeset: 79225
+Author: IGTMASTER\lambd
+Date: 03/06/2009 08:06:15
+fix runtime calculation
+
+Parent: 81232
+Changeset: 79270
+Author: IGTMASTER\FordB
+Date: 03/06/2009 13:33:07
+$/IGT_0803/release/EGS8.2/SP1/RTM/EGS/
+merge to sp1
+
+Parent: 79270
+Changeset: 79269
+Author: IGTMASTER\FordB
+Date: 03/06/2009 13:30:56
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Merge to SP1
+
+Parent: 81232
+Changeset: 79434
+Author: IGTMASTER\MillerA
+Date: 03/09/2009 11:22:28
+Adding the amount to always pass after talking abotu the solution 
+
+Parent: 81232
+Changeset: 79517
+Author: IGTMASTER\lambd
+Date: 03/09/2009 16:42:07
+added fix to Proc_DocumentVoid to ignore last status of 23 (pending)
+
+Parent: 81232
+Changeset: 79614
+Author: IGTMASTER\c-GeorgeJ
+Date: 03/10/2009 11:22:31
+Changed the stored proc to show correct value in amount column for Auto Redeemed comps
+
+Parent: 81232
+Changeset: 79664
+Author: IGTMASTER\c-GeorgeJ
+Date: 03/10/2009 14:27:23
+Fix for TFS 43268 is incorporated to IRV (Changed JOIN to LEFT JOIN to return 'Issued' comps also.)
+
+Parent: 81232
+Changeset: 79902
+Author: IGTMASTER\lambd
+Date: 03/11/2009 16:19:13
+add DBMaintenance and job to run it
+
+Parent: 81232
+Changeset: 79904
+Author: IGTMASTER\lambd
+Date: 03/11/2009 16:25:58
+add DBMaintenance and job to run it
+
+Parent: 81232
+Changeset: 79946
+Author: IGTMASTER\lambd
+Date: 03/11/2009 18:38:10
+Added TransactionLogArchive table
+Only brought over last 200 day of archive into transactionlog
+
+Parent: 81232
+Changeset: 79990
+Author: IGTMASTER\MillerA
+Date: 03/12/2009 09:38:29
+Add support to always return the AmountLimit no matter if the comp is value based, cover based or value and cover.
+
+
+Parent: 81232
+Changeset: 79992
+Author: IGTMASTER\lambd
+Date: 03/12/2009 09:40:03
+fix issues with new transactionlog
+
+Parent: 81232
+Changeset: 80049
+Author: IGTMASTER\lambd
+Date: 03/12/2009 13:26:48
+PUT TransID PK as first column
+
+Parent: 81232
+Changeset: 80059
+Author: IGTMASTER\lambd
+Date: 03/12/2009 13:50:20
+added database config to pre script
+
+Parent: 81232
+Changeset: 80066
+Author: IGTMASTER\lambd
+Date: 03/12/2009 14:00:13
+add database config to pre script
+
+Parent: 81232
+Changeset: 80067
+Author: IGTMASTER\lambd
+Date: 03/12/2009 14:14:25
+added database config to pre script
+
+Parent: 81232
+Changeset: 80095
+Author: IGTMASTER\lambd
+Date: 03/12/2009 15:29:21
+change all jobs to have a prefix of PM
+
+Parent: 81232
+Changeset: 80111
+Author: IGTMASTER\c-ViswanS
+Date: 03/12/2009 15:55:41
+Removed hard coding of the sessiontypeid and done respective changes for the bingo
+
+Parent: 81232
+Changeset: 80116
+Author: IGTMASTER\waldnes
+Date: 03/12/2009 16:20:40
+Modified code to prepad the message fields with spaces before writing the message to the field.
+
+Parent: 81232
+Changeset: 80154
+Author: IGTMASTER\c-ViswanS
+Date: 03/12/2009 17:35:56
+Added the manual edit default as it does not have a default value
+
+Parent: 81232
+Changeset: 80205
+Author: IGTMASTER\lambd
+Date: 03/13/2009 09:50:41
+move new transactionlog to pre so that the load back in happens with indexes on table
+
+Parent: 81232
+Changeset: 80250
+Author: IGTMASTER\c-GeorgeJ
+Date: 03/13/2009 12:22:00
+Merging changes from 9.0 branch to 8.2 SP1(Changed the query to fetch the coupons in ReportCriteria table. Changed the order of Filters for the report Coupons(528))
+
+Parent: 81232
+Changeset: 80261
+Author: IGTMASTER\lambd
+Date: 03/13/2009 13:15:21
+switch to database once configuartion is run
+
+Parent: 81232
+Changeset: 80262
+Author: IGTMASTER\lambd
+Date: 03/13/2009 13:17:49
+Switch back to database after config
+
+Parent: 81232
+Changeset: 80263
+Author: IGTMASTER\lambd
+Date: 03/13/2009 13:20:26
+Switch back to db after config
+
+Parent: 81232
+Changeset: 80277
+Author: IGTMASTER\custerc
+Date: 03/13/2009 14:06:35
+Added Parens around some code, so the install sees a difference in the procedures to update the database.
+
+Parent: 81232
+Changeset: 80322
+Author: IGTMASTER\lambd
+Date: 03/13/2009 17:01:42
+perf problem fix
+
+Parent: 81232
+Changeset: 80329
+Author: IGTMASTER\alforss
+Date: 03/13/2009 17:40:57
+Add the amount field back.
+Turn financial type editing off if there are no financial types, and the accounting period is closed.
+If we can edit financial types, make sure the amount matches the financial types total.
+
+
+Parent: 81232
+Changeset: 80335
+Author: IGTMASTER\maekerb
+Date: 03/13/2009 19:05:59
+Revisit LEFT JOINs on CompAllocation table for permance
+
+Parent: 81232
+Changeset: 80336
+Author: IGTMASTER\maekerb
+Date: 03/13/2009 19:06:28
+Revisit LEFT JOINs on CompAllocation table for permance
+
+Parent: 81232
+Changeset: 80339
+Author: IGTMASTER\maekerb
+Date: 03/13/2009 19:40:55
+Revisit LEFT JOINs on CompAllocation table for permance
+
+Parent: 81232
+Changeset: 80375
+Author: IGTMASTER\maekerb
+Date: 03/14/2009 20:46:47
+Revisit LEFT JOINs on CompAllocation table for permance
+
+Parent: 81232
+Changeset: 80377
+Author: IGTMASTER\c-ViswanS
+Date: 03/14/2009 23:54:27
+Type casted the return type from pointbalance function as UI was not handling in BIG INT
+
+Parent: 81232
+Changeset: 80384
+Author: IGTMASTER\PattarR
+Date: 03/15/2009 14:57:13
+Revisit of JOIN between Comp and CompAllocation. Changed JOIN to LEFT JOIN between two tables wherever required.
+
+Parent: 81232
+Changeset: 80385
+Author: IGTMASTER\WilliaL
+Date: 03/15/2009 15:09:34
+Fixed a couple other places where VT_I8 wasn't being handled correctly.
+
+Parent: 81232
+Changeset: 80386
+Author: IGTMASTER\PattarR
+Date: 03/15/2009 16:00:03
+Modified '@vcFirstDayOfMonth' variable append. The quotation marks were missing in select statement which was causing wrng data to be fetched.
+
+Parent: 81232
+Changeset: 80389
+Author: IGTMASTER\c-ViswanS
+Date: 03/15/2009 16:40:20
+Un doing changes as the fix has been taken care in DataSource.cpp
+
+Parent: 81232
+Changeset: 80469
+Author: IGTMASTER\kenwort
+Date: 03/16/2009 13:29:22
+Only do ForceCardOut when a new CardID is being created.
+
+Parent: 81232
+Changeset: 80807
+Author: IGTMASTER\WilliaL
+Date: 03/18/2009 12:14:27
+Fixed GetBigInt method to return a value if called against a non-bigint column.
+
+Parent: 81232
+Changeset: 80865
+Author: IGTMASTER\SayasiP
+Date: 03/18/2009 16:27:40
+Remove hard coded site id when adding player comment.
+
+Parent: 81232
+Changeset: 80885
+Author: IGTMASTER\lambd
+Date: 03/18/2009 18:10:53
+fix performance issues found in load test lab
+
+Parent: 81232
+Changeset: 81045
+Author: IGTMASTER\custerc
+Date: 03/20/2009 09:54:43
+This prevents duplicate entires from multiple sites for entries of PlayerManagement and Common from ADIMonitor service
+
+Parent: 81232
+Changeset: 81197
+Author: IGTMASTER\MillerA
+Date: 03/20/2009 17:38:22
+adding to support to set the current higher trip number during the day rebuild 
+
+Parent: 81900
+Changeset: 81372
+Author: IGTMASTER\MillerA
+Date: 03/23/2009 17:36:30
+not returning the correct value
+
+Parent: 81900
+Changeset: 81397
+Author: IGTMASTER\lambd
+Date: 03/24/2009 08:35:24
+
+
+Parent: 81900
+Changeset: 81704
+Author: IGTMASTER\waldnes
+Date: 03/25/2009 16:26:48
+Fixed issue where the response message would be truncated by the error message.  Also, fixed the logging of the Redemption Number when an error occurred.  Previously, it would show the Redemption number as the max DWORD.  Changed it to show <no redemption number> in the interface log.
+
+Parent: 81900
+Changeset: 81732
+Author: IGTMASTER\hannign
+Date: 03/25/2009 18:40:34
+Fixed a problem that prevented Hard Drop records from being posted if no Soft Drop records were present (or if Soft Drop post failed). Changed the Post dialog box so that when no Hard Drop records are present a warning is displayed stating "This Post does not contain any Hard Drop records." When no Soft Drop records are present a warning will be displayed stating "This Post does not contain any Soft Drop records."
+
+Parent: 81900
+Changeset: 81753
+Author: IGTMASTER\PhilipN
+Date: 03/26/2009 09:46:46
+WI47492 - Added code to deal better with FKs.  When an FK is applied, the table will be altered with NOCHECK.  If there are no constraint violations, the table will be realtered to CHECK.  If there are constraint violations with the existing data, the violation will be logged in a new table, and the NOCHECK left on.  The violation can then be dealt with manually, and the FK check applied to the table.
+
+Parent: 81900
+Changeset: 81755
+Author: IGTMASTER\provanj
+Date: 03/26/2009 09:51:34
+Limited filter to 255 characters.
+
+Parent: 81900
+Changeset: 81766
+Author: IGTMASTER\c-KURAPAS
+Date: 03/26/2009 10:16:16
+Made change for WI47532
+
+Parent: 81900
+Changeset: 81767
+Author: IGTMASTER\OwenG
+Date: 03/26/2009 10:28:31
+Putting Satya's change back in after merge killed it.
+
+Parent: 81900
+Changeset: 81768
+Author: IGTMASTER\c-KopparK
+Date: 03/26/2009 10:30:40
+Made changes for WI-44193
+
+Parent: 81900
+Changeset: 81769
+Author: IGTMASTER\OwenG
+Date: 03/26/2009 10:31:36
+
+
+Parent: 81900
+Changeset: 81781
+Author: IGTMASTER\c-KURAPAS
+Date: 03/26/2009 10:54:01
+Made change for WI40941
+
+Parent: 81900
+Changeset: 81789
+Author: IGTMASTER\c-GeorgeJ
+Date: 03/26/2009 11:19:08
+Increased the size of variables holding filter values
+
+Parent: 81900
+Changeset: 81791
+Author: IGTMASTER\c-GeorgeJ
+Date: 03/26/2009 11:24:42
+Changed the Group header and grouping dataset field format
+
+Parent: 81900
+Changeset: 81796
+Author: IGTMASTER\c-GeorgeJ
+Date: 03/26/2009 11:45:28
+Can Grow property set true for Action and Comment column
+
+Parent: 81900
+Changeset: 81816
+Author: IGTMASTER\c-KopparK
+Date: 03/26/2009 13:54:00
+Made changes for WI-47517
+
+Parent: 81900
+Changeset: 81817
+Author: IGTMASTER\WilliaL
+Date: 03/26/2009 13:58:23
+Can't complete hard and soft drop variance step without accepting all variances.
+
+Parent: 81900
+Changeset: 81819
+Author: IGTMASTER\PattarR
+Date: 03/26/2009 14:17:53
+Moved four fieds from Report header to Group Header
+
+Parent: 81900
+Changeset: 81828
+Author: IGTMASTER\maekerb
+Date: 03/26/2009 15:18:53
+Left-justified the content of the Authorization Limits report section.
+
+Parent: 81900
+Changeset: 81830
+Author: IGTMASTER\maekerb
+Date: 03/26/2009 15:25:31
+Left-justification corrections.
+
+Parent: 81900
+Changeset: 81837
+Author: IGTMASTER\maekerb
+Date: 03/26/2009 15:36:21
+Correct left-justification of dollar amounts.
+
+Parent: 81900
+Changeset: 81852
+Author: IGTMASTER\PryorB
+Date: 03/26/2009 16:32:58
+QC8810 Adding handling for MtrLegacyPointPlay. Without this, it becomes NULL in MeterCurrent and the first period doesn't calc right.
+
+Parent: 81900
+Changeset: 81858
+Author: IGTMASTER\PryorB
+Date: 03/26/2009 16:58:02
+QC 8810 Although it should not happen very often, a NULL meter current value ruins the following day's calculation. Defaulting all meters to 0.
+
+Parent: 81900
+Changeset: 81863
+Author: IGTMASTER\rinka
+Date: 03/26/2009 17:22:26
+Fixing issues with First Period and the duplicate I meters.
+
+Parent: 81900
+Changeset: 81864
+Author: IGTMASTER\rinka
+Date: 03/26/2009 17:32:48
+Fixing mnum issue
+
+Parent: 81900
+Changeset: 81869
+Author: IGTMASTER\c-GeorgeJ
+Date: 03/26/2009 18:04:18
+Set Can Grow property for Label field in subreport Filter.rpt to true
+
+Parent: 81900
+Changeset: 81870
+Author: IGTMASTER\rinka
+Date: 03/26/2009 18:05:19
+Removing Meter End table and adjusting the drop detail report procs so that get the previous drop meter
+
+Parent: 81900
+Changeset: 81871
+Author: IGTMASTER\rinka
+Date: 03/26/2009 18:07:31
+removing + sign
+
+Parent: 82165
+Changeset: 82084
+Author: IGTMASTER\sundarh
+Date: 03/30/2009 11:28:44
+$/IGT_0803/main/EGS/
+Merge 8.1 SP3 from EGS8.1\dev_sp\EGS\EFT
+
+Parent: 82084
+Changeset: 81561
+Author: IGTMASTER\agnelv
+Date: 03/24/2009 17:21:56
+fixed the alignment for card block status 
+
+Parent: 82084
+Changeset: 81719
+Author: IGTMASTER\dawsonjo
+Date: 03/25/2009 17:21:18
+Essentially in the fix for the Atlantis connection build-up issue I was over cautious in my closing of objects and I closed the TicketRedemption object when it didn't need to be. The Cashable Promo tickets is the only path that uses this object (that is why Cashable Promo's were only affected).
+
+The first time through the cashable promo will validate.  There is then a section of code after the validation completes that calls into the three lines of code that closes the object.  The next time a cashable promo validated the ticket redemption object is null and thus the error.  When you restart the simulator (or client) the TicketRedemption object is re-established and you can pay the first cashable promo again.
+
+
+Parent: 82084
+Changeset: 81742
+Author: IGTMASTER\sundarh
+Date: 03/26/2009 08:34:36
+Modified HSM installer to prompt Restart at the end of installation
+
+Parent: 82084
+Changeset: 81833
+Author: IGTMASTER\agnelv
+Date: 03/26/2009 15:29:26
+fixed integration testing bug
+
+Parent: 82165
+Changeset: 82108
+Author: IGTMASTER\FordB
+Date: 03/30/2009 14:11:57
+$/IGT_0803/main/EGS/
+merge SP2 changes to main.
+
+Parent: 82108
+Changeset: 81896
+Author: IGTMASTER\FordB
+Date: 03/27/2009 09:18:12
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Merge changes to sp2
+
+Parent: 82108
+Changeset: 81909
+Author: IGTMASTER\c-ViswanS
+Date: 03/27/2009 09:51:11
+Modified the syntax of coin\in field, now the label will display in red if the player has inflated slot rating.
+
+Parent: 82108
+Changeset: 81917
+Author: IGTMASTER\c-ViswanS
+Date: 03/27/2009 10:05:49
+The max quantity value was improperly calculated, corrected the formulae to display correct value.
+
+Parent: 82108
+Changeset: 81921
+Author: IGTMASTER\c-ViswanS
+Date: 03/27/2009 10:14:20
+Modified the conversion type of the playerid.
+
+Parent: 82108
+Changeset: 81973
+Author: IGTMASTER\WilliaL
+Date: 03/27/2009 14:45:41
+Restricts password expiration and warnings to 365 days.
+
+Parent: 82108
+Changeset: 81982
+Author: IGTMASTER\c-KalakoN
+Date: 03/27/2009 15:52:29
+Added the new constraint for the CRMCriteria column (dbo.giftprogram colum).
+
+Parent: 82108
+Changeset: 81994
+Author: IGTMASTER\c-KURAPAS
+Date: 03/27/2009 17:08:41
+WI47686 Corrected Var% calculation
+
+Parent: 82108
+Changeset: 81996
+Author: IGTMASTER\c-KURAPAS
+Date: 03/27/2009 17:20:26
+WI47686 Corrected Var% calculation
+
+Parent: 82165
+Changeset: 82110
+Author: IGTMASTER\MuelleMa
+Date: 03/30/2009 14:16:39
+$/IGT_0803/main/EGS/
+Scheduled integration from dev_sp to main - ABS & MA - rel_dev_8.2.251.0200-20090329-1500
+
+Parent: 82110
+Changeset: 81898
+Author: IGTMASTER\zizzas
+Date: 03/27/2009 09:19:52
+Added bonus information to largewin and cancel credit
+
+Parent: 82165
+Changeset: 82122
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/30/2009 15:19:00
+Build version update: main_9.0.81.0-20090330-1500
+
+Parent: 82165
+Changeset: 82150
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/30/2009 17:28:51
+Automatic build Bonus Controllers version update
+
+Parent: 82165
+Changeset: 82161
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/30/2009 20:25:53
+Workspace Checkin: main_9.0.81.0-20090330-1500
+

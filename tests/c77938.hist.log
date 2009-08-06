@@ -1,0 +1,96 @@
+Changeset: 77938
+Author: IGTMASTER\MuelleMa
+Date: 02/26/2009 09:00:21
+$/IGT_0803/main/EGS/
+Scheduled integration from dev_sp - MA & ABS - rel_dev_8.2.251.0200-20090225-1800
+
+Parent: 77938
+Changeset: 77677
+Author: IGTMASTER\PhilipN
+Date: 02/24/2009 22:16:08
+WI44717 - Added function to check mask limits.  Added new config items to designate what type of mask limit checking to do.  Added code to floorstaffget to spit back those config items when user information is checked.  Added code to menueventinsert to check the mask limit according to the config items to indicate if a witness is required.
+
+Parent: 77938
+Changeset: 77680
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/25/2009 00:46:53
+Automatic build Bonus Controllers version update
+
+Parent: 77938
+Changeset: 77737
+Author: IGTMASTER\c-NapoleN
+Date: 02/25/2009 09:30:56
+Modified Functionality to Pass the Whole S2S Command object to the command Sequence logic function instead of the command no, So that we can identify the Comms online Message at the command ID Validation functionality.
+
+Parent: 77938
+Changeset: 77739
+Author: IGTMASTER\c-NapoleN
+Date: 02/25/2009 09:35:57
+Added logic to reset the command No received with the S2S Comms Online message and disabled the command ID Validation logic for the S2S Comms Online Message. (Fix for QC-8167 & TFS-44585)
+
+Parent: 77938
+Changeset: 77742
+Author: IGTMASTER\rinka
+Date: 02/25/2009 09:42:40
+QC8047 - updating performance
+
+Parent: 77938
+Changeset: 77771
+Author: IGTMASTER\c-NapoleN
+Date: 02/25/2009 10:54:31
+Added Functionality to reset the Retry count value to initial value to start the retry process for next set of failed messages (if any).(Fix for QC-8183 & TFS-44679)
+
+Parent: 77938
+Changeset: 77780
+Author: IGTMASTER\rinka
+Date: 02/25/2009 11:19:36
+Fixing issue with different read types causing a unique constraint error for the MGAMeterLoad Process.
+
+Parent: 77938
+Changeset: 77792
+Author: IGTMASTER\oarej
+Date: 02/25/2009 11:43:39
+Fixing issues with some of the bonus and how they send bonus hit events.
+
+Parent: 77938
+Changeset: 77832
+Author: IGTMASTER\c-NapoleN
+Date: 02/25/2009 14:15:50
+Added Functionality to log all kinds of response message received by the S2S Transport (Outbound Service).(Fix for TFS-44843 QC-8212)
+
+Parent: 77938
+Changeset: 77847
+Author: IGTMASTER\pitmanl
+Date: 02/25/2009 15:14:35
+Found that the sound config mesages were being sent to bank controller ZERO, now sent to correct bank controller
+
+Parent: 77938
+Changeset: 77869
+Author: IGTMASTER\rinka
+Date: 02/25/2009 16:23:09
+SystemTicketsIn now work Drop to Drop
+
+Parent: 77938
+Changeset: 77877
+Author: IGTMASTER\PryorB
+Date: 02/25/2009 16:57:22
+Merging changes from changeset 73001, QC7702, TFS41596 into Dev_SP branch.
+
+Parent: 77938
+Changeset: 77881
+Author: IGTMASTER\rinka
+Date: 02/25/2009 17:06:26
+Removing the check for handpays at the end of close period, recalc should make this check obsolete.
+
+Parent: 77938
+Changeset: 77882
+Author: IGTMASTER\PryorB
+Date: 02/25/2009 17:08:58
+Merging changes from Changeset 73300 in dev_advantage, QC7762, TFS41812. Fixing detail insert to also join on MeterNamesID.
+
+Parent: 77938
+Changeset: 77891
+Author: IGTMASTER\PhilipN
+Date: 02/25/2009 17:32:17
+WI44296 - Modified proc to ignore a NULL for gross win, so that gross win values wouldn't get overwritten when a null is passed in.  Also modified the transaction logging, as it was missing some values that had changed.
+

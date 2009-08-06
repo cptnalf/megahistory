@@ -14,11 +14,11 @@ public abstract class Visitor
 		public Changeset cs;
 		public List<string> treeBranches;
 		
-		public PatchInfo(int p, Changeset c, List<string> tps)
+		public PatchInfo(int p, Changeset c, List<string> tb)
 		{
 			parent = p;
 			cs = c;
-			treeBranches = tps;
+			treeBranches = tb;
 		}
 		
 		public void print(System.IO.TextWriter writer) { print(0, writer); }
@@ -44,41 +44,39 @@ public abstract class Visitor
 		}
 	};
 	
-	protected RBDictTree<int,PatchInfo> _cache = new RBDictTree<int,PatchInfo>();
+	protected Dictionary<int,PatchInfo> _cache = new Dictionary<int,PatchInfo>();
 	
-	protected PatchInfo this[int changesetid]
+	public PatchInfo this[int changesetid]
 	{
 		get
 			{
-				RBDictTree<int,PatchInfo>.iterator it = _cache.find(changesetid);
-				if (it != _cache.end()) { return it.value().second; }
-				return null;
+				PatchInfo p;
+				_cache.TryGetValue(changesetid, out p);
+				return p;
 			}
 	}
 	
 	/** have we already visited this changeset?
 	 */
-	public bool visited(int changesetid)
+	public bool visited(int changesetid) { return _cache.ContainsKey(changesetid); }
+	
+	public void visit(int parentID, Changeset cs) { visit(parentID, cs, null); }
+	public virtual void visit(int parentID, Changeset cs, List<string> branches)
 	{
-		RBDictTree<int,PatchInfo>.iterator it = _cache.find(changesetid);
+		PatchInfo p;
 		
-		return it != _cache.end();
-	}
-
-	public virtual void visit(int parentID, Changeset cs, List<string> trees)
-	{
-		RBDictTree<int,PatchInfo>.iterator it = _cache.find(cs.ChangesetId);
-		
-		if (it != _cache.end()) 
+		if (_cache.TryGetValue(cs.ChangesetId, out p)) 
 			{
-				_seen(parentID, it.value().second);
+				_seen(parentID, p);
 			}
 		else
 			{
 				/* only print stuff we haven't already seen. */
-				PatchInfo p = new PatchInfo(parentID, cs, trees);
+				List<string> treeBranches = branches;
+				if (treeBranches == null) { treeBranches = MegaHistory.FindChangesetBranches(cs); }
+				p = new PatchInfo(parentID, cs, treeBranches);
 				
-				_cache.insert(p.cs.ChangesetId, p);
+				_cache.Add(p.cs.ChangesetId, p);
 				_visit(p);
 			}
 	}

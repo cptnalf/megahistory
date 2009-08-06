@@ -136,10 +136,9 @@ class main
 		values.vcs = _get_tfs_server(values.server);
 		
 		Visitor visitor = new HistoryViewer(values.printWhat);
-		MegaHistory megahistory = new MegaHistory(values.noRecurse, values.vcs);
+		MegaHistory megahistory = new MegaHistory(values.noRecurse, values.vcs, visitor);
 		
-		bool result = megahistory.visit(visitor,
-																		values.srcPath, values.srcVer, 
+		bool result = megahistory.visit(values.srcPath, values.srcVer, 
 																		values.target, values.targetVer, 
 																		values.fromVer, values.toVer, RecursionType.Full);
 		

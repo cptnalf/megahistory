@@ -1,0 +1,560 @@
+Changeset: 82167
+Author: IGTMASTER\FordB
+Date: 03/31/2009 09:10:01
+$/IGT_0803/main/EGS/
+Merge Advantage, MA, IRV changes to main from 8.2 sp2.
+
+Parent: 82167
+Changeset: 82069
+Author: IGTMASTER\hannign
+Date: 03/30/2009 10:43:58
+Changed the Coin Test page to use Proc_CoinTestMnumGet and Proc_CoinTestDateGet instead of inline queries.
+
+Parent: 82167
+Changeset: 82086
+Author: IGTMASTER\PhilipN
+Date: 03/30/2009 11:41:13
+WI47656 - Fixed the tax check for both mandatory taxes in the Config table as well as taxes assessed against an individual accrual account.
+
+Parent: 82167
+Changeset: 82112
+Author: IGTMASTER\c-KURAPAS
+Date: 03/30/2009 14:24:58
+Made change for WI42242
+
+Parent: 82167
+Changeset: 82113
+Author: IGTMASTER\hannign
+Date: 03/30/2009 14:27:08
+Changed Proc_GetManualMeters so that it ignores MtrVoucherInCredits, and MtrVoucherOutCredits. This prevents the "Invalid column name..." error from being displayed when clicking on the Enter Manual Meters task item.
+
+Parent: 82167
+Changeset: 82114
+Author: IGTMASTER\PryorB
+Date: 03/30/2009 14:34:00
+QC4488 Changing order of SetValidationCtrl for passwords so that password gets focus first if both password fields are blank.
+
+Parent: 82167
+Changeset: 82116
+Author: IGTMASTER\PryorB
+Date: 03/30/2009 14:37:43
+QC4488 When adding users, this small change makes it so that the Password field gets focus (vs Repeat Password) if both fields are blank.
+
+Parent: 82167
+Changeset: 82127
+Author: IGTMASTER\PhilipN
+Date: 03/30/2009 15:35:24
+WI41063 - Combined Coupon and Ticket imports into a common set of import procs.  Proc_PeriodCouponUpdate should now update MeterCurrent and Period to reflect new drop to drop values for coupon counts.
+
+Parent: 82167
+Changeset: 82129
+Author: IGTMASTER\PhilipN
+Date: 03/30/2009 15:38:10
+WI41063 - Add new EZPay import procs to the project
+
+Parent: 82167
+Changeset: 82149
+Author: IGTMASTER\c-KURAPAS
+Date: 03/30/2009 17:26:25
+Made change for WI47730
+
+Parent: 82167
+Changeset: 82155
+Author: IGTMASTER\hannign
+Date: 03/30/2009 17:53:14
+Prevent Voucher In Credits, and Voucher Out Credits from being returned so that Proc_ManualMeterInsert doesn't fail. Note: These meters haven't been added to the ManualMeter table, Period table, or Proc_ManualMeterInsert so that is why Proc_ManualMeterInsert fails.
+
+Changeset: 82216
+Author: IGTMASTER\robertty
+Date: 03/31/2009 12:47:20
+$/IGT_0803/main/EGS/
+RI from dev_build to main
+
+Parent: 82216
+Changeset: 81648
+Author: IGTMASTER\LewisL
+Date: 03/25/2009 12:48:36
+Corrected hash file naming and added some error checking.
+
+Parent: 82216
+Changeset: 81855
+Author: IGTMASTER\SawyerT
+Date: 03/26/2009 16:41:18
+context menu to select or unselect all
+
+Parent: 82216
+Changeset: 81984
+Author: IGTMASTER\robertty
+Date: 03/27/2009 15:57:43
+Build machine doc update
+
+Parent: 82216
+Changeset: 82179
+Author: IGTMASTER\LewisL
+Date: 03/31/2009 10:15:18
+Updated to use a .csv input file and added FCIV hash routines.
+
+Parent: 82216
+Changeset: 82191
+Author: IGTMASTER\LewisL
+Date: 03/31/2009 11:01:52
+Commented out hash and moved to Pacopy  routine - for now.
+
+Changeset: 82321
+Author: IGTMASTER\MuelleMa
+Date: 04/01/2009 09:59:21
+$/IGT_0803/main/EGS/
+Scheduled integration from dev_sp to main - ABS & MA - rel_dev_8.2.252.0200-20090331-1914
+
+Parent: 82321
+Changeset: 82142
+Author: IGTMASTER\rinka
+Date: 03/30/2009 16:52:07
+Adding the files for the S2STransportDB
+
+Parent: 82321
+Changeset: 82206
+Author: IGTMASTER\OwenG
+Date: 03/31/2009 11:39:34
+Code Review Issues--formatting, SET options left in at bottom.
+
+Parent: 82321
+Changeset: 82222
+Author: IGTMASTER\robertty
+Date: 03/31/2009 13:24:15
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/
+Merge from Sp1/hf to dev_sp
+
+Parent: 82222
+Changeset: 82220
+Author: IGTMASTER\robertty
+Date: 03/31/2009 13:21:01
+$/IGT_0803/release/EGS8.2/SP1/HF/EGS/
+Merge from Sp1/RTM to Sp1/HF
+
+Parent: 82220
+Changeset: 77670
+Author: IGTMASTER\BlumS
+Date: 02/24/2009 20:41:00
+Force compile break to validate copy will preform copy after error
+
+Parent: 82220
+Changeset: 77673
+Author: IGTMASTER\BlumS
+Date: 02/24/2009 20:47:10
+Restore file after test
+
+Parent: 82220
+Changeset: 77900
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/25/2009 18:44:11
+Build version update: rel_rtm_8.2.252.0100-20090225-1800
+
+Parent: 82220
+Changeset: 77906
+Author: IGTMASTER\MuelleMa
+Date: 02/25/2009 19:02:33
+adding document output
+
+Parent: 82220
+Changeset: 77929
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/26/2009 00:45:32
+Workspace Checkin: rel_rtm_8.2.252.0100-20090225-1800
+
+Parent: 82220
+Changeset: 78078
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/26/2009 18:49:55
+Build version update: rel_rtm_8.2.253.0100-20090226-1800
+
+Parent: 82220
+Changeset: 78089
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/26/2009 20:50:13
+Build version update: rel_rtm_8.2.254.0100-20090226-2003
+
+Parent: 82220
+Changeset: 78094
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/26/2009 22:13:02
+Build version update: rel_rtm_8.2.255.0100-20090226-2122
+
+Parent: 82220
+Changeset: 78098
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/27/2009 04:28:29
+Workspace Checkin: rel_rtm_8.2.255.0100-20090226-2122
+
+Parent: 82220
+Changeset: 78121
+Author: IGTMASTER\MuelleMa
+Date: 02/27/2009 10:00:11
+updating doc output
+
+Parent: 82220
+Changeset: 78317
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/27/2009 21:38:23
+Build version update: rel_rtm_8.2.256.0100-20090227-2101
+
+Parent: 82220
+Changeset: 78322
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/28/2009 06:45:37
+Workspace Checkin: rel_rtm_8.2.256.0100-20090228-0638
+
+Parent: 82220
+Changeset: 78389
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 02/28/2009 20:39:25
+Build version update: rel_rtm_8.2.257.0100-20090228-2001
+
+Parent: 82220
+Changeset: 78392
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/01/2009 01:40:05
+Workspace Checkin: rel_rtm_8.2.257.0100-20090228-2001
+
+Parent: 82220
+Changeset: 78438
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/01/2009 20:30:54
+Build version update: rel_rtm_8.2.258.0100-20090301-2000
+
+Parent: 82220
+Changeset: 78442
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/02/2009 01:28:28
+Workspace Checkin: rel_rtm_8.2.258.0100-20090301-2000
+
+Parent: 82220
+Changeset: 78465
+Author: IGTMASTER\MuelleMa
+Date: 03/02/2009 10:04:13
+updating version from 7.0.0.112 to 7.0.1.151
+
+Parent: 82220
+Changeset: 78516
+Author: IGTMASTER\maekerb
+Date: 03/02/2009 14:14:20
+Remove Add and Deactivate functionality for sbX Messages and Tokens.
+
+Parent: 82220
+Changeset: 78602
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/02/2009 20:38:22
+Build version update: rel_rtm_8.2.259.0100-20090302-2000
+
+Parent: 82220
+Changeset: 78609
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/03/2009 03:29:27
+Workspace Checkin: rel_rtm_8.2.259.0100-20090302-2000
+
+Parent: 82220
+Changeset: 78692
+Author: IGTMASTER\MuelleMa
+Date: 03/03/2009 12:09:00
+adding ATFTPD to PAPush output
+
+Parent: 82220
+Changeset: 78734
+Author: IGTMASTER\MuelleMa
+Date: 03/03/2009 14:00:36
+updating output location of version.inc back to Image folder, not PRV
+
+Parent: 82220
+Changeset: 78820
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/03/2009 20:37:07
+Build version update: rel_rtm_8.2.260.0100-20090303-2000
+
+Parent: 82220
+Changeset: 78828
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/04/2009 08:10:47
+Workspace Checkin: rel_rtm_8.2.260.0100-20090304-0803
+
+Parent: 82220
+Changeset: 79075
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/05/2009 06:39:00
+Workspace Checkin: rel_rtm_8.2.260.0100-20090305-0631
+
+Parent: 82220
+Changeset: 79218
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/05/2009 21:39:28
+Build version update: rel_rtm_8.2.261.0100-20090305-2107
+
+Parent: 82220
+Changeset: 79222
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/06/2009 04:14:44
+Workspace Checkin: rel_rtm_8.2.261.0100-20090305-2107
+
+Parent: 82220
+Changeset: 79345
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/06/2009 20:39:04
+Build version update: rel_rtm_8.2.262.0100-20090306-2000
+
+Parent: 82220
+Changeset: 79350
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/07/2009 03:38:14
+Workspace Checkin: rel_rtm_8.2.262.0100-20090306-2000
+
+Parent: 82220
+Changeset: 79368
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/07/2009 20:57:09
+Build version update: rel_rtm_8.2.263.0100-20090307-2000
+
+Parent: 82220
+Changeset: 79370
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/08/2009 04:46:43
+Workspace Checkin: rel_rtm_8.2.263.0100-20090307-2000
+
+Parent: 82220
+Changeset: 79399
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/08/2009 20:50:41
+Build version update: rel_rtm_8.2.264.0100-20090308-2018
+
+Parent: 82220
+Changeset: 79402
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/09/2009 02:14:46
+Workspace Checkin: rel_rtm_8.2.264.0100-20090308-2018
+
+Parent: 82220
+Changeset: 79554
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/09/2009 21:04:34
+Build version update: rel_rtm_8.2.265.0100-20090309-2026
+
+Parent: 82220
+Changeset: 79563
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/10/2009 04:11:31
+Workspace Checkin: rel_rtm_8.2.265.0100-20090309-2026
+
+Parent: 82220
+Changeset: 79759
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/10/2009 20:37:00
+Build version update: rel_rtm_8.2.266.0100-20090310-2001
+
+Parent: 82220
+Changeset: 79765
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/10/2009 22:01:31
+Build version update: rel_rtm_8.2.267.0100-20090310-2123
+
+Parent: 82220
+Changeset: 79770
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/11/2009 05:00:59
+Workspace Checkin: rel_rtm_8.2.267.0100-20090310-2123
+
+Parent: 82220
+Changeset: 79956
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/11/2009 20:34:32
+Build version update: rel_rtm_8.2.268.0100-20090311-2000
+
+Parent: 82220
+Changeset: 79984
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/12/2009 09:10:38
+Workspace Checkin: rel_rtm_8.2.268.0100-20090312-0903
+
+Parent: 82220
+Changeset: 80175
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/12/2009 20:30:42
+Build version update: rel_rtm_8.2.269.0100-20090312-2000
+
+Parent: 82220
+Changeset: 80193
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/13/2009 02:48:06
+Workspace Checkin: rel_rtm_8.2.269.0100-20090312-2000
+
+Parent: 82220
+Changeset: 80340
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/13/2009 20:37:14
+Build version update: rel_rtm_8.2.270.0100-20090313-2000
+
+Parent: 82220
+Changeset: 80345
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/14/2009 03:15:22
+Workspace Checkin: rel_rtm_8.2.270.0100-20090313-2000
+
+Parent: 82220
+Changeset: 80374
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/14/2009 20:41:29
+Build version update: rel_rtm_8.2.271.0100-20090314-2000
+
+Parent: 82220
+Changeset: 80380
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/15/2009 03:40:59
+Workspace Checkin: rel_rtm_8.2.271.0100-20090314-2000
+
+Parent: 82220
+Changeset: 80396
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/15/2009 20:41:45
+Build version update: rel_rtm_8.2.272.0100-20090315-2000
+
+Parent: 82220
+Changeset: 80402
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/16/2009 01:30:18
+Workspace Checkin: rel_rtm_8.2.272.0100-20090315-2000
+
+Parent: 82220
+Changeset: 80575
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/16/2009 20:40:20
+Build version update: rel_rtm_8.2.273.0100-20090316-2000
+
+Parent: 82220
+Changeset: 80757
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/17/2009 20:51:09
+Build version update: rel_rtm_8.2.274.0100-20090317-2001
+
+Parent: 82220
+Changeset: 80827
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/18/2009 13:48:18
+Workspace Checkin: rel_rtm_8.2.274.0100-20090318-1303
+
+Parent: 82220
+Changeset: 80891
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/18/2009 20:59:04
+Build version update: rel_rtm_8.2.275.0100-20090318-2022
+
+Parent: 82220
+Changeset: 80897
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/19/2009 08:17:06
+Workspace Checkin: rel_rtm_8.2.275.0100-20090319-0654
+
+Parent: 82220
+Changeset: 81020
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/19/2009 19:24:48
+Build version update: rel_rtm_8.2.275.0100-20090319-1856
+
+Parent: 82220
+Changeset: 81025
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/19/2009 23:33:13
+Workspace Checkin: rel_rtm_8.2.275.0100-20090319-1856
+
+Parent: 82220
+Changeset: 81204
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/20/2009 20:28:07
+Build version update: rel_rtm_8.2.276.0100-20090320-2000
+
+Parent: 82220
+Changeset: 81206
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/20/2009 22:07:10
+Build version update: rel_rtm_8.2.277.0100-20090320-2138
+
+Parent: 82220
+Changeset: 81208
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/21/2009 01:57:55
+Workspace Checkin: rel_rtm_8.2.277.0100-20090320-2138
+
+Parent: 82220
+Changeset: 81591
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/25/2009 00:18:15
+Build version update: rel_rtm_8.2.278.0100-20090324-2339
+
+Parent: 82220
+Changeset: 81593
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/25/2009 05:10:59
+Workspace Checkin: rel_rtm_8.2.278.0100-20090324-2339
+
+Parent: 82220
+Changeset: 81667
+Author: IGTMASTER\LewisL
+Date: 03/25/2009 14:09:01
+Changed to only zip up Advantage products for 8.2 SP1 rebuild, QC 8746.
+
+Parent: 82220
+Changeset: 81932
+Author: IGTMASTER\LewisL
+Date: 03/27/2009 10:35:48
+Setup to rebuild ABS
+
+Parent: 82220
+Changeset: 81957
+Author: IGTMASTER\TFSBuildAdvantage
+Date: 03/27/2009 12:49:56
+Automatic build Bonus Controllers version update
+
+Parent: 82321
+Changeset: 82227
+Author: IGTMASTER\rinka
+Date: 03/31/2009 13:53:11
+Making so that duplicate meters are not copied in.
+
+Parent: 82321
+Changeset: 82233
+Author: IGTMASTER\rinka
+Date: 03/31/2009 14:24:34
+Fixing issue with hotfixes and service packs showing in the next version from the previous version
+
+Parent: 82321
+Changeset: 82239
+Author: IGTMASTER\OwenG
+Date: 03/31/2009 14:38:31
+Removing commented out code.
+
+Changeset: 82440
+Author: IGTMASTER\derrym
+Date: 04/02/2009 08:46:50
+$/IGT_0803/main/EGS/
+Merge changes for AOL 3.2 SP1 HF1
+
+Parent: 82440
+Changeset: 82331
+Author: IGTMASTER\SquibbG
+Date: 04/01/2009 10:56:00
+
+
+Parent: 82440
+Changeset: 82393
+Author: IGTMASTER\SquibbG
+Date: 04/01/2009 16:02:36
+
+
+Changeset: 82490
+Author: IGTMASTER\sundarh
+Date: 04/02/2009 13:09:51
+$/IGT_0803/main/EGS/
+EFT Rel FI: rel_dev_8.2.281.0200-20090401-1455 to main
+
+Parent: 82490
+Changeset: 82489
+Author: IGTMASTER\sundarh
+Date: 04/02/2009 13:08:26
+Removing .net framework 1.1 from install media
+

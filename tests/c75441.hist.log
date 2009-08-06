@@ -1,0 +1,589 @@
+Changeset: 75441
+Author: IGTMASTER\FordB
+Date: 02/18/2009 07:50:24
+$/IGT_0803/development/dev_advantage/EGS/
+FI main to dev_advantage
+
+Parent: 75441
+Changeset: 75200
+Author: IGTMASTER\FordB
+Date: 02/17/2009 10:00:04
+$/IGT_0803/main/EGS/
+Merge SP1 to main
+
+Parent: 75200
+Changeset: 74702
+Author: IGTMASTER\waldnes
+Date: 02/12/2009 10:37:19
+Added new method to DBConfig to retrieve configuration values from ther SiteConfig table in PlayerManagement.  Changed WagerMatchEarnedPoints to pull from PlayerManagement.SiteConfig as PointsIncludeXC and store in PlayerTracking.Config as wmEarnPoints. 
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIDBLib/DBConfig.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIInclude/DBConfig.h
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIPlayerCacheUpdateDLL/ADIPlayerCacheUpdateThread.cpp
+
+Parent: 75200
+Changeset: 74603
+Author: IGTMASTER\waldnes
+Date: 02/11/2009 15:18:39
+Modified database prepared statement files for TCPInterface based on changes made to PlayerCacheUpdate service regarding using signed integers for EncryptIndex and Sentinel.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIDBLib/DBHostUpdate.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIDBLib/DBPlayerFlagChange.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIInclude/DBHostUpdate.h
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIInclude/DBPlayerFlagChange.h
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIInclude/DBPlayerFlagChangeXML.h
+
+Parent: 75200
+Changeset: 74551
+Author: IGTMASTER\waldnes
+Date: 02/11/2009 11:01:45
+Changed EncryptIndex and Sentinel parameters from unsigned integers to signed integers contrary to the specification.  PlayerManagement and PlayerTracking databases do not follow the ABS PlayerTracking specification in regards to these parameters.  Change to ADI reflects ability to work with PlayerManagement and PlayerTracking rather then compliance to the specification.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIDBLib/DBPlayer.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIDBLib/DBPlayerCashlessStatus.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIDBLib/DBProphetPlayer.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIInclude/DBPlayer.h
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIInclude/DBPlayerCashlessStatus.h
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIInclude/DBProphetPlayer.h
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIPlayerCacheUpdateDLL/ADIPlayerCacheUpdateXMLThread.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIPlayerCacheUpdateSvc/ADIPlayerCacheUpdateSvc.vcproj
+
+Parent: 75200
+Changeset: 75026
+Author: IGTMASTER\waldnes
+Date: 02/13/2009 16:56:45
+Added overridden Finalize method with a WaitForSingleObject to ADIHTTPServerThread to give time to finish logging and deallocating resources.  Shortened timeout waiting for a ThreadKill event to 1 millisecond.  Previous timeout was 100 milliseconds leading to slower communications. Fixed problem where DatabaseMaintenanceThread was using the last interface's number of connections to check for connectivity.  It now uses the connection pool array count.  Added exception handling to connection array deallocation.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIHTTPServerDLL/ADIHTTPConnection.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIHTTPServerDLL/ADIHTTPServerThread.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIHTTPServerSvc/ADIHTTPServerSvc.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIHTTPServerSvc/ADIHTTPServerSvc.vcproj
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIInclude/ADIHTTPServer.h
+
+Parent: 75200
+Changeset: 74636
+Author: IGTMASTER\waldnes
+Date: 02/11/2009 17:31:12
+Changed Sentinel and EncryptIndex to signed integers.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/Communications/ADIPlayerCacheUpdateDLL/ADIPlayerCacheUpdateXMLThread.cpp
+
+Parent: 75200
+Changeset: 74777
+Author: IGTMASTER\MillerA
+Date: 02/12/2009 14:55:46
+Nick name null pass First nams
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/ADI_PM/Schema Objects/Stored Procedures/dbo.Proc_GetUnsentPlayerCard.proc.sql
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/ADI_PM/Schema Objects/Stored Procedures/dbo.Proc_GetUnsentPlayers.proc.sql
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/ADI_PM/Schema Objects/Stored Procedures/dbo.Proc_PlayerGetBonusInfo.proc.sql
+
+Parent: 75200
+Changeset: 74894
+Author: IGTMASTER\MillerA
+Date: 02/13/2009 08:41:26
+Fixing errors
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/ADI_PM/Schema Objects/Stored Procedures/dbo.Proc_PlayerGetBonusInfo.proc.sql
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/ADI_PM/Schema Objects/Stored Procedures/dbo.Proc_XML_MICROS_CompPostRequest.proc.sql
+
+Parent: 75200
+Changeset: 74743
+Author: IGTMASTER\MillerA
+Date: 02/12/2009 12:59:02
+CompID to compID
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/ADI_PM/Schema Objects/Stored Procedures/dbo.Proc_XML_MICROS_CompPostRequest.proc.sql
+
+Parent: 75200
+Changeset: 74963
+Author: IGTMASTER\c-KalakoN
+Date: 02/13/2009 13:42:24
+updated for...program multiplier should not take past days..means the start date should be grater than the current time.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/GiftPoints/Schema Objects/Stored Procedures/dbo.Proc_GiftProgramMultiplier.proc.sql
+
+Parent: 75200
+Changeset: 74987
+Author: IGTMASTER\alforss
+Date: 02/13/2009 15:08:52
+Fix trip balance calculations.
+we're looking for the smallest trip number which fits the range 
+<player's current trip> to the @nCompNumber'th trip (since trips can be non-contigous: linked players)
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/PlayerManagement/Schema Objects/Functions/dbo.fn_CompBalance.function.sql
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/PlayerManagement/Schema Objects/Functions/dbo.fn_CompBalance_NoRecurse.function.sql
+
+Parent: 75200
+Changeset: 74581
+Author: IGTMASTER\kenwort
+Date: 02/11/2009 14:20:23
+Fixed Datatypes for ItemType and ItemID
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/PlayerManagement/Schema Objects/Stored Procedures/dbo.Proc_ItemLock.proc.sql
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/PlayerManagement/Schema Objects/Stored Procedures/dbo.Proc_ItemLockCheck.proc.sql
+
+Parent: 75200
+Changeset: 74635
+Author: IGTMASTER\lambd
+Date: 02/11/2009 17:26:58
+Check in code made by Pon, tested per Pon.
+Add ordinal as a value instead of NULL
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/PlayerManagement/Schema Objects/Stored Procedures/dbo.Proc_RankingInsert.proc.sql
+
+Parent: 75200
+Changeset: 74916
+Author: IGTMASTER\SayasiP
+Date: 02/13/2009 10:14:14
+Undo prev changes.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/PlayerManagement/Schema Objects/Stored Procedures/dbo.Proc_RankingInsert.proc.sql
+
+Parent: 75200
+Changeset: 74921
+Author: IGTMASTER\SayasiP
+Date: 02/13/2009 10:23:49
+Check for NULL in the "Ordinal" column.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/PlayerManagement/Schema Objects/Stored Procedures/dbo.Proc_RankingList.proc.sql
+
+Parent: 75200
+Changeset: 74951
+Author: IGTMASTER\c-SaxenaR
+Date: 02/13/2009 12:37:21
+Change the Procedure and Report for Issues in User authorization and Comp Limits. Now data is matching with SSRS reports in IRV
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/PlayerManagement/Schema Objects/Stored Procedures/dbo.Report_UserCompPermission.proc.sql
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/PM/Crystal Reports/User Permission Detail.rpt
+
+Parent: 75200
+Changeset: 74568
+Author: IGTMASTER\MillerA
+Date: 02/11/2009 13:10:25
+wnEarnPoints 
+
+Description: Earn Points on Xtra Credit at the EGM
+
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/DB/Pro/PlayerTracking/Scripts/Post-Deployment/PlayerTrackingInitialization.sql
+
+Parent: 75200
+Changeset: 74955
+Author: IGTMASTER\alforss
+Date: 02/13/2009 13:13:12
+Fix resource handle switching.
+
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/PM/Client/ContactWkBk/ContactDlg.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/PM/Client/ContactWkBk/ContactWkBk.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/PM/Client/ContactWkBk/StdAfx.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/PM/Client/ContactWkBk/StdAfx.h
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/PM/Client/Patron Client/MainFrm.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/PM/Client/Patron Client/Patron.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/PM/Client/Patron Client/PlayerPromoDlg.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/PM/Client/Patron Client/StdAfx.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/PM/Client/Patron Client/StdAfx.h
+
+Parent: 75200
+Changeset: 74964
+Author: IGTMASTER\c-KalakoN
+Date: 02/13/2009 13:49:53
+updated for..end data is not printing on the repot and base points,multiplier and total points are not correct.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/GiftPoints/Reports/Gift Point Liability.rpt
+
+Parent: 75200
+Changeset: 74783
+Author: IGTMASTER\hannign:20
+Date: 02/12/2009 15:06:49
+Added parameters for the ID, and ScanDate columns so that the INSERT INTO Dolphin statement won't fail.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Drop Utility/Mainline/CashCanDownloadDlg.cpp
+
+Parent: 75200
+Changeset: 74840
+Author: IGTMASTER\WilliaL
+Date: 02/12/2009 17:08:44
+Added three additional Eprom number fields.  MA client, machine wizard dll, and database affected.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Components/MMaint/Mainline/ConfirmationDlg.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Components/MMaint/Mainline/define.h
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Components/MMaint/Mainline/Location.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Components/MMaint/Mainline/Location.h
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Components/MMaint/Mainline/MachineWiz.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Components/MMaint/Mainline/MMaint.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Components/MMaint/Mainline/MMaint.rc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Components/MMaint/Mainline/Resource.h
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/MA/Mainline/MachineDlg.cpp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_MachineInsert.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_MachineUpdate.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_VerifyAdd.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.MachineTables.tab
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Views/dbo.View_Machine.viw
+
+Parent: 75200
+Changeset: 74985
+Author: IGTMASTER\OwenG
+Date: 02/13/2009 15:07:31
+
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_GetHardDrop.prc
+
+Parent: 75200
+Changeset: 74999
+Author: IGTMASTER\OwenG
+Date: 02/13/2009 15:46:37
+Pulling out some test code
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_GetHardDrop.prc
+
+Parent: 75200
+Changeset: 74874
+Author: IGTMASTER\OwenG
+Date: 02/12/2009 18:47:51
+Removed unaccepting code.  Only re-adjusting meters if not accepted.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_GetSoftDrop.prc
+
+Parent: 75200
+Changeset: 74875
+Author: IGTMASTER\OwenG
+Date: 02/12/2009 19:03:48
+
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_GetSoftDrop.prc
+
+Parent: 75200
+Changeset: 74577
+Author: IGTMASTER\rinka
+Date: 02/11/2009 14:03:04
+Dropping obsolete procs
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Create Scripts/Post_ZZCleanup.sql
+
+Parent: 75200
+Changeset: 74573
+Author: IGTMASTER\rinka
+Date: 02/11/2009 13:51:45
+Closing cursors that werent closed
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/MDMG/SQL/Mainline/Procedures/dbo.Proc_MDMGDenomGrpSubView.PRC
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/MDMG/SQL/Mainline/Procedures/dbo.Proc_MDMGDenomGrpView.PRC
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/MDMG/SQL/Mainline/Procedures/dbo.Proc_MDMGPaytableGroupView.PRC
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/MDMG/SQL/Mainline/Procedures/dbo.Proc_MDMGPaytableGrpSubView.PRC
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Accounting80.dbp
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_IssueCard.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_MGAStartPeriod.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_Test.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Util_BCPData.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Util_CollectMultiSiteBonusInformation.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Util_HandpaySlipsMissingDailyRun.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Util_Kill_Em_All.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Util_Recompile.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Util_ResetCollation.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Util_SizeOfDB.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Util_SizeOfDB2.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Util_UpdateStatistics.prc
+
+Parent: 75200
+Changeset: 74578
+Author: IGTMASTER\rinka
+Date: 02/11/2009 14:06:09
+Opps forgot one this is for cursor
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_MachineTestBank.prc
+
+Parent: 75200
+Changeset: 74986
+Author: IGTMASTER\c-KURAPAS
+Date: 02/13/2009 15:07:59
+WI40198-Redesigned and modified slot master report and Report_SlotMaster procedure as per the spec document. 
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/MA/Reports/Mainline/SSRS/GCB/Slot Master.rdl
+
+Parent: 75200
+Changeset: 75014
+Author: IGTMASTER\c-KURAPAS
+Date: 02/13/2009 16:22:07
+Made change for WI40198.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/MA/Reports/Mainline/SSRS/GCB/Slot Master.rdl
+
+Parent: 75200
+Changeset: 74564
+Author: IGTMASTER\rinka
+Date: 02/11/2009 12:33:53
+Improving performance for correct meter variances
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_MeterVariance.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Table Primary Keys Defaults & Indexes/dbo.TransactionLog.kci
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.AAA_BonusHistory.tab
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.TransactionLog.tab
+
+Parent: 75200
+Changeset: 75176
+Author: IGTMASTER\weldonb
+Date: 02/16/2009 17:33:43
+Proc_MGAMeterLoad - reorder calls of Proc_MGAMeterLoadFloorUpdateInsert and Proc_MGAMeterLoadPaytableInsert to request MGA Paytables from Translator
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_MGAMeterLoad.prc
+
+Parent: 75200
+Changeset: 75084
+Author: IGTMASTER\weldonb
+Date: 02/14/2009 12:36:16
+fixed cursor name in Proc_MGAStartPeriod
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_MGAStartPeriod.prc
+
+Parent: 75200
+Changeset: 75021
+Author: IGTMASTER\PhilipN
+Date: 02/13/2009 16:36:10
+WI42428 - Adding ProcessID = 58 to get CEP Actuals adjustments to show up.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Report_Adjustment.prc
+
+Parent: 75200
+Changeset: 74982
+Author: IGTMASTER\c-KURAPAS
+Date: 02/13/2009 14:56:24
+WI40198-Redesigned and modified slot master report and Report_SlotMaster procedure as per the spec document. 
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Report_SlotMaster.prc
+
+Parent: 75200
+Changeset: 74617
+Author: IGTMASTER\PhilipN
+Date: 02/11/2009 16:22:56
+WI42030 - Fixed a typo on the K type insert.  Fixed formatting.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_TranslatorFJPSlipNumber.prc
+
+Parent: 75200
+Changeset: 75006
+Author: IGTMASTER\OwenG
+Date: 02/13/2009 16:04:30
+Applying same fix from hard drop to Coupon and Ticket
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_PeriodCouponUpdate.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_PeriodTicketUpdate.prc
+
+Parent: 75200
+Changeset: 74599
+Author: IGTMASTER\PryorB
+Date: 02/11/2009 15:05:22
+Changes to make Final Meter requests to translator for paytables that fall off the EGM active paytable list.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_TranslatorMGAInfoS2S.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_TranslatorMGAMeterFinalRequest.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.FloorUpdateType.tab
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.MGATables.tab
+
+Parent: 75200
+Changeset: 75056
+Author: IGTMASTER\PryorB
+Date: 02/13/2009 18:15:33
+QC 7307: Making changes to allow MA to request initial meters when a new paytable is added.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_TranslatorMGAInfoS2S.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_TranslatorMGAMeterRequest.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.FloorUpdateType.tab
+
+Parent: 75200
+Changeset: 75023
+Author: IGTMASTER\MuelleMa
+Date: 02/13/2009 16:45:10
+updated IGTReportingDLL to be a standalone installer that MA, CTA, PM are dependent on through IPS rather than a prerequisite installer included in the MA, CTa, PM reports installers
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/IS/CTAReports09.ism
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/advantage/source/IS/PMReports09.ism
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Build Machine/ISM/Accounting Reports 2009.ism
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/shared/ImageLayout/ADV_Install_Tools_Layout.csv
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/shared/redist/IGTReporting.prq
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/shared/source/IGTReporting/PackageIGTReportingDLL.vjsproj
+
+Parent: 75200
+Changeset: 74938
+Author: IGTMASTER\PryorB
+Date: 02/13/2009 11:21:43
+Adding ActualBonusToCreditUntaxed so that the reports can use the CEP view and not do bonus calculations internally.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_CEPPost.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.MeterNames.tab
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Views/dbo.View_ActualCEP.viw
+
+Parent: 75200
+Changeset: 74980
+Author: IGTMASTER\PryorB
+Date: 02/13/2009 14:43:02
+Fixing join. Kumar told me I needed to add a date aspect to the join or I could still get duplicates.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Proc_CEPPost.prc
+
+Parent: 75200
+Changeset: 75003
+Author: IGTMASTER\PhilipN
+Date: 02/13/2009 15:55:42
+WI41639 - Pull bonus to credit taxed/untaxed from ActualDropDetail table via View_ActualCEP.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Report_ActualSlotWinWithPromo.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Report_DeductibleDetail.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Report_GamingMeteredReportwithPromo.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Report_GamingReportWithPromo.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Report_MeteredSlotWinwithPromo.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Report_NonDeductibleDetail.prc
+
+Parent: 75200
+Changeset: 74918
+Author: IGTMASTER\c-KopparK
+Date: 02/13/2009 10:19:25
+Made changes for WI-42000
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Report_CouponPromoVarience.prc
+
+Parent: 75200
+Changeset: 74930
+Author: IGTMASTER\c-KURAPAS
+Date: 02/13/2009 11:00:58
+WI41000- Corrected the MtrdDeductBonus calculation
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Report_DeductibleDetail.prc
+
+Parent: 75200
+Changeset: 74936
+Author: IGTMASTER\c-KURAPAS
+Date: 02/13/2009 11:09:08
+Made change for 41000
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Report_DeductibleDetail.prc
+
+Parent: 75200
+Changeset: 74594
+Author: IGTMASTER\OwenG
+Date: 02/11/2009 14:39:52
+Removing the handpay type and event code as they are likely unnecessary
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.EventCode.tab
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.HandpayType.tab
+
+Parent: 75200
+Changeset: 74574
+Author: IGTMASTER\rinka
+Date: 02/11/2009 13:55:07
+Removing unique constraint
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.MachineIdentifier.tab
+
+Parent: 75200
+Changeset: 74621
+Author: IGTMASTER\PhilipN
+Date: 02/11/2009 16:30:17
+WI42974 - Added values to range table for fresh installations, per field bulleting B-0142.  Updated the Range table installation to be via XML script.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Table Primary Keys Defaults & Indexes/dbo.Range.kci
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.Range.tab
+
+Parent: 75200
+Changeset: 74639
+Author: IGTMASTER\rinka
+Date: 02/11/2009 17:54:40
+Fixing issue with potentially sorting the columns in the wrong order.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Procedures/dbo.Util_TableModCreateIndex.prc
+
+Parent: 75200
+Changeset: 75087
+Author: IGTMASTER\PhilipN
+Date: 02/14/2009 13:47:32
+WI43329 - Added functionality to support items formerly in the CWS and Menu code.  This includes additional witness checking for handpays, pouchpays, fills, and aux fills, based on four configuration settings.  Also added the ability to turn on or off handpays, pouchpays, fills, or aux fills.  Added a number of new settings in Config to support this.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.Config.tab
+
+Parent: 75200
+Changeset: 75086
+Author: IGTMASTER\PhilipN
+Date: 02/14/2009 13:44:38
+WI43329 - Added functionality to support items formerly in the CWS and Menu code.  This includes additional witness checking for handpays, pouchpays, fills, and aux fills, based on four configuration settings.  Also added the ability to turn on or off handpays, pouchpays, fills, or aux fills.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/FJP/SQL/Mainline/Procedures/dbo.Proc_FJPGetEGMOptionsEnabled.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/FJP/SQL/Mainline/Procedures/dbo.Proc_FJPHandpayS2SConfig.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/FJP/SQL/Mainline/Procedures/dbo.Proc_FJPHandpaySignal.prc
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/FJP/SQL/Mainline/Procedures/dbo.Proc_FJPMenuEventInsert.prc
+
+Parent: 75200
+Changeset: 74557
+Author: IGTMASTER\OwenG
+Date: 02/11/2009 11:31:59
+
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/FJP/SQL/Mainline/Procedures/dbo.Proc_FJPPostRecord.prc
+
+Parent: 75200
+Changeset: 74665
+Author: IGTMASTER\PhilipN
+Date: 02/12/2009 08:53:46
+WI42030 - Added check to be sure each slip type was in the HandpaySlips table.  If any are missing, rebuld the table.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/FJP/SQL/Mainline/Procedures/dbo.Proc_FJPStationOnline.prc
+
+Parent: 75200
+Changeset: 74633
+Author: IGTMASTER\PryorB
+Date: 02/11/2009 17:19:08
+Changing text for Y and Z meters in MGAMeterReadReason to be Theme Initial and ThemeFinal.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/Accounting/Sql/Mainline/Tables/dbo.MGATables.tab
+
+Parent: 75200
+Changeset: 74548
+Author: IGTMASTER\SayasiP
+Date: 02/11/2009 10:58:12
+Remove project not being use in main application.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/shared/source/IRV/IGT.IRV.Common.UI/IGT.IRV.Common.UI.csproj
+
+Parent: 75200
+Changeset: 74544
+Author: IGTMASTER\SayasiP
+Date: 02/11/2009 10:47:19
+Pass an empty string value for date parameter that allow NULL. Only pass it if a user check mark NULL in the IRV. Also fix parameters alignment.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/shared/source/IRV/IGT.IRV.Common.UI/ReportControlFactory.cs
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/shared/source/IRV/IGT.IRV.Common.UI/Controls/ParameterControl.cs
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/shared/source/IRV/IGT.IRV.Common.UI/Controls/ParameterLayoutControl.cs
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/shared/source/IRV/IGT.IRV.Common.UI/Controls/ReportViewerControl.cs
+
+Parent: 75200
+Changeset: 74530
+Author: IGTMASTER\SayasiP
+Date: 02/11/2009 09:41:23
+Check to make sure the index is valid to retrieve a control from a list.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/shared/source/IRV/IGT.IRV.Common.UI/Controls/ReportViewerControl.cs
+
+Parent: 75200
+Changeset: 74793
+Author: IGTMASTER\PhilipN
+Date: 02/12/2009 15:39:38
+WI42984 - Verified Database and reran it.  This seemed to fix whatever was bothering it before.
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/MA/source/Development/FJP/Reports/Mainline/FJPAccruaLogMGM.rpt
+
+Parent: 75200
+Changeset: 75198
+Author: IGTMASTER\MuelleMa
+Date: 02/17/2009 09:48:59
+updated to perform IISReset the way the old Reports installs used to
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/shared/source/IGTReporting/IGTReporting2009.ism
+
+Parent: 75200
+Changeset: 75048
+Author: IGTMASTER\MuelleMa
+Date: 02/13/2009 17:37:18
+updated to create directory for output if it does not exist
+
+$/IGT_0803/release/EGS8.2/dev_sp/EGS/shared/source/IGTReporting/PackageIGTReportingDLL.vjsproj
+

@@ -1,0 +1,40 @@
+$/IGT_0803/development/dev_advantage/EGS
+83669 04/15/2009 15:01:06
+IGTMASTER\alforss
+Update CSSN's sdk to version 9.34.0
+this affects Scanshell scanners, and Snapshell cameras.
+
+
+to:
+83749 04/16/2009 10:15:32
+IGTMASTER\yaled
+RI changeset 83669 to main
+
+84139 04/20/2009 14:39:44
+IGTMASTER\PattarR
+For the ratings created by Stratus, set the playerday to accountingdate.
+
+to:
+84411 04/22/2009 15:49:27
+IGTMASTER\FordB
+Merge SP2 changes
+
+84236 04/21/2009 10:47:05
+IGTMASTER\PattarR
+Changes to rebuild all the linked players at the click of rebuild player in composite screen.
+
+to:
+84411 04/22/2009 15:49:27
+IGTMASTER\FordB
+Merge SP2 changes
+
+84238 04/21/2009 10:48:38
+IGTMASTER\PattarR
+Added an entry to ConfigItem table for rebuild all linked players at global level.
+
+to:
+84411 04/22/2009 15:49:27
+IGTMASTER\FordB
+Merge SP2 changes
+
+spent 00:15:58.6744320 querying merges.
