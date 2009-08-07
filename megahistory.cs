@@ -46,6 +46,9 @@ public class MegaHistory
 		
 		/** allow recursive queries to revisit already seen branches 
 		 *  aka full recursion (decompose all merge changesets...)
+		 *
+		 *  so, you might think this option is broken, but it really isn't, 
+		 *  see an explaination of how this does its stuff first.
 		 */
 		private bool _allowBranchRevisiting = false;
 		
@@ -76,6 +79,18 @@ public class MegaHistory
 		_visitor = visitor;
 	}
 	
+	/** so, what this does is this:
+	 *  uses VersionControlServer.QueryMerges to get a list of target and source changeset.
+	 *  a private method trees that list into:
+	 *   target changeset [ list o' source changests ]
+	 *  we then march through that list
+	 *   target(s) (here is where we visit the target)
+	 *     source(s)
+	 *  
+	 *  if the source contains any TFS paths we want to query,
+	 *   then we do a recursive query on that changeset (it is now the target)
+	 *  otherwise we'll just visit the changeset
+	 */
 	public virtual bool visit(int parentID,
 														string targetPath, 
 														VersionSpec targetVer,
