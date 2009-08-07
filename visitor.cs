@@ -45,7 +45,9 @@ public abstract class Visitor
 	};
 	
 	protected Dictionary<int,PatchInfo> _cache = new Dictionary<int,PatchInfo>();
+	protected List<string> _branches = new List<string>();
 	
+	public int visitedCount() { return _cache.Count; }
 	public PatchInfo this[int changesetid]
 	{
 		get
@@ -59,6 +61,8 @@ public abstract class Visitor
 	/** have we already visited this changeset?
 	 */
 	public bool visited(int changesetid) { return _cache.ContainsKey(changesetid); }
+	/** have we already visited this branch? */
+	public bool visited(string branch) { return _branches.BinarySearch(branch) >= 0; }
 	
 	public void visit(int parentID, Changeset cs) { visit(parentID, cs, null); }
 	public virtual void visit(int parentID, Changeset cs, List<string> branches)
@@ -77,6 +81,17 @@ public abstract class Visitor
 				p = new PatchInfo(parentID, cs, treeBranches);
 				
 				_cache.Add(p.cs.ChangesetId, p);
+				
+				for(int i=0; i<treeBranches.Count; ++i)
+					{
+						/* insertion could be sped up using BinarySearch, but this keeps things simple. */
+						if (_branches.BinarySearch(treeBranches[i]) < 0)
+							{
+								_branches.Add(treeBranches[i]);
+								_branches.Sort();
+							}
+					}
+				
 				_visit(p);
 			}
 	}

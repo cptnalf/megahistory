@@ -12,16 +12,66 @@ using System.Collections.Generic;
 public class MegaHistory
 {
 	public static readonly string version = "f998a4d529c1cb415b0efaeb072dd3cda173d3e1";
+	public static uint FindChangesetBranchesCalls = 0;
+	public delegate bool ChangeTypeToConsiderDelegate(Change cng);
+
+	/** what ChangeType(s) do we want to consider when we query for decomposition.
+	 *  this defaults to a function which only considers:
+	 *   changes which are not just ChangeType.Merge
+	 *   and changes which contain a ChangeType.Merge
+	 */
+	public static ChangeTypeToConsiderDelegate IsChangeToConsider = _isChangeToConsider;
+
+	private static bool _isChangeToConsider(Change cng)
+	{
+		/* look at only merge and branch changes, 
+		 * but ignore only 'Merge' changes (these are TFS's way of syncing it's internal merge state)
+		 */
+		return (cng.ChangeType != ChangeType.Merge) &&
+			(
+			 //((cng.ChangeType & ChangeType.Branch) == ChangeType.Branch) ||
+			 ((cng.ChangeType & ChangeType.Merge) == ChangeType.Merge)
+			 );
+	}
 
 	static internal readonly log4net.ILog logger = log4net.LogManager.GetLogger("megahistory_logger");
 	
-	private bool _noRecurse = false;
+	public class Options
+	{
+		private bool _noRecurse = false;          /**< do we want recursion? */
+		/** always decompose changesets 
+		 *  (even if they didn't result in any branches)
+		 */
+		private bool _forceDecomposition = false;
+		
+		/** allow recursive queries to revisit already seen branches 
+		 *  aka full recursion (decompose all merge changesets...)
+		 */
+		private bool _allowBranchRevisiting = false;
+		
+		public Options() { }
+		public bool NoRecurse { get { return _noRecurse; } set { _noRecurse = value; } }
+		public bool ForceDecomposition 
+		{ get { return _forceDecomposition; } set { _forceDecomposition = value; } }
+		public bool AllowBranchRevisiting
+		{ get { return _allowBranchRevisiting; } set { _allowBranchRevisiting = value; } }
+	}
+	
+	private Options _options;
 	private VersionControlServer _vcs;
 	private Visitor _visitor;
+	private uint _queries = 0;
+	private Timer _queryTimer = new Timer();
+
+	public TimeSpan QueryTime { get { return _queryTimer.Total; } }
+	public uint Queries { get { return _queries; } }
 	
-	public MegaHistory(bool noRecurse, VersionControlServer vcs, Visitor visitor)
+	public MegaHistory(VersionControlServer vcs, Visitor visitor)
+	: this(new Options(), vcs, visitor) { }
+	
+	public MegaHistory(Options options, VersionControlServer vcs, Visitor visitor)
 	{ 
-		_noRecurse = noRecurse; 
+		_options = options;
 		_vcs=vcs;
 		_visitor = visitor;
 	}
@@ -31,13 +81,36 @@ public class MegaHistory
 														VersionSpec targetVer,
 														VersionSpec fromVer,
 														VersionSpec toVer)
-	{ return _visit(parentID, null, null, null, targetPath, targetVer, fromVer, toVer, RecursionType.Full); }
+	{ 
+		bool result = _visit(parentID, null, 
+												 null, null, 
+												 targetPath, targetVer, 
+												 fromVer, toVer, RecursionType.Full); 
+		
+		/* dump some stats out to the log file. */
+		logger.DebugFormat("{0} queries took {1}", _queries, _queryTimer.Total);
+		logger.DebugFormat("{0} findchangesetbranchcalls for {1} changesets.", 
+											 MegaHistory.FindChangesetBranchesCalls, _visitor.visitedCount());
+		
+		return result;
+	}
 	
 	public virtual bool visit(string srcPath, VersionSpec srcVer, 
 														string target, VersionSpec targetVer,
 														VersionSpec fromVer, VersionSpec toVer,
 														RecursionType recursionType)
-	{ return _visit(0, null, srcPath, srcVer, target, targetVer, fromVer, toVer, recursionType); }
+	{
+		bool result = _visit(0, null, 
+												 srcPath, srcVer, 
+												 target, targetVer, 
+												 fromVer, toVer, recursionType);
+		
+		/* dump some stats out to the log file. */
+		logger.DebugFormat("{0} queries took {1}", _queries, _queryTimer.Total);
+		logger.DebugFormat("{0} findchangesetbranchcalls for {1} changesets.", 
+											 MegaHistory.FindChangesetBranchesCalls, _visitor.visitedCount());
+		return result;
+	}
 	
 	/** visit an explicit list of changesets. 
 	 */
@@ -48,13 +121,15 @@ public class MegaHistory
 											VersionSpec fromVer, VersionSpec toVer,
 											RecursionType recursionType)
 	{
+		logger.DebugFormat("{{_visit: parent={0}",parentID);
+		
 		/* so, here we might have a few top-level merge changesets. 
 		 * the red-black binary tree sorts the changesets in decending order
 		 */
-		RBDictTree<int,List<ChangesetMerge>> merges = 
+		RBDictTree<int,SortedDictionary<int,ChangesetMerge>> merges = 
 			query_merges(_vcs, srcPath, srcVer, target, targetVer, fromVer, toVer, recursionType);
 		
-		RBDictTree<int,List<ChangesetMerge>>.iterator it = merges.begin();
+		RBDictTree<int,SortedDictionary<int,ChangesetMerge>>.iterator it = merges.begin();
 		
 		/* walk through the merge changesets
 		 * - this should return only one merge changeset for the recursive calls.
@@ -75,8 +150,20 @@ public class MegaHistory
 						if (cstargetVer.ChangesetId == csID) { _visitor.visit(parentID, cs, targetBranches); }
 						else { _visitor.visit(parentID, cs); }
 						
-						foreach(ChangesetMerge csm in it.value().second)
+						{
+							Visitor.PatchInfo p = _visitor[csID];
+							/* if the user chose to heed our warnings, 
+							 *   and there are no branches to visit for this changeset?
+							 *   move on to the next result, ignoring all the 'composites' of this 'fake' changeset.
+							 */
+							if (! _options.ForceDecomposition &&
+									(p != null && (p.treeBranches == null || p.treeBranches.Count ==0)))
+								{ continue; }
+						}
+						
+						foreach(KeyValuePair<int,ChangesetMerge> cng in it.value().second)
 							{
+								ChangesetMerge csm = cng.Value;
 								/* now visit each of the children.
 								 * we've already expanded cs.ChangesetId (hopefully...)
 								 */
@@ -103,7 +190,7 @@ public class MegaHistory
 										 * query target $/IGT_0803,78029 = DNF (waited 6+m)
 										 */
 										
-										if (_noRecurse)
+										if (_options.NoRecurse)
 											{
 												/* they just want the top-level query. */
 												_visitor.visit(cs.ChangesetId, child, branches);
@@ -123,15 +210,21 @@ public class MegaHistory
 														 */
 														for(int i=0; i < branches.Count; ++i)
 															{
-																/* this recurisve call needs to then 
-																 * handle visiting the results of this query. 
-																 */
-																bool branchResult = _visit(cs.ChangesetId, branches, 
-																													 null, null,
-																													 branches[i]+path_part, tv, 
-																													 tv, tv, RecursionType.Full);
-																
-																if (branchResult) { results = true; }
+																if (_options.AllowBranchRevisiting || !_visitor.visited(branches[i]))
+																	{
+																		logger.DebugFormat("visiting ({0}) {1}{2}",
+																											 child.ChangesetId, branches[i], path_part);
+																		
+																		/* this recurisve call needs to then 
+																		 * handle visiting the results of this query. 
+																		 */
+																		bool branchResult = _visit(cs.ChangesetId, branches, 
+																															 null, null,
+																															 branches[i]+path_part, tv, 
+																															 tv, tv, RecursionType.Full);
+																		
+																		if (branchResult) { results = true; }
+																	}
 															}
 														
 														if (!results)
@@ -139,13 +232,13 @@ public class MegaHistory
 																/* we got no results from our query, so display the changeset
 																 * (it won't be displayed otherwise)
 																 */
-																_visitor.visit(cs.ChangesetId, child); //, branches);
+																_visitor.visit(cs.ChangesetId, child, branches); //, branches);
 															}
 													}
 												else
 													{
 														/* do we want to see it again? */
-														_visitor.visit(cs.ChangesetId, child);//, branches);
+														_visitor.visit(cs.ChangesetId, child, branches);//, branches);
 													}
 											}
 									}
@@ -154,6 +247,8 @@ public class MegaHistory
 					}
 				catch(Exception e) { _visitor.visit(parentID, csID, e); }
 			}
+		
+		logger.DebugFormat("}}_visit:{0}", parentID);
 		
 		return false == merges.empty();
 	}
@@ -174,6 +269,8 @@ public class MegaHistory
 		Timer timer = new Timer();
 		List<string> itemBranches = new List<string>();
 		
+		++MegaHistory.FindChangesetBranchesCalls;
+		
 		timer.start();
 		if (cs.Changes.Length > 1000)
 			{
@@ -184,13 +281,13 @@ public class MegaHistory
 				int changesLen = cs.Changes.Length;
 				for(int i=0; i < changesLen; ++i)
 					{
-						string itemPath = cs.Changes[i].Item.ServerItem;
-						bool found = false;
-						int idx = 0;
 						
-						/* skip all non-merge changesets. */
-						if ((cs.Changes[i].ChangeType & ChangeType.Merge) == ChangeType.Merge)
+						if (IsChangeToConsider(cs.Changes[i])	)
 							{
+								string itemPath = cs.Changes[i].Item.ServerItem;
+								bool found = false;
+								int idx = 0;
+								
 								for(int j=0; j < itemBranches.Count; ++j)
 									{
 										/* the stupid branches are not case sensitive. */
@@ -229,7 +326,7 @@ public class MegaHistory
 					}
 			}
 		timer.stop();
-		logger.DebugFormat("getting branches took: {0}", timer.Delta);
+		logger.DebugFormat("branches for {0} took: {1}", cs.ChangesetId, timer.Delta);
 		
 		return itemBranches;
 	}
@@ -282,7 +379,7 @@ public class MegaHistory
 				int itemCount = 0;
 				
 				/* skip all non-merge changesets. */
-				if ((args.changes[res].ChangeType & ChangeType.Merge) == ChangeType.Merge)
+				if (IsChangeToConsider(args.changes[res]))
 					{
 						try {
 							try {
@@ -357,23 +454,25 @@ public class MegaHistory
 	}
 	
 
-	private static RBDictTree<int,List<ChangesetMerge>> query_merges(VersionControlServer vcs,
-																																									 string srcPath,
-																																									 VersionSpec srcVer,
-																																									 string targetPath,
-																																									 VersionSpec targetVer,
-																																									 VersionSpec fromVer,
-																																									 VersionSpec toVer,
-																																									 RecursionType recurType)
+	private RBDictTree<int,SortedDictionary<int,ChangesetMerge>> 
+		query_merges(VersionControlServer vcs,
+								 string srcPath, VersionSpec srcVer,
+								 string targetPath, VersionSpec targetVer,
+								 VersionSpec fromVer, VersionSpec toVer,
+								 RecursionType recurType)
 	{
-		RBDictTree<int,List<ChangesetMerge>> merges = new RBDictTree<int,List<ChangesetMerge>>();
+		RBDictTree<int,SortedDictionary<int,ChangesetMerge>> merges = 
+			new RBDictTree<int,SortedDictionary<int,ChangesetMerge>>();
 
+		++_queries;
 		logger.DebugFormat("query_merges {0}, {1}, {2}, {3}, {4}, {5}",
 											 ( srcPath == null ? "(null)": srcPath), 
 											 (srcVer == null ? "(null)" : srcVer.DisplayString),
 											 targetPath, targetVer.DisplayString, 
 											 (fromVer == null ? "(null)" : fromVer.DisplayString),
 											 (toVer == null ? "(null)" : toVer.DisplayString));
+		
+		_queryTimer.start();
 		try
 			{
 				ChangesetMerge[] mergesrc = vcs.QueryMerges(srcPath, srcVer, targetPath, targetVer,
@@ -381,27 +480,27 @@ public class MegaHistory
 				/* group by merged changesets. */
 				for(int i=0; i < mergesrc.Length; ++i)
 					{
-						RBDictTree<int,List<ChangesetMerge>>.iterator it = 
+						RBDictTree<int,SortedDictionary<int,ChangesetMerge>>.iterator it = 
 							merges.find(mergesrc[i].TargetVersion);
 						
 						if (merges.end() == it)
 							{
 								/* create the list... */
-								List<ChangesetMerge> group = new List<ChangesetMerge>();
-								group.Add(mergesrc[i]);
+								SortedDictionary<int,ChangesetMerge> group = new SortedDictionary<int,ChangesetMerge>();
+								group.Add(mergesrc[i].SourceVersion, mergesrc[i]);
 								merges.insert(mergesrc[i].TargetVersion, group);
 							}
 						else
-							{ it.value().second.Add(mergesrc[i]); }
-							}
+							{ it.value().second.Add(mergesrc[i].SourceVersion, mergesrc[i]); }
 					}
+			}
 		catch(Exception e)
 			{
 				Console.Error.WriteLine("Error querying: {0},{1}", targetPath, targetVer);
 				Console.Error.WriteLine(e.ToString());
 			}
+		_queryTimer.stop();
 		
-		logger.Debug("done querying.");
 		return merges;
 	}
 	

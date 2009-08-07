@@ -53,6 +53,7 @@ class HistoryViewer : Visitor
 			}
 		else
 			{
+				Console.WriteLine("Parent: {0}", parentID);
 				Console.WriteLine("Changeset: {0}", p.cs.ChangesetId);
 				Console.WriteLine();
 			}

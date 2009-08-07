@@ -37,10 +37,19 @@ class main
 		Console.WriteLine("-s <server name>\tthe tfs server to connect to");
 		Console.WriteLine("--src <path>[,<version>]\tthe source of the changesets");
 		Console.WriteLine("--from version[,version]\tthe changeset range to look in.");
-		Console.WriteLine("--no-recurse            \tdo not recursively query merge history");
-		Console.WriteLine("                        \t this will execute only one QueryMerges");
+		Console.WriteLine("--no-recurse");
+		Console.WriteLine("   do not recursively query merge history. this will execute only one QueryMerges");
 		Console.WriteLine("--name-only             \tadd the path of the files to the changeset info");
 		Console.WriteLine("--name-status           \tprint the path and the change type in the changeset info");
+		Console.WriteLine("--allow-branch-revisiting");
+		Console.WriteLine("    turns on recursive decomposition.");
+		Console.WriteLine("    this will decompose ALL changesets which contain changes of Merge+anything");
+		Console.WriteLine("--force-decomposition");
+		Console.WriteLine("   if the changeset in the initial query is just contains ChangeType.Merge changes,");
+		Console.WriteLine("   this option will allow the querying to continue. Normally it will stop.");
+		Console.WriteLine("--branches-too");
+		Console.WriteLine("     this changes the 'isChangeToConsider' function to include ChangeType.Branch.");
+		Console.WriteLine("       isChangeToConsider is used when gathering branches to QueryMerges against.");
 		Console.WriteLine("target,version\tthe required path we're looking at");
 	}
 
@@ -76,6 +85,9 @@ class main
 		internal VersionSpec toVer;
 		internal VersionControlServer vcs;
 		internal HistoryViewer.Printwhat printWhat;
+		internal bool allowBranchRevisiting;
+		internal bool forceDecomposition;
+		internal bool branchesToo;
 		
 		internal Values(byte b)
 		{
@@ -89,6 +101,9 @@ class main
 			toVer = null;
 			vcs = null;
 			printWhat = HistoryViewer.Printwhat.None;
+			allowBranchRevisiting = false;
+			forceDecomposition = false;
+			branchesToo = false;
 		}
 	}
 	
@@ -123,6 +138,9 @@ class main
 				else if (args[i] == "--no-recurse") { values.noRecurse = true; }
 				else if (args[i] == "--name-only") { values.printWhat = HistoryViewer.Printwhat.NameOnly; }
 				else if (args[i] == "--name-status") { values.printWhat = HistoryViewer.Printwhat.NameStatus; }
+				else if (args[i] == "--allow-branch-revisiting") { values.allowBranchRevisiting = true; }
+				else if (args[i] == "--force-decomposition") { values.forceDecomposition = true; }
+				else if (args[i] == "--branches-too") { values.branchesToo = true; }
 				else
 					{
 						/* anything not caught by the above items is considered a target path and changeset. */
@@ -135,8 +153,31 @@ class main
 		
 		values.vcs = _get_tfs_server(values.server);
 		
+		MegaHistory.Options mhopts = new MegaHistory.Options();
+		
+		mhopts.NoRecurse = values.noRecurse;
+		mhopts.AllowBranchRevisiting = values.allowBranchRevisiting;
+		mhopts.ForceDecomposition = values.forceDecomposition;
+		
 		Visitor visitor = new HistoryViewer(values.printWhat);
-		MegaHistory megahistory = new MegaHistory(values.noRecurse, values.vcs, visitor);
+		MegaHistory megahistory = new MegaHistory(mhopts, values.vcs, visitor);
+		
+		if (values.branchesToo)
+			{
+				MegaHistory.IsChangeToConsider = 
+					delegate(Change cng)
+					{
+						return (
+										(cng.ChangeType != ChangeType.Merge)  /* ignore only merges. */
+										&&
+										(
+										 /* look for branched items, or merged items */
+										 ((cng.ChangeType & ChangeType.Branch) == ChangeType.Branch) ||
+										 ((cng.ChangeType & ChangeType.Merge) == ChangeType.Merge)
+										 )
+										);
+					};
+			}
 		
 		bool result = megahistory.visit(values.srcPath, values.srcVer, 
 																		values.target, values.targetVer, 
@@ -146,7 +187,7 @@ class main
 			{
 				Console.WriteLine("no changesets found.");
 			}
-		
+				
 		return 0;
 	}	
 }
